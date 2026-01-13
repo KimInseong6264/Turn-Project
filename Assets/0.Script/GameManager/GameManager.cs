@@ -1,22 +1,14 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonBase<GameManager>
 {
-    public static GameManager Instance  { get; private set; }
-
     [SerializeField] private CoroutineManager _coroutine;
     [SerializeField] private SceneChanger _scene;
-    private void Awake()
+
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = GetComponent<GameManager>();
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.Awake();
     }
+    
 }
 
