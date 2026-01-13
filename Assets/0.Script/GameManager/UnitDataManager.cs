@@ -25,6 +25,11 @@ public class UnitDataManager : SingletonBase<UnitDataManager>
     
     public Unit OnCreateUnit(string unitName)
     {
+        if (!_unitDataDict.TryGetValue(unitName, out UnitDataSO unitData))
+        {
+            Debug.LogError($"Unit {unitName} 데이터를 찾지 못함");
+        }
+        
         GameObject prefab = _unitDataDict[unitName].UnitPrefab.gameObject;
         Unit unit = Instantiate(prefab).GetComponent<Unit>();
 
