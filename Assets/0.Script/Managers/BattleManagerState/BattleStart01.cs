@@ -35,10 +35,10 @@ public class BattleStart01 : IState
         {
             Debug.Log(unit.Name);
             UnitPresenter presenter = GameObject.Instantiate(
-                UnitDataManager.Instance.GetUnitData(unit.Name).UnitPrefab, 
+                UnitDataManager.Instance.GetUnitData(unit.Name).UnitPrefab,
                 _spawnPoints[0].position, 
                 Quaternion.identity
-                ).GetComponent<UnitView>().Presenter;
+                ).Presenter;
             presenter.View.gameObject.name = unit.Name;
             
             _battleManager.SetPlayers(presenter);
@@ -50,7 +50,7 @@ public class BattleStart01 : IState
                 UnitDataManager.Instance.GetUnitData(unit.Name).UnitPrefab, 
                 _spawnPoints[1].position, 
                 Quaternion.identity
-                ).GetComponent<UnitView>().Presenter;
+                ).Presenter;
             presenter.View.gameObject.name = unit.Name;
             
             _battleManager.SetEnemies(presenter);

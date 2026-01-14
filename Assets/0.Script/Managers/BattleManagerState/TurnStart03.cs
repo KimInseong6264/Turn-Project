@@ -8,8 +8,12 @@ public class TurnStart03 : IState
     {
         _battleManager = battleManager;
     }
-    
-    public void Enter() {}
+
+    public void Enter()
+    {
+        
+        _battleManager.SetState(BattleState.ActSelect);
+    }
 
     public void Exit() {}
 

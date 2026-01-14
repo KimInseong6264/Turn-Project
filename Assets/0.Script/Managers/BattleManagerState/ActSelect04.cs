@@ -10,8 +10,11 @@ public class ActSelect04 : IState
         _battleManager = battleManager;
 
     }
-    
-    public void Enter() {}
+
+    public void Enter()
+    {
+        Debug.Log("플레이어 입력을 기다립니다.");
+    }
 
     public void Exit() {}
 

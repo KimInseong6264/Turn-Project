@@ -53,9 +53,10 @@ public class BattleManager : SingletonBase<BattleManager>
     {
         _currentState?.Exit();
         _currentState = _states[state];
+        Debug.Log("<color=green>현재상태" + _currentState + "</color>");
+        
         _currentState.Enter();
 
-        Debug.Log("현재상태" + _currentState);
     }
 
     public void TestKey()

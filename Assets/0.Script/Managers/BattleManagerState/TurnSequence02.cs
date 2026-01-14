@@ -18,6 +18,8 @@ public class TurnSequence02 : IState
         SetSpeedDict();
 
         SetSequence();
+        
+        _battleManager.SetState(BattleState.TurnStart);
     }
 
     public void Exit() {}
@@ -45,7 +47,7 @@ public class TurnSequence02 : IState
         }
     }
 
-    // 
+    // 순서대로 시퀀스에 세팅
     private void SetSequence()
     {
         foreach (var units in _unitsSpeedDict)
