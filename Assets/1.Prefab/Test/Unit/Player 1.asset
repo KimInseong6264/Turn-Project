@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 704672e6800c49e4b58e4db12e429628, type: 3}
-  m_Name: Player 2
+  m_Name: Player 1
   m_EditorClassIdentifier: Assembly-CSharp::UnitDataSO
-  <Name>k__BackingField: "\uD50C\uB808\uC774\uC5B42"
+  <Name>k__BackingField: "\uD50C\uB808\uC774\uC5B41"
   <Team>k__BackingField: 0
   <Hp>k__BackingField: 0
   <AttLevel>k__BackingField: 0
   <DefLevel>k__BackingField: 0
-  <Speed>k__BackingField: 6
-  _unitPrefab: {fileID: 9017484657857959085, guid: c2f07d626581c4149959be141683b195, type: 3}
+  <Speed>k__BackingField: 5
+  <UnitPrefab>k__BackingField: {fileID: 9017484657857959085, guid: 41f838f94934c4345be88e8068b7b5e6, type: 3}
