@@ -9,6 +9,7 @@ public class GameManager : SingletonBase<GameManager>
     {
         base.Awake();
     }
-    
+
+    public void OnLoadScene(int num) => _scene.OnLoadScene(num);
 }
 
