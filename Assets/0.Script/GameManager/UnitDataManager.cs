@@ -23,16 +23,16 @@ public class UnitDataManager : SingletonBase<UnitDataManager>
         }
     }
     
-    public Unit OnCreateUnit(string unitName)
+    public UnitView OnCreateUnit(string unitName)
     {
-        if (!_unitDataDict.TryGetValue(unitName, out UnitDataSO unitData))
+        if (!_unitDataDict.ContainsKey(unitName))
         {
             Debug.LogError($"Unit {unitName} 데이터를 찾지 못함");
         }
         
-        GameObject prefab = _unitDataDict[unitName].UnitPrefab.gameObject;
-        Unit unit = Instantiate(prefab).GetComponent<Unit>();
+        GameObject prefab = _unitDataDict[unitName].UnitViewPrefab.gameObject;
+        UnitView unitView = Instantiate(prefab).GetComponent<UnitView>();
 
-        return unit;
+        return unitView;
     }
 }

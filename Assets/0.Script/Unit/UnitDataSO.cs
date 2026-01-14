@@ -4,5 +4,5 @@ using UnityEngine;
 public class UnitDataSO : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public Unit UnitPrefab { get; private set; }
+    [field: SerializeField] public UnitView UnitViewPrefab { get; private set; }
 }
