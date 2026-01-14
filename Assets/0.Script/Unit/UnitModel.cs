@@ -12,7 +12,7 @@ public class UnitModel
     public Faction Team { get; private set; }
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
-    public float Speed { get; private set; }
+    public int Speed { get; private set; }
     
     public UnitModel(UnitDataSO unitData)
     {

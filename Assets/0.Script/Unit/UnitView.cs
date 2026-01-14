@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UnitView : MonoBehaviour
 {
-    private UnitPresenter _presenter;
+    public UnitPresenter Presenter { get; private set; }
     
     //
     public UnitDataSO unitData;
@@ -11,11 +11,11 @@ public class UnitView : MonoBehaviour
     
     private void Awake()
     {
-        _presenter = new UnitPresenter(unitData, this);
+        Presenter = new UnitPresenter(unitData, this);
     }
 
     private void Update()
     {
-        _presenter.Tick();
+        Presenter.Tick();
     }
 }

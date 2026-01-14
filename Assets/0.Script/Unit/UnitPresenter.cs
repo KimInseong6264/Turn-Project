@@ -16,4 +16,6 @@ public class UnitPresenter
     
     public void OnAct() {}
     public void OnMove(Vector3 dir) => View.transform.Translate(dir);
+
+    public UnitModel GetModel() => Model;
 }

@@ -10,7 +10,7 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public int Hp { get; private set; }
     [field: SerializeField] public float AttLevel { get; private set; }
     [field: SerializeField] public float DefLevel { get; private set; }
-    [field: SerializeField] public float Speed { get; private set; }
+    [field: SerializeField] public int Speed { get; private set; }
     
     [SerializeField] private UnitView _unitPrefab;
     

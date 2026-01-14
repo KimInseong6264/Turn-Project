@@ -12,8 +12,7 @@ public class UnitSelector : MonoBehaviour
 
     private void Awake()
     {
-        Players = new List<UnitDataSO>();
-        Enemies = new List<UnitDataSO>();
+        Instance = this;
     }
 
     public void SetPlayers(UnitDataSO unitData)
