@@ -13,4 +13,9 @@ public class UnitView : MonoBehaviour
     {
         _presenter = new UnitPresenter(unitData, this);
     }
+
+    private void Update()
+    {
+        _presenter.Tick();
+    }
 }

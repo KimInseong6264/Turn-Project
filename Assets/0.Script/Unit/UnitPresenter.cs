@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class UnitPresenter
 {
@@ -6,7 +7,13 @@ public class UnitPresenter
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
-        Model = new UnitModel(unitData);
         View = view;
+        Model = new UnitModel(unitData);
+        
     }
+    
+    public void Tick() {}
+    
+    public void OnAct() {}
+    public void OnMove(Vector3 dir) => View.transform.Translate(dir);
 }
