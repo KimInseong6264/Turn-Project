@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnSequence02 : IState
+/// <summary>
+/// 1. 유닛 속도에 따라 행동순서 세팅
+/// </summary>
+public class TurnSequence03 : IState
 {
     private BattleManager _battleManager;
     private SortedDictionary<int, List<UnitPresenter>> _unitsSpeedDict;
     
-    public TurnSequence02(BattleManager battleManager)
+    public TurnSequence03(BattleManager battleManager)
     {
         _battleManager = battleManager;
         _unitsSpeedDict = new SortedDictionary<int, List<UnitPresenter>>();
@@ -19,7 +22,8 @@ public class TurnSequence02 : IState
 
         SetSequence();
         
-        _battleManager.SetState(BattleState.TurnStart);
+        
+        _battleManager.SetState(BattleState.ActSelect);
     }
 
     public void Exit() {}

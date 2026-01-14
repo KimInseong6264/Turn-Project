@@ -35,8 +35,8 @@ public class BattleManager : SingletonBase<BattleManager>
     {
         _states = new Dictionary<BattleState, IState>();
         _states.Add(BattleState.BattleStart, new BattleStart01(this));
-        _states.Add(BattleState.TurnSequence, new TurnSequence02(this));
-        _states.Add(BattleState.TurnStart , new TurnStart03(this));
+        _states.Add(BattleState.TurnStart , new TurnStart02(this));
+        _states.Add(BattleState.TurnSequence, new TurnSequence03(this));
         _states.Add(BattleState.ActSelect , new ActSelect04(this));
         _states.Add(BattleState.ActStart , new ActStart05(this));
         _states.Add(BattleState.TurnEnd , new TurnEnd06(this));

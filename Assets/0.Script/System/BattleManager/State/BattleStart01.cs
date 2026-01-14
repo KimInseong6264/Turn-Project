@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// 1. 전투 씬 전환
+/// 2. 유닛 스폰
+/// </summary>
 public class BattleStart01 : IState
 {
     private BattleManager _battleManager;
@@ -15,7 +19,7 @@ public class BattleStart01 : IState
     {
         StartSpawn();
         
-        _battleManager.SetState(BattleState.TurnSequence);
+        _battleManager.SetState(BattleState.TurnStart);
     }
 
     public void Exit() {}
@@ -35,11 +39,11 @@ public class BattleStart01 : IState
         {
             Debug.Log(unit.Name);
             UnitPresenter presenter = GameObject.Instantiate(
-                GameManager.Instance.GetUnitData(unit.Name).UnitPrefab,
+                unit.UnitPrefab,
                 _spawnPoints[0].position, 
                 Quaternion.identity
                 ).Presenter;
-            presenter.View.gameObject.name = unit.Name;
+            presenter.SetObjectName(unit.Name);
             
             _battleManager.SetPlayers(presenter);
         }
@@ -47,11 +51,11 @@ public class BattleStart01 : IState
         foreach (var unit in UnitSelector.Instance.Enemies)
         {
             UnitPresenter presenter = GameObject.Instantiate(
-                GameManager.Instance.GetUnitData(unit.Name).UnitPrefab, 
+                unit.UnitPrefab, 
                 _spawnPoints[1].position, 
                 Quaternion.identity
                 ).Presenter;
-            presenter.View.gameObject.name = unit.Name;
+            presenter.SetObjectName(unit.Name);
             
             _battleManager.SetEnemies(presenter);
         }
