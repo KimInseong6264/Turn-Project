@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class UnitPresenter
 {
-    public UnitModel Model { get; private set; }
+    private UnitModel _model;
+    
     public UnitView View { get; private set; }
+    
+    public string Name => _model.Name;
+    public int Speed => _model.Speed;
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
         View = view;
-        Model = new UnitModel(unitData);
+        _model = new UnitModel(unitData);
         
     }
     
@@ -17,5 +21,5 @@ public class UnitPresenter
     public void OnAct() {}
     public void OnMove(Vector3 dir) => View.transform.Translate(dir);
 
-    public UnitModel GetModel() => Model;
+    public UnitModel GetModel() => _model;
 }

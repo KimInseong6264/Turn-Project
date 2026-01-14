@@ -31,7 +31,7 @@ public class TurnSequence02 : IState
     {
         foreach (var enemy in _battleManager.Enemies)
         {
-            int speed = enemy.Model.Speed;
+            int speed = enemy.Speed;
             if (_unitsSpeedDict.TryGetValue(speed, out List<UnitPresenter> units))
                 units.Add(enemy);
             else
@@ -39,7 +39,7 @@ public class TurnSequence02 : IState
         }
         foreach (var player in _battleManager.Players)
         {
-            int speed = player.Model.Speed;
+            int speed = player.Speed;
             if (_unitsSpeedDict.TryGetValue(speed, out List<UnitPresenter> units))
                 units.Add(player);
             else
@@ -55,7 +55,7 @@ public class TurnSequence02 : IState
             foreach (var unit in units.Value)
             {
                 _battleManager.SetSequence(unit);
-                Debug.Log("시퀀스 세팅" + unit.Model.Name + "/스피드" +  unit.Model.Speed);
+                Debug.Log("시퀀스 세팅" + unit.Name + "/스피드" +  unit.Speed);
             }
         }
     }

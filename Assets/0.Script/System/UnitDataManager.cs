@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitDataManager : SingletonBase<UnitDataManager>
+public class UnitDataManager : MonoBehaviour
 {
     [SerializeField] private List<UnitDataSO> _unitDataList;
 
     private Dictionary<string, UnitDataSO> _unitDataDict;
     
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         _unitDataDict = new Dictionary<string, UnitDataSO>();
         SetUnitData();
     }

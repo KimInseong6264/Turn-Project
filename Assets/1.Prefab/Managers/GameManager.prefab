@@ -44,6 +44,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c1855f6cf5499983a8af59986898a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
+--- !u!1 &2855058378379578931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8326007451273594151}
+  - component: {fileID: 3209284850058746085}
+  m_Layer: 0
+  m_Name: UnitDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8326007451273594151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855058378379578931}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8944476539885274872}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3209284850058746085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855058378379578931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e38c8da0cb4bb9934ce5fece424839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitDataManager
+  _unitDataList:
+  - {fileID: 11400000, guid: b78bd7aee5ac3da4a96b2d0e465fcfe2, type: 2}
+  - {fileID: 11400000, guid: 6c51849f17a94d44fb8dcb3936349941, type: 2}
+  - {fileID: 11400000, guid: a69e30b6990f3434eaa3ad202a16df1b, type: 2}
+  - {fileID: 11400000, guid: 4ed7ec72827d83241aa5b0f6dfdfb977, type: 2}
+  - {fileID: 11400000, guid: a5feae2be22ad6d409e43816d6ab1904, type: 2}
+  - {fileID: 11400000, guid: 912f9a49f07d25d4bbf604f3345972a4, type: 2}
 --- !u!1 &5957410302424984766
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7475463603771031535}
+  - {fileID: 8326007451273594151}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6412033469017421578
@@ -90,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _scene: {fileID: 2111390676677750120}
+  _unitData: {fileID: 3209284850058746085}

@@ -35,7 +35,7 @@ public class BattleStart01 : IState
         {
             Debug.Log(unit.Name);
             UnitPresenter presenter = GameObject.Instantiate(
-                UnitDataManager.Instance.GetUnitData(unit.Name).UnitPrefab,
+                GameManager.Instance.GetUnitData(unit.Name).UnitPrefab,
                 _spawnPoints[0].position, 
                 Quaternion.identity
                 ).Presenter;
@@ -47,7 +47,7 @@ public class BattleStart01 : IState
         foreach (var unit in UnitSelector.Instance.Enemies)
         {
             UnitPresenter presenter = GameObject.Instantiate(
-                UnitDataManager.Instance.GetUnitData(unit.Name).UnitPrefab, 
+                GameManager.Instance.GetUnitData(unit.Name).UnitPrefab, 
                 _spawnPoints[1].position, 
                 Quaternion.identity
                 ).Presenter;

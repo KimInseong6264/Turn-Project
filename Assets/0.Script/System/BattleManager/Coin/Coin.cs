@@ -8,5 +8,4 @@ public class Coin : MonoBehaviour
     private CoinType _coinType;
     
     public void SetCoinType(CoinType coinType) => _coinType = coinType;
-    
 }
