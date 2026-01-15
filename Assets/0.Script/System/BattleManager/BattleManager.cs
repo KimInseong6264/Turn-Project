@@ -10,7 +10,7 @@ public class BattleManager : SingletonBase<BattleManager>
     
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
-    public Stack<UnitPresenter> UnitSequence { get; private set; }
+    public Queue<UnitPresenter> UnitSequence { get; private set; }
     public bool IsStartBattle { get; private set; }
     
     //
@@ -22,7 +22,7 @@ public class BattleManager : SingletonBase<BattleManager>
         base.Awake();
         Players =  new List<UnitPresenter>();
         Enemies = new List<UnitPresenter>();
-        UnitSequence = new Stack<UnitPresenter>();
+        UnitSequence = new Queue<UnitPresenter>();
     }
 
     private void Start()
@@ -48,11 +48,6 @@ public class BattleManager : SingletonBase<BattleManager>
         _states.Add(BattleState.BattleEnd07 , new BattleEnd07(this));
         SetState(BattleState.BattleStart01);
     }
-    
-    public void SetPlayers(UnitPresenter presenter) => Players.Add(presenter);
-    public void SetEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
-    public void SetSequence(UnitPresenter presenter) => UnitSequence.Push(presenter);
-
     // 현재 상태 갱신
     public void SetState(BattleState state)
     {
@@ -63,7 +58,13 @@ public class BattleManager : SingletonBase<BattleManager>
         _currentState.Enter();
     }
     
+    
     public void SetStartBattle(bool startBattle) => IsStartBattle = startBattle;
+    public void SetPlayers(UnitPresenter presenter) => Players.Add(presenter);
+    public void SetEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
+    
+    public void SetSequence(UnitPresenter presenter) => UnitSequence.Enqueue(presenter);
+    public UnitPresenter GetSequence() => UnitSequence.Dequeue();
 }
 
 public enum BattleState

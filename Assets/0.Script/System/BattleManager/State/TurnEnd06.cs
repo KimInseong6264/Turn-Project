@@ -6,14 +6,12 @@ public class TurnEnd06 : IState
     private BattleManager _battleManager;
     private List<UnitPresenter> _players;
     private List<UnitPresenter> _enemies;
-    private Stack<UnitPresenter> _unitSequence;
     
     public TurnEnd06(BattleManager battleManager)
     {
         _battleManager = battleManager;
         _players = battleManager.Players;
         _enemies = battleManager.Enemies;
-        _unitSequence = battleManager.UnitSequence;
     }
 
     public void Enter()
