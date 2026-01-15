@@ -22,7 +22,7 @@ public class TurnStart02 : IState
     {
         SetPosition();
         
-        _battleManager.SetState(BattleState.TurnSequence);
+        _battleManager.SetState(BattleState.TurnSequence02);
     }
 
     public void Exit() {}

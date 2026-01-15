@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace Player
 {
-    public class Skill02 : Skill
+    public class Skill02 : SkillBase
     {
         public Skill02(ISkillable unit) : base(unit)
         {

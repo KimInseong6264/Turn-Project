@@ -10,8 +10,8 @@ public class BattleManager : SingletonBase<BattleManager>
     
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
-    
     public Stack<UnitPresenter> UnitSequence { get; private set; }
+    public bool IsStartBattle { get; private set; }
     
     //
     [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
@@ -30,18 +30,23 @@ public class BattleManager : SingletonBase<BattleManager>
         SetState();
     }
 
+    private void Update()
+    {
+        _currentState?.Update();
+    }
+
     // 상태 피턴 세팅
     private void SetState()
     {
         _states = new Dictionary<BattleState, IState>();
-        _states.Add(BattleState.BattleStart, new BattleStart01(this));
-        _states.Add(BattleState.TurnStart , new TurnStart02(this));
-        _states.Add(BattleState.TurnSequence, new TurnSequence03(this));
-        _states.Add(BattleState.ActSelect , new ActSelect04(this));
-        _states.Add(BattleState.ActStart , new ActStart05(this));
-        _states.Add(BattleState.TurnEnd , new TurnEnd06(this));
-        _states.Add(BattleState.BattleEnd , new BattleEnd07(this));
-        SetState(BattleState.BattleStart);
+        _states.Add(BattleState.BattleStart01, new BattleStart01(this));
+        _states.Add(BattleState.TurnStart03 , new TurnStart02(this));
+        _states.Add(BattleState.TurnSequence02, new TurnSequence03(this));
+        _states.Add(BattleState.ActSelect04 , new ActSelect04(this));
+        _states.Add(BattleState.ActStart05 , new ActStart05(this));
+        _states.Add(BattleState.TurnEnd06 , new TurnEnd06(this));
+        _states.Add(BattleState.BattleEnd07 , new BattleEnd07(this));
+        SetState(BattleState.BattleStart01);
     }
     
     public void SetPlayers(UnitPresenter presenter) => Players.Add(presenter);
@@ -56,17 +61,17 @@ public class BattleManager : SingletonBase<BattleManager>
         Debug.Log("<color=green>현재상태" + _currentState + "</color>");
         
         _currentState.Enter();
-
     }
+    
+    public void OnStartBattle() => IsStartBattle = true;
 
     public void TestKey()
     {
-        SetState(BattleState.TurnSequence);
-
+        SetState(BattleState.TurnSequence02);
     }
 }
 
 public enum BattleState
 {
-    BattleStart, TurnSequence,TurnStart, ActSelect, ActStart, TurnEnd, BattleEnd
+    BattleStart01, TurnSequence02, TurnStart03, ActSelect04, ActStart05, TurnEnd06, BattleEnd07
 }

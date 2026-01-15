@@ -8,13 +8,12 @@ public class UnitPresenter : ISkillable
     
     public string Name => _model.Name;
     public int Speed => _model.Speed;
+    public SkillBase Skill => _model.Skill;
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
         _view = view;
         _model = new UnitModel(unitData, this);
-        
-        
     }
     
     public void Tick() {}
@@ -24,5 +23,5 @@ public class UnitPresenter : ISkillable
     
     public void SetPosition(Vector3 pos) => _view.transform.position = pos;
     public void SetObjectName(string name) => _view.gameObject.name = name;
-    
+    public void StartSkillExecute() => _view.StartCoroutine(Skill.Execute());
 }

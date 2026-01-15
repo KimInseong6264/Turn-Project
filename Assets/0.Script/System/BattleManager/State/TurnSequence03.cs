@@ -23,7 +23,7 @@ public class TurnSequence03 : IState
         SetSequence();
         
         
-        _battleManager.SetState(BattleState.ActSelect);
+        _battleManager.SetState(BattleState.ActSelect04);
     }
 
     public void Exit() {}

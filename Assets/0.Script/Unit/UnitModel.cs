@@ -11,7 +11,7 @@ public class UnitModel
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
     public int Speed { get; private set; }
-    public Skill skill { get; private set; }
+    public SkillBase Skill { get; private set; }
     
     public UnitModel(UnitDataSO unitData, ISkillable  skillable)
     {
@@ -22,6 +22,6 @@ public class UnitModel
         DefLevel = unitData.DefLevel;
         Speed = unitData.Speed;
         
-        skill = SkillFactory.CreateSkill(Name ,skillable);
+        Skill = SkillFactory.CreateSkill(Name ,skillable);
     }
 }
