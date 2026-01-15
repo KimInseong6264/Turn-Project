@@ -40,8 +40,8 @@ public class BattleManager : SingletonBase<BattleManager>
     {
         _states = new Dictionary<BattleState, IState>();
         _states.Add(BattleState.BattleStart01, new BattleStart01(this));
-        _states.Add(BattleState.TurnStart03 , new TurnStart02(this));
-        _states.Add(BattleState.TurnSequence02, new TurnSequence03(this));
+        _states.Add(BattleState.TurnStart02 , new TurnStart02(this));
+        _states.Add(BattleState.TurnSequence03, new TurnSequence03(this));
         _states.Add(BattleState.ActSelect04 , new ActSelect04(this));
         _states.Add(BattleState.ActStart05 , new ActStart05(this));
         _states.Add(BattleState.TurnEnd06 , new TurnEnd06(this));
@@ -63,15 +63,10 @@ public class BattleManager : SingletonBase<BattleManager>
         _currentState.Enter();
     }
     
-    public void OnStartBattle() => IsStartBattle = true;
-
-    public void TestKey()
-    {
-        SetState(BattleState.TurnSequence02);
-    }
+    public void SetStartBattle(bool startBattle) => IsStartBattle = startBattle;
 }
 
 public enum BattleState
 {
-    BattleStart01, TurnSequence02, TurnStart03, ActSelect04, ActStart05, TurnEnd06, BattleEnd07
+    BattleStart01, TurnStart02, TurnSequence03, ActSelect04, ActStart05, TurnEnd06, BattleEnd07
 }

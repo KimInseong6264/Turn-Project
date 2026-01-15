@@ -21,8 +21,6 @@ public class TurnStart02 : IState
     public void Enter()
     {
         SetPosition();
-        
-        _battleManager.SetState(BattleState.TurnSequence02);
     }
 
     public void Exit() {}
@@ -32,6 +30,12 @@ public class TurnStart02 : IState
     
     private void SetPosition()
     {
+        if (_players == null || _enemies == null)
+        {
+            Debug.LogError("배틀 할 유닛이 없습니다.");
+            return;
+        }
+        
         foreach (var player in _players)
         {
             player.SetPosition(new Vector3(-3, 0, 0));
@@ -41,5 +45,7 @@ public class TurnStart02 : IState
         {
             enemy.SetPosition(new Vector3(3, 0, 0));
         }
+        
+        _battleManager.SetState(BattleState.TurnSequence03);
     }
 }

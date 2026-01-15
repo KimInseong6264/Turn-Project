@@ -30,6 +30,7 @@ public class ActStart05 : IState
             _unitSequence.Pop().StartSkillExecute();
         }
         
+        Debug.Log("스택은 텅 비어야 해" + _unitSequence.Count);
         _battleManager.SetState(BattleState.TurnEnd06);
     }
 }

@@ -19,7 +19,7 @@ public class BattleStart01 : IState
     {
         StartSpawn();
         
-        _battleManager.SetState(BattleState.TurnStart03);
+        _battleManager.SetState(BattleState.TurnStart02);
     }
 
     public void Exit() {}
