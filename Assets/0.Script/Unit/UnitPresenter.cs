@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UnitPresenter
+public class UnitPresenter : ISkillable
 {
     private UnitModel _model;
 
@@ -12,7 +12,8 @@ public class UnitPresenter
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
         _view = view;
-        _model = new UnitModel(unitData);
+        _model = new UnitModel(unitData, this);
+        
         
     }
     

@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 public class UnitModel
@@ -13,8 +11,9 @@ public class UnitModel
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
     public int Speed { get; private set; }
+    public Skill skill { get; private set; }
     
-    public UnitModel(UnitDataSO unitData)
+    public UnitModel(UnitDataSO unitData, ISkillable  skillable)
     {
         _hp = unitData.Hp;
         Name = unitData.Name;
@@ -22,5 +21,7 @@ public class UnitModel
         AttLevel = unitData.AttLevel;
         DefLevel = unitData.DefLevel;
         Speed = unitData.Speed;
+        
+        skill = SkillFactory.CreateSkill(Name ,skillable);
     }
 }

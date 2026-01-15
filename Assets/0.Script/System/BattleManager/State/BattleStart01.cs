@@ -37,7 +37,6 @@ public class BattleStart01 : IState
         // 유닛을 생성하고, 그 유닛을 배틀매니저 리스트에 담는다.
         foreach (var unit in UnitSelector.Instance.Players)
         {
-            Debug.Log(unit.Name);
             UnitPresenter presenter = GameObject.Instantiate(
                 unit.UnitPrefab,
                 _spawnPoints[0].position, 
