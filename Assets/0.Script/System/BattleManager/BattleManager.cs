@@ -11,6 +11,7 @@ public class BattleManager : SingletonBase<BattleManager>
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
     public Queue<UnitPresenter> UnitSequence { get; private set; }
+    public Dictionary<UnitPresenter, UnitPresenter> Targets { get; private set; }
     public bool IsStartBattle { get; private set; }
     
     //
@@ -23,6 +24,7 @@ public class BattleManager : SingletonBase<BattleManager>
         Players =  new List<UnitPresenter>();
         Enemies = new List<UnitPresenter>();
         UnitSequence = new Queue<UnitPresenter>();
+        Targets = new Dictionary<UnitPresenter, UnitPresenter>();
     }
 
     private void Start()
@@ -65,6 +67,18 @@ public class BattleManager : SingletonBase<BattleManager>
     
     public void SetSequence(UnitPresenter presenter) => UnitSequence.Enqueue(presenter);
     public UnitPresenter GetSequence() => UnitSequence.Dequeue();
+}
+
+public struct SelectTarget
+{
+    public UnitPresenter Attacker { get; }
+    public UnitPresenter Target { get; }
+
+    public SelectTarget(UnitPresenter attacker, UnitPresenter target)
+    {
+        Attacker = attacker;
+        Target = target;
+    }
 }
 
 public enum BattleState

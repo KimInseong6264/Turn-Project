@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UnitView : MonoBehaviour
+public class UnitView : MonoBehaviour, IClickable
 {
     public UnitPresenter Presenter { get; private set; }
     
@@ -18,5 +18,15 @@ public class UnitView : MonoBehaviour
     private void Update()
     {
         Presenter.Tick();
+    }
+
+    public void SetSkill()
+    {
+    }
+
+
+    public void OnCklick()
+    {
+        Debug.Log("클릭대상" + unitData.Name);
     }
 }

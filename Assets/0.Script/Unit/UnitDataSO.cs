@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UnitData", menuName = "UnitSO", order = 0)]
@@ -11,8 +12,19 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public float AttLevel { get; private set; }
     [field: SerializeField] public float DefLevel { get; private set; }
     [field: SerializeField] public int Speed { get; private set; }
+    [field: SerializeField] public List<SkillDataSO> SkillList { get; private set; }
     [field:SerializeField] public UnitView UnitPrefab { get; private set; }
 
+    private void OnValidate()
+    {
+        if (SkillList == null)
+            return;
+        
+        foreach (var skill in SkillList)
+        {
+            skill.SetOwnerName(Name);
+        }
+    }
 }
 
 public enum Faction

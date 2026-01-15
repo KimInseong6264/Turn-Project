@@ -30,4 +30,6 @@ public class ActStart05 : IState
         
         _battleManager.SetState(BattleState.TurnEnd06);
     }
+    
+    
 }

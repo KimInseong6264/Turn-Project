@@ -21,4 +21,5 @@ public class ActSelect04 : IState
         if(_battleManager.IsStartBattle)
             _battleManager.SetState(BattleState.ActStart05);
     }
+    
 }
