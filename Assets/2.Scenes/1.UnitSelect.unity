@@ -470,6 +470,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1044086990815227528, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _buttonPrefab
+      value: 
+      objectReference: {fileID: -3437164212030576968, guid: 03eb0a9706ce7cc48872007768a25ae3, type: 3}
+    - target: {fileID: 3420497922294382692, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_TagString
+      value: Panel
+      objectReference: {fileID: 0}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager

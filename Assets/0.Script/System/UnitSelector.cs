@@ -15,7 +15,7 @@ public class UnitSelector : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.CreateButton(UIGroupName.UnitSelectUI, 6);
+        OnCreateButton(UIGroupName.UnitSelectUI, "Panel");
     }
 
     // 유닛 선택
@@ -48,14 +48,28 @@ public class UnitSelector : MonoBehaviour
                 break;
         }
     }
+
+    public void OnCreateButton(UIGroupName uiGroupName, string createTag = "")
+    {
+        Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
+
+        foreach (var unitData in unitDict)
+        {
+            if (unitData.Value.Team == UnitTeam.Player)
+            {
+                var obj = GameManager.Instance.CreateButton<ClickUnitSelect>(uiGroupName, createTag);
+                obj.SetUnitName(unitData.Key);
+            }
+        }
+    }
     
     // 전투 씬으로 전환
     public void BattleLoadScene()
     {
+        GameManager.Instance.InitButtons(false);
         GameManager.Instance.OnLoadScene(1);
         gameObject.SetActive(false);
     }
-    
     
     private void Init()
     {
@@ -63,11 +77,9 @@ public class UnitSelector : MonoBehaviour
         {
             Players.Clear();
             Enemies.Clear();
-            Debug.LogWarning("셀렉트 초기화");
             return;
         }
         
-        Debug.LogWarning("셀렉트 뉴할당");
         Players = new List<UnitDataSO>();
         Enemies = new List<UnitDataSO>();
     }

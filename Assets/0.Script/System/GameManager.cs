@@ -16,8 +16,13 @@ public class GameManager : SingletonBase<GameManager>
 
     public void OnLoadScene(int num) => _sceneMgr.OnLoadScene(num);
     public void UpdateUI(UIGroupName uiGroupName, bool active) => _uiMgr.UpdateUI(uiGroupName, active);
-    public void CreateButton(UIGroupName uiGroupName, int count) =>  _uiMgr.CreateButton(uiGroupName, count);
     public UnitDataSO GetUnitData(string unitName) => _unitDataMgr.GetUnitData(unitName);
     public Dictionary<string, UnitDataSO> GetUnitDataList() => _unitDataMgr.GetUnitDataList();
+
+    public void InitButtons(bool isClear) => _uiMgr.InitButtonList(isClear);
+    public T CreateButton<T>(UIGroupName uiGroupName, string createTag = "") where T : ClickObject
+    {
+        return _uiMgr.OnCreateButton<T>(uiGroupName, createTag);
+    }
 }
 

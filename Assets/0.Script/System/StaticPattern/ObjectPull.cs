@@ -54,7 +54,7 @@ public class UnityObjectPull<T> where T : Component
     public void Release(T obj)
     {
         if (obj.transform.parent != _parent)
-            obj.transform.parent = _parent;
+            obj.transform.SetParent(_parent, false);
         
         obj.gameObject.SetActive(false);
         _pull.Enqueue(obj);

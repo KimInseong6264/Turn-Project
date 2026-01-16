@@ -15,14 +15,7 @@ public class ClickUnitSelect : ClickObject
 
     private void Start()
     {
-        foreach (var unitDataSO in GameManager.Instance.GetUnitDataList())
-        {
-            Debug.Log("유닛베이스" + unitDataSO);
-            _unitDataList.Add(unitDataSO.Value);
-        }
-
-        _unitName = _unitDataList[_count++].Name;
-        gameObject.name = _unitName;
+        Debug.Log("버튼이름" + _unitName);
     }
 
     public override void OnCklick()
@@ -30,4 +23,6 @@ public class ClickUnitSelect : ClickObject
         Debug.Log("클릭실행" + gameObject.name);
         UnitSelector.SelectedUnit(_unitName);
     }
+    
+    public void SetUnitName(string unitName) => _unitName = unitName;
 }
