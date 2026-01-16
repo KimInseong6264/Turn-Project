@@ -33,6 +33,6 @@ public class UnitDataManager : MonoBehaviour
             unitData.UnitPrefab.GetComponent<UnitView>().unitData = unitData;
     }
     
-    
+    public Dictionary<string, UnitDataSO> GetUnitDataList() => _unitDataDict;
     public UnitDataSO GetUnitData(string unitName) => _unitDataDict[unitName];
 }

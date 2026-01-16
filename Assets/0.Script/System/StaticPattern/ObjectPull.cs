@@ -19,14 +19,22 @@ public class UnityObjectPull<T> where T : Component
             Create();
     }
 
+    // 오브젝트 부족시, 생성
     private T Create()
     {
+        if (_prefab == null)
+        {
+            Debug.LogError("풀링 프리팹이 없습니다.");
+            return null;
+        }
+        
         var obj = GameObject.Instantiate(_prefab, _parent);
         obj.gameObject.SetActive(false);
         _pull.Enqueue(obj);
         return obj;
     }
 
+    // 오브젝트 가져오기
     public T GetPull()
     {
         var obj = _pull.Count > 0 ? _pull.Dequeue() : Create();
@@ -34,8 +42,20 @@ public class UnityObjectPull<T> where T : Component
         return obj;
     }
 
+    // 오브젝트 parent 하위로 활성화
+    public T GetPull(Transform parent)
+    {
+        T obj = GetPull();
+        obj.transform.parent = parent;
+        return obj;
+    }
+
+    // 오브젝트 비활성화
     public void Release(T obj)
     {
+        if (obj.transform.parent != _parent)
+            obj.transform.parent = _parent;
+        
         obj.gameObject.SetActive(false);
         _pull.Enqueue(obj);
     }

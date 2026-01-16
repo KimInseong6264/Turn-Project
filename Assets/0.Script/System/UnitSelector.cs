@@ -13,8 +13,13 @@ public class UnitSelector : MonoBehaviour
         Init();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.CreateButton(UIGroupName.UnitSelectUI, 6);
+    }
+
     // 유닛 선택
-    public void SelectedUnit(string unitName)
+    public static void SelectedUnit(string unitName)
     {
         UnitTeam unitTeam = GameManager.Instance.GetUnitData(unitName).Team;
         switch (unitTeam)
@@ -26,10 +31,11 @@ public class UnitSelector : MonoBehaviour
                 Enemies.Add(GameManager.Instance.GetUnitData(unitName));
                 break;
         }
+        Debug.Log(unitName + "선택되었습니다.");
     }
 
     // 유닛 선택 취소
-    public void CanceledUnit(string unitName)
+    public static void CanceledUnit(string unitName)
     {
         UnitTeam unitTeam = GameManager.Instance.GetUnitData(unitName).Team;
         switch (unitTeam)
