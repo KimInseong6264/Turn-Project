@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6d77224c874431af3a8fd3696fa3ac, type: 3}
   m_Name: EnemySkill01
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
-  <OwnerName>k__BackingField: "\uD50C\uB808\uC774\uC5B4"
-  <Name>k__BackingField: 
-  <CoinCount>k__BackingField: 0
-  <CoinValue>k__BackingField: 0
-  <Type>k__BackingField: 1
+  <OwnerName>k__BackingField: "\uC5D0\uB108\uBBF8"
+  <Name>k__BackingField: "\uC5D0\uB108\uBBF8 1\uBC88 \uC2A4\uD0AC"
+  <CoinCount>k__BackingField: 1
+  <CoinValue>k__BackingField: 2
+  <Type>k__BackingField: 0

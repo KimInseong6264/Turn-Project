@@ -25,5 +25,8 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogError(uiGroupName + "라는 키값을 UI매니저에서 찾지 못함");
     }
-        
+
+    public void CreateUI(UIGroupName uiGroupName)
+    {
+    }
 }

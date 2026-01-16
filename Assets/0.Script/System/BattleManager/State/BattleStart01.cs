@@ -28,14 +28,17 @@ public class BattleStart01 : IState
 
     private void StartSpawn()
     {
-        if (UnitSelector.Instance.Players == null || UnitSelector.Instance.Enemies == null)
+        // if (UnitSelector.Players.Count == 0 || UnitSelector.Enemies.Count == 0)
+        if (UnitSelector.Players.Count == 0)
         {
             Debug.LogError("전투 유닛이 없습니다.");
+            Debug.LogError("플레이어 수:" + UnitSelector.Players.Count);
+            Debug.LogError("에너미 수:" + UnitSelector.Enemies.Count);
             return;
         }
         
         // 유닛을 생성하고, 그 유닛을 배틀매니저 리스트에 담는다.
-        foreach (var unit in UnitSelector.Instance.Players)
+        foreach (var unit in UnitSelector.Players)
         {
             UnitPresenter presenter = GameObject.Instantiate(
                 unit.UnitPrefab,
@@ -47,7 +50,7 @@ public class BattleStart01 : IState
             _battleManager.SetPlayers(presenter);
         }
         
-        foreach (var unit in UnitSelector.Instance.Enemies)
+        foreach (var unit in UnitSelector.Enemies)
         {
             UnitPresenter presenter = GameObject.Instantiate(
                 unit.UnitPrefab, 

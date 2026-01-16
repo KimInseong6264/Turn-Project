@@ -6,6 +6,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private UnitDataManager _unitDataMgr;
     [SerializeField] private InputManager _inputMgr;
     [SerializeField] private UIManager _uiMgr;
+    [SerializeField] private UnitSelector _unitSelector;
     
     protected override void Awake()
     {

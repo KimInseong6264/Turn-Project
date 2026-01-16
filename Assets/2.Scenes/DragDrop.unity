@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1472293536}
   - component: {fileID: 1472293535}
   - component: {fileID: 1472293534}
+  - component: {fileID: 1472293538}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -651,6 +652,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472293532}
   m_CullTransparentMesh: 1
+--- !u!114 &1472293538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472293532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f4f7c6f83055d4ab4fb5034188db0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIElement
 --- !u!1 &1550189208
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2750611319090031247, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager

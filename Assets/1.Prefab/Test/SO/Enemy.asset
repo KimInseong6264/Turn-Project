@@ -18,5 +18,7 @@ MonoBehaviour:
   <AttLevel>k__BackingField: 0
   <DefLevel>k__BackingField: 0
   <Speed>k__BackingField: 10
-  <SkillList>k__BackingField: []
+  <SkillList>k__BackingField:
+  - {fileID: 11400000, guid: e2c67fb2637609545acd1e2e29c41a37, type: 2}
+  - {fileID: 11400000, guid: d89e9826098ccb445930518d7b3c61ee, type: 2}
   <UnitPrefab>k__BackingField: {fileID: -7697832734574988380, guid: 2ad771dd72e0eb14d9a1025bc2f60ed0, type: 3}

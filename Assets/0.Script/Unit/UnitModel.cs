@@ -8,7 +8,7 @@ public class UnitModel
     public int Hp => Mathf.Max(0, _hp);
     
     public string Name { get; private set; }
-    public Faction Team { get; private set; }
+    public UnitTeam Team { get; private set; }
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
     public int Speed { get; private set; }
@@ -26,17 +26,26 @@ public class UnitModel
         Speed = unitData.Speed;
         
         SetSkills(unitData, unitPresenter);
-        SkillToUse = _skills[SkillType.Skill01];
     }
 
     private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
     {
         _skills = new Dictionary<SkillType, SkillBase>();
+
+        if (unitData.SkillList == null || unitData.SkillList.Count == 0)
+        {
+            Debug.LogError(unitData.Name + "은 스킬프리팹이 없습니다.");
+            return;
+        }
+
         foreach (var skill in unitData.SkillList)
         {
             Debug.Log("스킬세팅" + skill);
             _skills.Add(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
         }
+
+        if(_skills.TryGetValue(SkillType.Skill01, out var skill01))
+           SkillToUse = skill01;
     }
     public void SetSkillToUse(SkillType skillType) => SkillToUse = _skills[skillType];
 }

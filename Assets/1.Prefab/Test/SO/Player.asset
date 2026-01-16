@@ -20,4 +20,5 @@ MonoBehaviour:
   <Speed>k__BackingField: 6
   <SkillList>k__BackingField:
   - {fileID: 11400000, guid: e3d22579e765e4747b49fec246c67616, type: 2}
+  - {fileID: 11400000, guid: fb74b68e5bbac8f42adcadd63ddfa8f1, type: 2}
   <UnitPrefab>k__BackingField: {fileID: 9017484657857959085, guid: c2f07d626581c4149959be141683b195, type: 3}

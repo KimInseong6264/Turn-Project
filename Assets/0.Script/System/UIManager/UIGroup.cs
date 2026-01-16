@@ -9,5 +9,5 @@ public class UIGroup : MonoBehaviour
 
 public enum UIGroupName
 {
-    ActSellectUI
+    UnitSelectUI, ActSelectUI
 }

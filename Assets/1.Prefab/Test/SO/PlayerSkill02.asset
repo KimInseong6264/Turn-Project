@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSkill02
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
   <OwnerName>k__BackingField: "\uD50C\uB808\uC774\uC5B4"
-  <Name>k__BackingField: 
-  <CoinCount>k__BackingField: 0
-  <CoinValue>k__BackingField: 0
+  <Name>k__BackingField: "\uD50C\uB808\uC774\uC5B4 \uC2A4\uD0AC2"
+  <CoinCount>k__BackingField: 6
+  <CoinValue>k__BackingField: 3
   <Type>k__BackingField: 1

@@ -6,7 +6,7 @@ public class UnitDataSO : ScriptableObject
 {
 
     [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public Faction Team { get; private set; }
+    [field: SerializeField] public UnitTeam Team { get; private set; }
     [field: SerializeField] public int Hp { get; private set; }
     [field: SerializeField] public float AttLevel { get; private set; }
     [field: SerializeField] public float DefLevel { get; private set; }
@@ -34,7 +34,7 @@ public class UnitDataSO : ScriptableObject
     }
 }
 
-public enum Faction
+public enum UnitTeam
 {
     Player, Enemy
 }
