@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitPresenter : ISkillable
@@ -8,7 +9,7 @@ public class UnitPresenter : ISkillable
     
     public string Name => _model.Name;
     public int Speed => _model.Speed;
-    public SkillBase Skill => _model.Skill;
+    public SkillBase Skill => _model.SkillToUse;
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
@@ -23,5 +24,7 @@ public class UnitPresenter : ISkillable
     
     public void SetPosition(Vector3 pos) => _view.transform.position = pos;
     public void SetObjectName(string name) => _view.gameObject.name = name;
+
+    public void SetSkill(SkillType skillType) => _model.SetSkillToUse(skillType);
     public void StartSkillExecute() => _view.StartCoroutine(Skill.Execute());
 }

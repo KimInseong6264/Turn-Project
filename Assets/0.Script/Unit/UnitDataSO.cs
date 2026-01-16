@@ -19,10 +19,18 @@ public class UnitDataSO : ScriptableObject
     {
         if (SkillList == null)
             return;
-        
-        foreach (var skill in SkillList)
+
+        for(int i = 0; i < SkillList.Count; i++)
         {
-            skill.SetOwnerName(Name);
+            SkillDataSO skill =  SkillList[i];
+            if(skill == null)
+                continue;
+            
+            if (skill.OwnerName != Name)
+            {
+                Debug.LogWarning(skill.Name + "의 소유자가 다릅니다.");
+                SkillList[i] = null;
+            }
         }
     }
 }

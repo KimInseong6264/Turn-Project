@@ -10,8 +10,6 @@ public class SkillDataSO : ScriptableObject
     [field: SerializeField] public int CoinCount { get; private set; }
     [field: SerializeField] public int CoinValue { get; private set; }
     [field: SerializeField] public SkillType Type { get; private set; }
-    
-    public void SetOwnerName(string ownerName) => OwnerName = ownerName;
 }
 
 public enum SkillType

@@ -5,11 +5,8 @@ namespace Enemy
 {
     public class Skill01 : SkillBase
     {
-        public Skill01(ISkillable unit) : base(unit)
+        public Skill01(SkillDataSO unitData, ISkillable unit) : base(unitData, unit)
         {
-            _name = "에너미 스킬1";
-            _coinCount = 1;
-            _coinValue = 3;
         }
 
         public override IEnumerator Execute()
