@@ -34,6 +34,7 @@ public class UnitModel
         _skills = new Dictionary<SkillType, SkillBase>();
         foreach (var skill in unitData.SkillList)
         {
+            Debug.Log("스킬세팅" + skill);
             _skills.Add(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
         }
     }

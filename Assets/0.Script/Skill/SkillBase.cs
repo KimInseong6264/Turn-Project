@@ -30,14 +30,27 @@ public static class SkillFactory
         switch (skillDataSo.OwnerName)
         {
             case "플레이어" or "플레이어1" or "플레이어2":
-                // Debug.Log(name + "스킬생성");
-                return new Player.Skill01(skillDataSo, unit);
+                switch (skillDataSo.Type)
+                {
+                    case SkillType.Skill01:
+                        return new Player.Skill01(skillDataSo, unit);
+                    case SkillType.Skill02:
+                        return new Player.Skill02(skillDataSo, unit);
+                }
+                break;
             case "에너미" or "에너미1" or "에너미2":
-                // Debug.Log(name + "스킬생성");
-                return new Enemy.Skill01(skillDataSo, unit);
+                switch (skillDataSo.Type)
+                {
+                    case SkillType.Skill01:
+                        return new Enemy.Skill01(skillDataSo, unit);
+                    case SkillType.Skill02:
+                        return new Enemy.Skill02(skillDataSo, unit);
+                }
+                break;
             default:
                 Debug.LogError(skillDataSo.OwnerName + "은 스킬을 끼울 수 없습니다.");
-                return null;
+                break;
         }
+        return null;
     }
 }

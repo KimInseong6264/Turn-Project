@@ -95,6 +95,51 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ed7ec72827d83241aa5b0f6dfdfb977, type: 2}
   - {fileID: 11400000, guid: a5feae2be22ad6d409e43816d6ab1904, type: 2}
   - {fileID: 11400000, guid: 912f9a49f07d25d4bbf604f3345972a4, type: 2}
+--- !u!1 &5051177327059429774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6399952938213339730}
+  - component: {fileID: 8710013047933605427}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6399952938213339730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051177327059429774}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8944476539885274872}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8710013047933605427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051177327059429774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d56bd4294de433497a4ea5739661396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  _uiGroupList: []
 --- !u!1 &5957410302424984766
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +173,7 @@ Transform:
   - {fileID: 7475463603771031535}
   - {fileID: 8326007451273594151}
   - {fileID: 851891091561166938}
+  - {fileID: 6399952938213339730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6412033469017421578
@@ -145,6 +191,7 @@ MonoBehaviour:
   _sceneMgr: {fileID: 2111390676677750120}
   _unitDataMgr: {fileID: 3209284850058746085}
   _inputMgr: {fileID: 2407386040541342041}
+  _uiMgr: {fileID: 8710013047933605427}
 --- !u!1 &7304255530530011197
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851891091561166938}
   - component: {fileID: 2407386040541342041}
-  - component: {fileID: 7844839302199989153}
+  - component: {fileID: 775408199129273035}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -190,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7bf37f797940349fe5218141e8c5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputManager
---- !u!114 &7844839302199989153
+--- !u!114 &775408199129273035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

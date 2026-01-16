@@ -20,10 +20,19 @@ public class UnitView : MonoBehaviour, IClickable
         Presenter.Tick();
     }
 
-    public void SetSkill()
+    public void SetSkill(SkillType skillType) => Presenter.SetSkill(skillType);
+
+    public void SetSkill01()
     {
+        Presenter.SetSkill(SkillType.Skill01);
+        Debug.Log($"현재 스킬 타입: {Presenter.Skill.GetType().Name}");
     }
 
+    public void SetSkill02()
+    {
+        Presenter.SetSkill(SkillType.Skill02);
+        Debug.Log("스킬변경" + Presenter.Skill);
+    }
 
     public void OnCklick()
     {

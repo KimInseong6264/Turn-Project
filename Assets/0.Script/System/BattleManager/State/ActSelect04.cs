@@ -11,10 +11,14 @@ public class ActSelect04 : IState
 
     public void Enter()
     {
+        GameManager.Instance.UpdateUI(UIGroupName.ActSellectUI, true);
         Debug.Log("플레이어 입력을 기다립니다.");
     }
 
-    public void Exit() {}
+    public void Exit()
+    {
+        GameManager.Instance.UpdateUI(UIGroupName.ActSellectUI, false);
+    }
 
     public void Update()
     {
