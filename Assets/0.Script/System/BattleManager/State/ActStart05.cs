@@ -25,7 +25,7 @@ public class ActStart05 : IState
         while (_battleManager.UnitSequence.Count > 0)
         {
             yield return CoroutineManager.GetWaitTime(1f);
-            _battleManager.GetSequence().StartSkillExecute();
+            // _battleManager.GetSequence().StartSkillExecute();
         }
         
         _battleManager.SetState(BattleState.TurnEnd06);

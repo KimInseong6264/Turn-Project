@@ -10,7 +10,7 @@ public class BattleManager : SingletonBase<BattleManager>
     
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
-    public Queue<UnitPresenter> UnitSequence { get; private set; }
+    public Queue<BattleInfo> UnitSequence { get; private set; }
     public Dictionary<UnitPresenter, UnitPresenter> Targets { get; private set; }
     public bool IsStartBattle { get; private set; }
     
@@ -23,7 +23,7 @@ public class BattleManager : SingletonBase<BattleManager>
         base.Awake();
         Players =  new List<UnitPresenter>();
         Enemies = new List<UnitPresenter>();
-        UnitSequence = new Queue<UnitPresenter>();
+        UnitSequence = new Queue<BattleInfo>();
         Targets = new Dictionary<UnitPresenter, UnitPresenter>();
         
         
@@ -72,8 +72,8 @@ public class BattleManager : SingletonBase<BattleManager>
     public void SetPlayers(UnitPresenter presenter) => Players.Add(presenter);
     public void SetEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
-    public void SetSequence(UnitPresenter presenter) => UnitSequence.Enqueue(presenter);
-    public UnitPresenter GetSequence() => UnitSequence.Dequeue();
+    public void SetSequence(BattleInfo battleInfo) => UnitSequence.Enqueue(battleInfo);
+    public BattleInfo GetSequence() => UnitSequence.Dequeue();
 }
 
 
@@ -88,6 +88,14 @@ public struct BattleInfo
     {
         Speed = speed;
         Attacker = attacker;
+        Target = target;
+    }
+
+    // 타겟만 갱신하는 생성자
+    public BattleInfo(BattleInfo mySelf, UnitPresenter target)
+    {
+        Speed = mySelf.Speed;
+        Attacker = mySelf.Attacker;
         Target = target;
     }
 }
