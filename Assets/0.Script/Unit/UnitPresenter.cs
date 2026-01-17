@@ -9,7 +9,7 @@ public class UnitPresenter : ISkillable
     
     public string Name => _model.Name;
     public int Speed => _model.Speed;
-    public SkillBase Skill => _model.SkillToUse;
+    public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
@@ -25,6 +25,8 @@ public class UnitPresenter : ISkillable
     public void SetPosition(Vector3 pos) => _view.transform.position = pos;
     public void SetObjectName(string name) => _view.gameObject.name = name;
 
+    // 스킬 메서드
     public void SetSkill(SkillType skillType) => _model.SetSkillToUse(skillType);
     public void StartSkillExecute() => _view.StartCoroutine(Skill.Execute());
+    public Dictionary<SkillType, SkillBase> GetSkills() => _model.Skills;
 }

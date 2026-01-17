@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,10 +9,20 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class ClickObject : MonoBehaviour ,IPointerClickHandler, IClickable
 {
-    public void OnPointerClick(PointerEventData eventData) => OnCklick();
+    public event Action OnClick;
 
-    public virtual void OnCklick()
+
+    private void OnDisable()
+    {
+        OnClick = null;
+    }
+
+
+    public void OnPointerClick(PointerEventData eventData) => OnStartCklick();
+
+    public virtual void OnStartCklick()
     {
         Debug.Log("클릭실행" + gameObject.name);
+        OnClick?.Invoke();
     }
 }

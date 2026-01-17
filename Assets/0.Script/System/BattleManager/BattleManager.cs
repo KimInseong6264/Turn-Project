@@ -25,6 +25,13 @@ public class BattleManager : SingletonBase<BattleManager>
         Enemies = new List<UnitPresenter>();
         UnitSequence = new Queue<UnitPresenter>();
         Targets = new Dictionary<UnitPresenter, UnitPresenter>();
+        
+        
+        //==============================================
+        gameObject.SetActive(false);
+        //==============================================
+        
+        
     }
 
     private void Start()
@@ -69,17 +76,22 @@ public class BattleManager : SingletonBase<BattleManager>
     public UnitPresenter GetSequence() => UnitSequence.Dequeue();
 }
 
-public struct SelectTarget
+
+// 스트럭트
+public struct BattleInfo
 {
+    public int Speed { get; }
     public UnitPresenter Attacker { get; }
     public UnitPresenter Target { get; }
 
-    public SelectTarget(UnitPresenter attacker, UnitPresenter target)
+    public BattleInfo(UnitPresenter attacker, int speed, UnitPresenter target =null)
     {
+        Speed = speed;
         Attacker = attacker;
         Target = target;
     }
 }
+
 
 public enum BattleState
 {

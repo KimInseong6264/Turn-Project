@@ -24,9 +24,20 @@ using UnityEngine;
             {
                 if (child.CompareTag(createTag))
                 {
-                    var obj = _buttonPull.GetPull(child).AddComponent<T>();
-                    _buttonList.Add(obj);
-                    return obj;
+                    var obj = _buttonPull.GetPull(child);
+                    if (obj.GetType() == typeof(T))
+                    {
+                        _buttonList.Add(obj);
+                        return obj.GetComponent<T>();
+                    }
+                    else
+                    {
+                        var addObj = obj.AddComponent<T>();
+                        _buttonList.Add(addObj);
+                        return addObj;
+                    }
+                    
+                    
                 }
             }
             

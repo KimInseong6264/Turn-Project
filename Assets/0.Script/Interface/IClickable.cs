@@ -2,5 +2,5 @@
 
 public interface IClickable
 {
-    void OnCklick();
+    void OnStartCklick();
 }

@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(ray, out var hit))
         {
             IClickable target = hit.transform.GetComponent<IClickable>();
-            target?.OnCklick();
+            target?.OnStartCklick();
         }
     }
 

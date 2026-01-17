@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +13,23 @@ public class UnitSelector : MonoBehaviour
 
     private void Start()
     {
-        OnCreateButton(UIGroupName.UnitSelectUI, "Panel");
+        OnCreateButton(UIGroupName.UnitSelectUI, "UnitSelect");
+        
+        
+        
+        //=================================
+        foreach (var unitData in GameManager.Instance.GetUnitDataList())
+        {
+            SelectedUnit(unitData.Key);
+        }
+        BattleManager.Instance.gameObject.SetActive(true);
+        gameObject.SetActive(false);
+        //=================================
+
+
+
+
+
     }
 
     // 유닛 선택
@@ -49,6 +63,7 @@ public class UnitSelector : MonoBehaviour
         }
     }
 
+    // 버튼 생성 메서드
     public void OnCreateButton(UIGroupName uiGroupName, string createTag = "")
     {
         Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();

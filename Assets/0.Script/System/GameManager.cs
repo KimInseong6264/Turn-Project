@@ -14,11 +14,15 @@ public class GameManager : SingletonBase<GameManager>
         base.Awake();
     }
 
+    // Scene 메서드
     public void OnLoadScene(int num) => _sceneMgr.OnLoadScene(num);
-    public void UpdateUI(UIGroupName uiGroupName, bool active) => _uiMgr.UpdateUI(uiGroupName, active);
+    
+    // UnitData 메서드
     public UnitDataSO GetUnitData(string unitName) => _unitDataMgr.GetUnitData(unitName);
     public Dictionary<string, UnitDataSO> GetUnitDataList() => _unitDataMgr.GetUnitDataList();
 
+    // UI 메서드
+    public void UpdateUI(UIGroupName uiGroupName, bool active) => _uiMgr.UpdateUI(uiGroupName, active);
     public void InitButtons(bool isClear) => _uiMgr.InitButtonList(isClear);
     public T CreateButton<T>(UIGroupName uiGroupName, string createTag = "") where T : ClickObject
     {

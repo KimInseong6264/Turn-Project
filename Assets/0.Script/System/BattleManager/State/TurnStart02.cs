@@ -27,7 +27,7 @@ public class TurnStart02 : IState
 
     public void Update() {}
     
-    
+    // 씬에 있는 유닛들의 위치를 갱신해준다.
     private void SetPosition()
     {
         if (_players == null || _enemies == null)

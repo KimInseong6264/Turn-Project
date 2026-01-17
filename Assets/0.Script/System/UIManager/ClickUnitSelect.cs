@@ -18,7 +18,7 @@ public class ClickUnitSelect : ClickObject
         Debug.Log("버튼이름" + _unitName);
     }
 
-    public override void OnCklick()
+    public override void OnStartCklick()
     {
         Debug.Log("클릭실행" + gameObject.name);
         UnitSelector.SelectedUnit(_unitName);

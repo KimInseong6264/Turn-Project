@@ -12,9 +12,10 @@ public class UnitModel
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
     public int Speed { get; private set; }
+    
+    public Dictionary<SkillType, SkillBase> Skills { get; private set; }
     public SkillBase SkillToUse { get; private set; }
 
-    private Dictionary<SkillType, SkillBase> _skills;
     
     public UnitModel(UnitDataSO unitData, ISkillable  unitPresenter)
     {
@@ -30,7 +31,7 @@ public class UnitModel
 
     private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
     {
-        _skills = new Dictionary<SkillType, SkillBase>();
+        Skills = new Dictionary<SkillType, SkillBase>();
 
         if (unitData.SkillList == null || unitData.SkillList.Count == 0)
         {
@@ -41,11 +42,11 @@ public class UnitModel
         foreach (var skill in unitData.SkillList)
         {
             Debug.Log("스킬세팅" + skill);
-            _skills.Add(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
+            Skills.Add(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
         }
 
-        if(_skills.TryGetValue(SkillType.Skill01, out var skill01))
+        if(Skills.TryGetValue(SkillType.Skill01, out var skill01))
            SkillToUse = skill01;
     }
-    public void SetSkillToUse(SkillType skillType) => SkillToUse = _skills[skillType];
+    public void SetSkillToUse(SkillType skillType) => SkillToUse = Skills[skillType];
 }

@@ -34,7 +34,7 @@ public class UnitView : MonoBehaviour, IClickable
         Debug.Log("스킬변경" + Presenter.Skill);
     }
 
-    public void OnCklick()
+    public void OnStartCklick()
     {
         Debug.Log("클릭대상" + unitData.Name);
     }
