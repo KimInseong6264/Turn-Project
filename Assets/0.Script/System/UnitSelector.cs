@@ -13,17 +13,16 @@ public class UnitSelector : MonoBehaviour
 
     private void Start()
     {
-        OnCreateButton(UIGroupName.UnitSelectUI, "UnitSelect");
-        
+        GameManager.Instance.UpdateUI(UIGroupName.UnitSelectUI, true);
         
         
         //=================================
-        foreach (var unitData in GameManager.Instance.GetUnitDataList())
-        {
-            SelectedUnit(unitData.Key);
-        }
-        BattleManager.Instance.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        // foreach (var unitData in GameManager.Instance.GetUnitDataList())
+        // {
+        //     SelectedUnit(unitData.Key);
+        // }
+        // BattleManager.Instance.gameObject.SetActive(true);
+        // gameObject.SetActive(false);
         //=================================
 
 
@@ -62,26 +61,11 @@ public class UnitSelector : MonoBehaviour
                 break;
         }
     }
-
-    // 버튼 생성 메서드
-    public void OnCreateButton(UIGroupName uiGroupName, string createTag = "")
-    {
-        Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
-
-        foreach (var unitData in unitDict)
-        {
-            if (unitData.Value.Team == UnitTeam.Player)
-            {
-                var obj = GameManager.Instance.CreateButton<ClickUnitSelect>(uiGroupName, createTag);
-                obj.SetUnitName(unitData.Key);
-            }
-        }
-    }
     
     // 전투 씬으로 전환
     public void BattleLoadScene()
     {
-        GameManager.Instance.InitButtons(false);
+        // GameManager.Instance.InitButtons(false);
         GameManager.Instance.OnLoadScene(1);
         gameObject.SetActive(false);
     }

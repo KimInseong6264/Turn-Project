@@ -4,12 +4,14 @@ using UnityEngine;
 public class UIGroup : MonoBehaviour
 {
     [field: SerializeField] public UIGroupName UIGroupName { get; private set; }
-    [field: SerializeField] public GameObject UIGameObject { get; private set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameObject.SetActive(false);
     }
+    
+    protected virtual void OnOpen() => gameObject.SetActive(true);
+    protected virtual void OnClose() => gameObject.SetActive(false);
 }
 
 public enum UIGroupName

@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d56bd4294de433497a4ea5739661396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  _buttonPrefab: {fileID: 5200599694823605845, guid: 03eb0a9706ce7cc48872007768a25ae3, type: 3}
   _uiGroupList:
   - {fileID: 7881864528758481984}
   - {fileID: 6780172783408878509}
@@ -213,6 +212,7 @@ GameObject:
   - component: {fileID: 7533895390888364412}
   - component: {fileID: 7881864528758481984}
   - component: {fileID: 7656759764039476013}
+  - component: {fileID: 7277178558455205643}
   m_Layer: 5
   m_Name: UnitSelectUI
   m_TagString: Untagged
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2750611319090031247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c2324c7795937049a0464733b990e58, type: 3}
   m_Name: 
@@ -305,6 +305,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4d5e75342046bebbc5e3229d8c19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSelector
+--- !u!114 &7277178558455205643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750611319090031247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d530f792930d4d90b2dd4ea7dd3c1f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIUnitSelect
+  <UIGroupName>k__BackingField: 0
+  <UIGameObject>k__BackingField: {fileID: 2750611319090031247}
+  _selectListTransform: {fileID: 5904272516084532569}
+  _unitSelectPrefab: {fileID: -1079312721876549979, guid: a7de4c9b0590c0b44b7d62742ea8d5b4, type: 3}
 --- !u!1 &2855058378379578931
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,8 +385,8 @@ GameObject:
   - component: {fileID: 6055054059341439105}
   - component: {fileID: 1040959116592820066}
   m_Layer: 5
-  m_Name: PlayerList
-  m_TagString: Untagged
+  m_Name: SelectList
+  m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

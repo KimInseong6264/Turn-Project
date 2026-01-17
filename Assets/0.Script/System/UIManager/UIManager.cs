@@ -10,14 +10,9 @@ public partial class UIManager : MonoBehaviour
     private void Awake()
     {
         _uiGroups = new Dictionary<UIGroupName, GameObject>();
-        _pullTransform = transform.Find("UIObjectPull");
-        _buttonList = new List<ClickObject>();
-        _buttonPull = new UnityObjectPull<ClickObject>(_buttonPrefab, 10, _pullTransform);
-        
         foreach (var uiGroup in _uiGroupList)
         {
-            uiGroup.UIGameObject.SetActive(false);
-            _uiGroups.Add(uiGroup.UIGroupName, uiGroup.UIGameObject);
+            _uiGroups.Add(uiGroup.UIGroupName, uiGroup.gameObject);
         }
     }
 
@@ -27,13 +22,5 @@ public partial class UIManager : MonoBehaviour
             uiGroup.SetActive(active);
         else
             Debug.LogError(uiGroupName + "라는 키값을 UI매니저에서 찾지 못함");
-    }
-    
-    public void RemoveButton(UIGroupName uiGroupName)
-    {
-        foreach (var button in _buttonList)
-        {
-            _buttonPull.Release(button);
-        }
     }
 }

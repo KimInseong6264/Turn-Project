@@ -12,7 +12,7 @@ public class ClickObject : MonoBehaviour ,IPointerClickHandler, IClickable
     public event Action OnClick;
 
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         OnClick = null;
     }

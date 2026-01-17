@@ -23,10 +23,5 @@ public class GameManager : SingletonBase<GameManager>
 
     // UI 메서드
     public void UpdateUI(UIGroupName uiGroupName, bool active) => _uiMgr.UpdateUI(uiGroupName, active);
-    public void InitButtons(bool isClear) => _uiMgr.InitButtonList(isClear);
-    public T CreateButton<T>(UIGroupName uiGroupName, string createTag = "") where T : ClickObject
-    {
-        return _uiMgr.OnCreateButton<T>(uiGroupName, createTag);
-    }
 }
 

@@ -34,8 +34,8 @@ public class ActSelect04 : IState
 
         foreach (var unitData in _battleManager.Players)
         {
-            var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
-            clickObj.OnClick += () => SkillSelect();
+            // var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
+            // clickObj.OnClick += () => SkillSelect();
         }
     }
 
@@ -43,7 +43,7 @@ public class ActSelect04 : IState
     {
         foreach (var skill in unit.GetSkills())
         {
-            var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
+            // var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
             
         }
     }
