@@ -24,34 +24,7 @@ public class ActSelect04 : IState
 
     public void Update()
     {
-        if(_battleManager.IsStartBattle)
+        if (_battleManager.IsStartBattle)
             _battleManager.SetState(BattleState.ActStart05);
     }
-
-    private void UpdateUI(UIGroupName uiGroupName, string createTag = "")
-    {
-        GameManager.Instance.UpdateUI(uiGroupName, true);
-
-        foreach (var unitData in _battleManager.Players)
-        {
-            // var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
-            // clickObj.OnClick += () => SkillSelect();
-        }
-    }
-
-    private void UpdateSkillUI(UnitPresenter unit, UIGroupName uiGroupName, string createTag = "")
-    {
-        foreach (var skill in unit.GetSkills())
-        {
-            // var clickObj = GameManager.Instance.CreateButton<ClickObject>(uiGroupName, createTag);
-            
-        }
-    }
-    
-    private void SkillSelect()
-    {
-        
-    }
-    
-    
 }

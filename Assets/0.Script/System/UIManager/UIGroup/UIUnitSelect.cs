@@ -15,8 +15,8 @@ public class UIUnitSelect : UIGroup
     
     protected override void Awake()
     {
-        base.Awake();
         _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _selectListTransform);
+        base.Awake();
     }
 
     private void Start()
@@ -24,6 +24,7 @@ public class UIUnitSelect : UIGroup
         OnOpen();
     }
 
+    
     // 유니티에 생성시
     protected override void OnOpen()
     {
@@ -42,10 +43,15 @@ public class UIUnitSelect : UIGroup
         foreach (var unitData in unitDict)
         {
             var obj = _unitSelectPull.GetPull();
-            obj.OnClick += () => UnitSelector.SelectedUnit(unitData.Key);
-            obj.gameObject.name = unitData.Key;
-            obj.GetComponentInChildren<Text>().text = unitData.Key;
+            SetButton(obj, unitData.Value);
             _buttons.Add(obj);
         }
+    }
+
+    private void SetButton(ClickUnitSelect unitSelect, UnitDataSO unitData)
+    {
+        unitSelect.OnClick += () => UnitSelector.SelectedUnit(unitData.Name);
+        unitSelect.gameObject.name = unitData.name;
+        unitSelect.GetComponentInChildren<Text>().text = unitData.name;
     }
 }

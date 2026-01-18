@@ -5,6 +5,8 @@ public class UnitView : MonoBehaviour, IClickable
 {
     public UnitPresenter Presenter { get; private set; }
     
+    public event Action OnClick;
+    
     //
     public UnitDataSO unitData;
     //
@@ -33,6 +35,7 @@ public class UnitView : MonoBehaviour, IClickable
         Presenter.SetSkill(SkillType.Skill02);
         Debug.Log("스킬변경" + Presenter.Skill);
     }
+
 
     public void OnStartCklick()
     {

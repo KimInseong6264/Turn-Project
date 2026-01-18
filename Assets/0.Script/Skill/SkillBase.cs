@@ -4,13 +4,18 @@ using UnityEngine;
 
 public abstract class SkillBase
 {
+    protected string _ownerName;
     protected string _name;
     protected int _coinCount;
     protected int _coinValue;
     protected ISkillable _unit;
 
+    public string OwnerName => _ownerName;
+    public string Name => _name;
+    
     protected SkillBase(SkillDataSO skillData, ISkillable unit)
     {
+        _ownerName = skillData.OwnerName;
         _name = skillData.Name;
         _coinCount = skillData.CoinCount;
         _coinValue = skillData.CoinValue;

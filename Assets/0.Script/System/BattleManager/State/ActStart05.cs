@@ -13,19 +13,19 @@ public class ActStart05 : IState
 
     public void Enter()
     {
-        _battleManager.StartCoroutine(OnSkillInSequence());
+        _battleManager.StartCoroutine(OnBattleExcute());
     }
 
     public void Exit() {}
 
     public void Update() {}
 
-    private IEnumerator OnSkillInSequence()
+    private IEnumerator OnBattleExcute()
     {
-        while (_battleManager.UnitSequence.Count > 0)
+        foreach (var battleInfo in _battleManager.BattleSequence)
         {
             yield return CoroutineManager.GetWaitTime(1f);
-            // _battleManager.GetSequence().StartSkillExecute();
+            battleInfo.Value.OnBattleExcute();
         }
         
         _battleManager.SetState(BattleState.TurnEnd06);

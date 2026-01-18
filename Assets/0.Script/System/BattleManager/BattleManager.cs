@@ -10,8 +10,7 @@ public class BattleManager : SingletonBase<BattleManager>
     
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
-    public Queue<BattleInfo> UnitSequence { get; private set; }
-    public Dictionary<UnitPresenter, UnitPresenter> Targets { get; private set; }
+    public Dictionary<string, BattleInfo> BattleSequence { get; private set; }
     public bool IsStartBattle { get; private set; }
     
     //
@@ -23,8 +22,7 @@ public class BattleManager : SingletonBase<BattleManager>
         base.Awake();
         Players =  new List<UnitPresenter>();
         Enemies = new List<UnitPresenter>();
-        UnitSequence = new Queue<BattleInfo>();
-        Targets = new Dictionary<UnitPresenter, UnitPresenter>();
+        BattleSequence = new Dictionary<string, BattleInfo>();
         
         
         //==============================================
@@ -44,6 +42,7 @@ public class BattleManager : SingletonBase<BattleManager>
         _currentState?.Update();
     }
 
+    # region 상태 패턴
     // 상태 피턴 세팅
     private void SetState()
     {
@@ -62,41 +61,64 @@ public class BattleManager : SingletonBase<BattleManager>
     {
         _currentState?.Exit();
         _currentState = _states[state];
+        
+        //=============================================================
         Debug.Log("<color=green>현재상태" + _currentState + "</color>");
+        //=============================================================
         
         _currentState.Enter();
     }
-    
+    #endregion
     
     public void SetStartBattle(bool startBattle) => IsStartBattle = startBattle;
-    public void SetPlayers(UnitPresenter presenter) => Players.Add(presenter);
-    public void SetEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
+    public void AddPlayers(UnitPresenter presenter) => Players.Add(presenter);
+    public void AddEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
-    public void SetSequence(BattleInfo battleInfo) => UnitSequence.Enqueue(battleInfo);
-    public BattleInfo GetSequence() => UnitSequence.Dequeue();
+    public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Name ,battleInfo);
+    public void SetSequenceSkill(SkillBase skill)
+    {
+        var battleInfo = BattleSequence[skill.OwnerName];
+        BattleSequence[skill.OwnerName] = new BattleInfo(battleInfo, skill);
+        Debug.Log("스킬 세팅" + BattleSequence[skill.OwnerName].SelectedSkill);
+    }
+
+    public void Init()
+    {
+        BattleSequence.Clear();
+        SetStartBattle(false); 
+    }
 }
 
 
-// 스트럭트
+// 배틀정보 저장 구조체
 public struct BattleInfo
 {
     public int Speed { get; }
+    public UnitTeam Team { get; }
+    public SkillBase SelectedSkill { get; }
     public UnitPresenter Attacker { get; }
     public UnitPresenter Target { get; }
 
-    public BattleInfo(UnitPresenter attacker, int speed, UnitPresenter target =null)
+    public BattleInfo(UnitPresenter attacker)
     {
-        Speed = speed;
+        Speed = attacker.Speed;
+        Team =  attacker.Team;
         Attacker = attacker;
-        Target = target;
+        SelectedSkill = null;
+        Target = null;
     }
 
-    // 타겟만 갱신하는 생성자
-    public BattleInfo(BattleInfo mySelf, UnitPresenter target)
+    // 스킬만 갱신하는 생성자
+    public BattleInfo(BattleInfo mySelf, SkillBase skill, UnitPresenter target = null)
     {
-        Speed = mySelf.Speed;
-        Attacker = mySelf.Attacker;
-        Target = target;
+        this = new BattleInfo(mySelf.Attacker);
+        this.SelectedSkill = skill;
+        this.Target = target;
+    }
+
+    public void OnBattleExcute()
+    {
+        Attacker.StartSkillExecute();
     }
 }
 

@@ -17,12 +17,12 @@ public class UnitSelector : MonoBehaviour
         
         
         //=================================
-        // foreach (var unitData in GameManager.Instance.GetUnitDataList())
-        // {
-        //     SelectedUnit(unitData.Key);
-        // }
-        // BattleManager.Instance.gameObject.SetActive(true);
-        // gameObject.SetActive(false);
+        foreach (var unitData in GameManager.Instance.GetUnitDataList())
+        {
+            SelectedUnit(unitData.Key);
+        }
+        BattleManager.Instance.gameObject.SetActive(true);
+        gameObject.SetActive(false);
         //=================================
 
 

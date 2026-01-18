@@ -35,11 +35,11 @@ public class TurnSequence03 : IState
     {
         foreach (var player in _battleManager.Players)
         {
-            _battleInfos.Add(new BattleInfo(player, player.Speed));
+            _battleInfos.Add(new BattleInfo(player));
         }
         foreach (var enemy in _battleManager.Enemies)
         {
-            _battleInfos.Add(new BattleInfo(enemy, enemy.Speed));
+            _battleInfos.Add(new BattleInfo(enemy));
         }
         
         _battleInfos.Sort((x,y) => y.Speed.CompareTo(x.Speed));
@@ -50,7 +50,7 @@ public class TurnSequence03 : IState
     {
         foreach (var battleInfo in _battleInfos)
         {
-            _battleManager.SetSequence(battleInfo);
+            _battleManager.AddSequence(battleInfo);
             Debug.Log("시퀀스 세팅" + battleInfo.Attacker.Name + "/스피드" + battleInfo.Speed);
         }
     }

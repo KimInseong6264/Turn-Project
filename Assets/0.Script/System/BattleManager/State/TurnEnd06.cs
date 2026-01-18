@@ -16,7 +16,7 @@ public class TurnEnd06 : IState
 
     public void Enter()
     {
-        Init();
+        _battleManager.Init();
 
         UpdateState();
     }
@@ -25,20 +25,12 @@ public class TurnEnd06 : IState
 
     public void Update() {}
 
-    private void Init() => _battleManager.SetStartBattle(false);
 
     private void UpdateState()
     {
-        if (_players == null || _enemies == null)
-        {
-            Debug.LogError("배틀 유닛이 null이면 안 돼!!");
-            return;
-        }
-        
         if (_players.Count == 0 || _enemies.Count == 0)
             _battleManager.SetState(BattleState.BattleEnd07);
         
         _battleManager.SetState(BattleState.TurnStart02);
-        
     }
 }

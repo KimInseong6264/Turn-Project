@@ -22,7 +22,6 @@ public class ClickObject : MonoBehaviour ,IPointerClickHandler, IClickable
 
     public virtual void OnStartCklick()
     {
-        Debug.Log("클릭실행" + gameObject.name);
         OnClick?.Invoke();
     }
 }

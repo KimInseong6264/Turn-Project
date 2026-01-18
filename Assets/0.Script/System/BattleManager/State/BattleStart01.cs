@@ -28,7 +28,6 @@ public class BattleStart01 : IState
 
     private void StartSpawn()
     {
-        // if (UnitSelector.Players.Count == 0 || UnitSelector.Enemies.Count == 0)
         if (UnitSelector.Players.Count == 0)
         {
             Debug.LogError("전투 유닛이 없습니다.");
@@ -47,7 +46,7 @@ public class BattleStart01 : IState
                 ).Presenter;
             presenter.SetObjectName(unit.Name);
             
-            _battleManager.SetPlayers(presenter);
+            _battleManager.AddPlayers(presenter);
         }
         
         foreach (var unit in UnitSelector.Enemies)
@@ -59,7 +58,7 @@ public class BattleStart01 : IState
                 ).Presenter;
             presenter.SetObjectName(unit.Name);
             
-            _battleManager.SetEnemies(presenter);
+            _battleManager.AddEnemies(presenter);
         }
     }
 }

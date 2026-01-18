@@ -10,7 +10,7 @@ public class UIGroup : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    protected virtual void OnOpen() => gameObject.SetActive(true);
+    protected virtual void OnOpen() {}
     protected virtual void OnClose() => gameObject.SetActive(false);
 }
 

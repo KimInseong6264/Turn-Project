@@ -9,6 +9,7 @@ public class UnitPresenter : ISkillable
     
     public string Name => _model.Name;
     public int Speed => _model.Speed;
+    public UnitTeam Team => _model.Team;
     public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)

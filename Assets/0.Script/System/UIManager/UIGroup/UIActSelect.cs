@@ -7,43 +7,77 @@ using UnityEngine.UI;
 
 public class UIActSelect : UIGroup
 {
-    private List<ClickUnitSelect> _buttons;
-    private UnityObjectPull<ClickUnitSelect> _unitSelectPull;
+    private List<ClickObject> _buttons;
+    private UnityObjectPull<ClickObject> _actSelectPull;
     
     [SerializeField] private Transform _selectListTransform;
-    [SerializeField] private ClickUnitSelect _skillSelectPrefab;
+    [SerializeField] private ClickObject _skillSelectPrefab;
     
     protected override void Awake()
     {
+        _actSelectPull = new UnityObjectPull<ClickObject>(_skillSelectPrefab, 5, _selectListTransform);
+        _buttons = new List<ClickObject>();
         base.Awake();
-        _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_skillSelectPrefab, 5, _selectListTransform);
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        _buttons.Clear();
+        
         OnOpen();
+    }
+    
+    
+
+    private void OnDisable()
+    {
+        ReleaseButons();
     }
 
     // 유니티에 생성시
     protected override void OnOpen()
     {
-        base.OnOpen();
-        
-        if(_buttons == null)
-            OnCreateButton();
+        OnCreateButton();
     }
     
-    // 게임 시작시, 버튼 생성 메서드
+    // 플레이어에 해당하는 스킬버튼 묶음 생성
     public void OnCreateButton()
     {
-        _buttons = new List<ClickUnitSelect>();
-        
-        Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
-        foreach (var unitData in unitDict)
+        var unitSequence = BattleManager.Instance.BattleSequence;
+        foreach (var battleInfo in unitSequence)
         {
-            var obj = _unitSelectPull.GetPull();
-            obj.gameObject.name = unitData.Key;
+            if(battleInfo.Value.Team == UnitTeam.Enemy)
+                continue;
+
+            CreateSkillButton(battleInfo.Value);
+        }
+    }
+
+    // 배틀 플레이어의 스킬버튼 생성
+    private void CreateSkillButton(BattleInfo battleInfo)
+    {
+        foreach (var skill in battleInfo.Attacker.GetSkills())
+        {
+            var obj = _actSelectPull.GetPull();
+            SetSkillButton(obj, skill.Value);
             _buttons.Add(obj);
+        }
+    }
+
+    // 스킬버튼을 설정
+    private void SetSkillButton(ClickObject clickObject, SkillBase skill)
+    {
+        clickObject.gameObject.name = skill.Name + " Buton";
+        clickObject.GetComponentInChildren<Text>().text = skill.Name;
+        clickObject.OnClick += () => BattleManager.Instance.SetSequenceSkill(skill);
+    }
+
+    private void ReleaseButons()
+    {
+        foreach (var button in _buttons)
+        {
+            button.gameObject.name = "ActSelectButton";
+            _actSelectPull.Release(button);
         }
     }
 }

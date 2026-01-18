@@ -42,7 +42,10 @@ public class UnitModel
         foreach (var skill in unitData.SkillList)
         {
             Debug.Log("스킬세팅" + skill);
-            Skills.Add(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
+            bool isSkill = Skills.TryAdd(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
+            
+            if(!isSkill)
+                Debug.LogError(skill.OwnerName + "중복된 스킬이 들어있습니다.");
         }
 
         if(Skills.TryGetValue(SkillType.Skill01, out var skill01))

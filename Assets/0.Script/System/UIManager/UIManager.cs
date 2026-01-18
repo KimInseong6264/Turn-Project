@@ -16,6 +16,7 @@ public partial class UIManager : MonoBehaviour
         }
     }
 
+    // UI그룹을 출력 or 해제 메서드
     public void UpdateUI(UIGroupName uiGroupName, bool active)
     {
         if (_uiGroups.TryGetValue(uiGroupName, out var uiGroup))

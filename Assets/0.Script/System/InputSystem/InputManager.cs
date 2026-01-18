@@ -12,12 +12,12 @@ public class InputManager : MonoBehaviour
         if(!ctx.performed || _isAboveUI)
             return;
 
-        Debug.Log("<color=yellow>클릭감지</color>");
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out var hit))
         {
+            Debug.Log("<color=yellow>오브젝트 클릭감지</color>");
             IClickable target = hit.transform.GetComponent<IClickable>();
             target?.OnStartCklick();
         }

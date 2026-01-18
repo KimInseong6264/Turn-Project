@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Enemy 1
   m_EditorClassIdentifier: Assembly-CSharp::UnitDataSO
   <Name>k__BackingField: "\uC5D0\uB108\uBBF81"
-  <Team>k__BackingField: 0
+  <Team>k__BackingField: 1
   <Hp>k__BackingField: 0
   <AttLevel>k__BackingField: 0
   <DefLevel>k__BackingField: 0
   <Speed>k__BackingField: 3
+  <SkillList>k__BackingField:
+  - {fileID: 11400000, guid: a6501e96bf5ff9b4caa6ab323c7ba7ea, type: 2}
+  - {fileID: 11400000, guid: 5a86d80f4f87eba41b8a92df46c5c5c0, type: 2}
   <UnitPrefab>k__BackingField: {fileID: -7697832734574988380, guid: 648973bbec31e0d4b8c557cc415f3a5d, type: 3}
