@@ -13,7 +13,7 @@ public class UITargetSelect : UIGroup
     protected override void Awake()
     {
         _buttons = new List<Canvas>();
-        _canvasPull = new UnityObjectPull<Canvas>(_targetSelectPrefab, 5, transform);
+        _canvasPull = new UnityObjectPull<Canvas>(_targetSelectPrefab, 5, _objectPullTransform);
         base.Awake();
     }
 
@@ -60,11 +60,19 @@ public class UITargetSelect : UIGroup
     {
         foreach (var button in _buttons)
         {
+            button.gameObject.name = "TargetSelectButton";
+            _canvasPull.Release(button);
+        }
+    }
+    
+    public override void ResetPullParnets()
+    {
+        foreach (var button in _buttons)
+        {
             if(button == null)
                 continue;
             
-            button.gameObject.name = "TargetSelectButton";
-            _canvasPull.Release(button);
+            button.transform.SetParent(_objectPullTransform);
         }
     }
 }

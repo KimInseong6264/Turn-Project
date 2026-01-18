@@ -14,6 +14,7 @@ public class BattleManager : SingletonBase<BattleManager>
     public bool IsStartBattle { get; private set; }
     
     //
+    private BattleInfo _currentBattleInfo;
     [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
     //
     
@@ -82,10 +83,17 @@ public class BattleManager : SingletonBase<BattleManager>
         var battleInfo = BattleSequence[skill.OwnerName];
         BattleSequence[skill.OwnerName] = new BattleInfo(battleInfo, skill);
         Debug.Log("스킬 세팅" + BattleSequence[skill.OwnerName].SelectedSkill);
+        
+        //
+        _currentBattleInfo = BattleSequence[skill.OwnerName];
+        Debug.Log("현재 BattleInfo스킬 <color=red>" + _currentBattleInfo.SelectedSkill + "</color>");
+        //
     }
     public void SetSequenceTarget(UnitPresenter target)
     {
-        
+        BattleSequence[_currentBattleInfo.Attacker.Name]
+            = new BattleInfo(_currentBattleInfo, _currentBattleInfo.SelectedSkill, target);
+        Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Name].Target);
     }
     
     public void Init()

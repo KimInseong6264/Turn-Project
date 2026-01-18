@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &107405654 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5904272516084532569, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1955825794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +509,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f614275b8975ecb40b545f7cefed30ce, type: 3}
+--- !u!224 &1509247120 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7183958678836985795, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1955825794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1724343044 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5139444485399559800, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1955825794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1955825794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,14 +527,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135410626519733489, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _objectPullTransform
+      value: 
+      objectReference: {fileID: 1509247120}
     - target: {fileID: 1032705218870289008, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 701386006}
+    - target: {fileID: 2331888948441276884, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _objectPullTransform
+      value: 
+      objectReference: {fileID: 1724343044}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7277178558455205643, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _objectPullTransform
+      value: 
+      objectReference: {fileID: 107405654}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
