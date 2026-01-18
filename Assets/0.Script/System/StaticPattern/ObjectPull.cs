@@ -47,13 +47,16 @@ public class UnityObjectPull<T> where T : Component
     public T GetPull(Transform parent)
     {
         T obj = GetPull();
-        obj.transform.parent = parent;
+        obj.transform.SetParent(parent, false);
         return obj;
     }
 
     // 오브젝트 비활성화
     public void Release(T obj)
     {
+        if (obj == null)
+            return;
+        
         if (obj.transform.parent != _parent)
             obj.transform.SetParent(_parent, false);
         

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,18 +19,9 @@ public class UIUnitSelect : UIGroup
 
     private void Start()
     {
-        OnOpen();
+        OnCreateButton();
     }
-
     
-    // 유니티에 생성시
-    protected override void OnOpen()
-    {
-        base.OnOpen();
-        
-        if(_buttons == null)
-            OnCreateButton();
-    }
     
     // 게임 시작시, 버튼 생성 메서드
     public void OnCreateButton()
@@ -48,6 +37,7 @@ public class UIUnitSelect : UIGroup
         }
     }
 
+    // 버튼의 기능들을 설정
     private void SetButton(ClickUnitSelect unitSelect, UnitDataSO unitData)
     {
         unitSelect.OnClick += () => UnitSelector.SelectedUnit(unitData.Name);

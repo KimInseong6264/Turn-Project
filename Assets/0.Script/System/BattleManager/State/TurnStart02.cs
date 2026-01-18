@@ -35,15 +35,19 @@ public class TurnStart02 : IState
             Debug.LogError("배틀 할 유닛이 없습니다.");
             return;
         }
-        
+
+        int count = 0;
         foreach (var player in _players)
         {
-            player.SetPosition(new Vector3(-3, 0, 0));
+            player.SetPosition(new Vector3(-2 - count, 0, 0));
+            count += 2;
         }
-        
+
+        count = 0;
         foreach (var enemy in _enemies)
         {
-            enemy.SetPosition(new Vector3(3, 0, 0));
+            enemy.SetPosition(new Vector3(2 + count, 0, 0));
+            count += 2;
         }
         
         _battleManager.SetState(BattleState.TurnSequence03);

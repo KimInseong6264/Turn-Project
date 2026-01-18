@@ -70,10 +70,12 @@ public class BattleManager : SingletonBase<BattleManager>
     }
     #endregion
     
+    
     public void SetStartBattle(bool startBattle) => IsStartBattle = startBattle;
     public void AddPlayers(UnitPresenter presenter) => Players.Add(presenter);
     public void AddEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
+    // BattleSequence 관련
     public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Name ,battleInfo);
     public void SetSequenceSkill(SkillBase skill)
     {
@@ -81,7 +83,11 @@ public class BattleManager : SingletonBase<BattleManager>
         BattleSequence[skill.OwnerName] = new BattleInfo(battleInfo, skill);
         Debug.Log("스킬 세팅" + BattleSequence[skill.OwnerName].SelectedSkill);
     }
-
+    public void SetSequenceTarget(UnitPresenter target)
+    {
+        
+    }
+    
     public void Init()
     {
         BattleSequence.Clear();

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,21 +22,14 @@ public class UIActSelect : UIGroup
     {
         _buttons.Clear();
         
-        OnOpen();
+        OnCreateButton();
     }
-    
-    
 
     private void OnDisable()
     {
         ReleaseButons();
     }
-
-    // 유니티에 생성시
-    protected override void OnOpen()
-    {
-        OnCreateButton();
-    }
+    
     
     // 플레이어에 해당하는 스킬버튼 묶음 생성
     public void OnCreateButton()

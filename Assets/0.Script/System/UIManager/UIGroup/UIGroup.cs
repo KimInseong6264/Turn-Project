@@ -9,12 +9,9 @@ public class UIGroup : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    
-    protected virtual void OnOpen() {}
-    protected virtual void OnClose() => gameObject.SetActive(false);
 }
 
 public enum UIGroupName
 {
-    UnitSelectUI, ActSelectUI
+    UnitSelectUI, ActSelectUI, TargetSelectUI
 }

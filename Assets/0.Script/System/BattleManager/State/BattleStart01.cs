@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 /// <summary>
 /// 1. 전투 씬 전환
@@ -17,7 +20,8 @@ public class BattleStart01 : IState
 
     public void Enter()
     {
-        StartSpawn();
+        StartSpawn(UnitSelector.Players, SpawnPoint.PlayersSpawn);
+        StartSpawn(UnitSelector.Enemies, SpawnPoint.EnemiesSpawn);
         
         _battleManager.SetState(BattleState.TurnStart02);
     }
@@ -25,8 +29,10 @@ public class BattleStart01 : IState
     public void Exit() {}
 
     public void Update() {}
+    
 
-    private void StartSpawn()
+    // 생성된 유닛을 배틀매니저 리스트에 담는다.
+    private void StartSpawn(List<UnitDataSO> creatUnitList, SpawnPoint spawnPoint)
     {
         if (UnitSelector.Players.Count == 0)
         {
@@ -36,29 +42,34 @@ public class BattleStart01 : IState
             return;
         }
         
-        // 유닛을 생성하고, 그 유닛을 배틀매니저 리스트에 담는다.
-        foreach (var unit in UnitSelector.Players)
+        foreach (var unitData in creatUnitList)
         {
-            UnitPresenter presenter = GameObject.Instantiate(
-                unit.UnitPrefab,
-                _spawnPoints[0].position, 
-                Quaternion.identity
-                ).Presenter;
-            presenter.SetObjectName(unit.Name);
+            UnitPresenter presenter = CreateUnit(unitData, spawnPoint);
             
-            _battleManager.AddPlayers(presenter);
-        }
-        
-        foreach (var unit in UnitSelector.Enemies)
-        {
-            UnitPresenter presenter = GameObject.Instantiate(
-                unit.UnitPrefab, 
-                _spawnPoints[1].position, 
-                Quaternion.identity
-                ).Presenter;
-            presenter.SetObjectName(unit.Name);
-            
-            _battleManager.AddEnemies(presenter);
+            switch(presenter.Team)
+            {
+                case UnitTeam.Player:
+                    _battleManager.AddPlayers(presenter);
+                    break;
+                case UnitTeam.Enemy:
+                    _battleManager.AddEnemies(presenter);
+                    break;
+            }
         }
     }
+    
+    
+    // 유닛 생성
+    private UnitPresenter CreateUnit(UnitDataSO unitData, SpawnPoint spawnPoint)
+    {
+        UnitPresenter presenter = GameObject.Instantiate(
+            unitData.UnitPrefab,
+            _spawnPoints[(int)spawnPoint].position,
+            Quaternion.identity
+        ).Presenter;
+        presenter.SetObjectName(unitData.Name);
+        return presenter;
+    }
+    
+    private enum SpawnPoint { PlayersSpawn, EnemiesSpawn }
 }
