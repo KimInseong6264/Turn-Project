@@ -1,44 +1,48 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitView : MonoBehaviour, IClickable
 {
+    public UnitDataSO UnitData;
+
+    [SerializeField] private Slider _hpBar;
+    
     public UnitPresenter Presenter { get; private set; }
     
     public event Action OnClick;
     
-    //
-    public UnitDataSO unitData;
-    //
     
     private void Awake()
     {
-        Presenter = new UnitPresenter(unitData, this);
-    }
+        Presenter = new UnitPresenter(UnitData, this);
 
+        if (_hpBar == null)
+            Debug.LogWarning(UnitData.Name + "HpBar 세팅해!");
+        else
+            _hpBar.value = 1;
+    }   
 
     private void Update()
     {
         Presenter.Tick();
     }
-
-    public void SetSkill(SkillType skillType) => Presenter.SetSkill(skillType);
-
-    public void SetSkill01()
+    
+    private void OnEnable()
     {
-        Presenter.SetSkill(SkillType.Skill01);
-        Debug.Log($"현재 스킬 타입: {Presenter.Skill.GetType().Name}");
+        OnClick += OnStartCklick;
     }
-
-    public void SetSkill02()
+    private void OnDisable()
     {
-        Presenter.SetSkill(SkillType.Skill02);
-        Debug.Log("스킬변경" + Presenter.Skill);
+        OnClick -= OnStartCklick;
     }
 
 
     public void OnStartCklick()
     {
-        Debug.Log("클릭대상" + unitData.Name);
+        Debug.Log("클릭대상" + UnitData.Name);
     }
+
+    public void UpdateHpBar(float hp, float maxHp) => _hpBar.value = hp / maxHp;
+    
 }

@@ -34,7 +34,7 @@ RectTransform:
   m_Children:
   - {fileID: 5465069327910226534}
   - {fileID: 6821981468181182241}
-  - {fileID: 7183958678836985795}
+  - {fileID: 5666933979687404803}
   m_Father: {fileID: 8944476539885274872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   _uiGroupList:
   - {fileID: 7277178558455205643}
   - {fileID: 2331888948441276884}
-  - {fileID: 135410626519733489}
+  - {fileID: 0}
 --- !u!223 &3520024224380738289
 Canvas:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIUnitSelect
   <UIGroupName>k__BackingField: 0
-  _selectListTransform: {fileID: 5904272516084532569}
+  _objectPullTransform: {fileID: 5904272516084532569}
   _unitSelectPrefab: {fileID: -1079312721876549979, guid: a7de4c9b0590c0b44b7d62742ea8d5b4, type: 3}
 --- !u!1 &2855058378379578931
 GameObject:
@@ -706,6 +706,53 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &6367504788313825968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5666933979687404803}
+  - component: {fileID: 4607143786407995250}
+  m_Layer: 0
+  m_Name: TargetSelectUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5666933979687404803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367504788313825968}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -683, y: -384, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2381158479389577894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4607143786407995250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367504788313825968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd7261226e241b794f1d22dbe55d681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UITargetSelect
+  <UIGroupName>k__BackingField: 2
+  _objectPullTransform: {fileID: 5666933979687404803}
+  _targetSelectPrefab: {fileID: 8461543941773396487, guid: 762d3aa2ac2193040842854a16d65f68, type: 3}
 --- !u!1 &7070087358308222955
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,56 +995,6 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &8000765224364246740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7183958678836985795}
-  - component: {fileID: 135410626519733489}
-  m_Layer: 5
-  m_Name: TargetSelectUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7183958678836985795
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8000765224364246740}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2381158479389577894}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &135410626519733489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8000765224364246740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd7261226e241b794f1d22dbe55d681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UITargetSelect
-  <UIGroupName>k__BackingField: 2
-  _targetSelectPrefab: {fileID: 8461543941773396487, guid: 762d3aa2ac2193040842854a16d65f68, type: 3}
 --- !u!1001 &3489185862221906872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1200,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIActSelect
   <UIGroupName>k__BackingField: 1
-  _selectListTransform: {fileID: 5139444485399559800}
+  _objectPullTransform: {fileID: 5139444485399559800}
   _skillSelectPrefab: {fileID: -3437164212030576968, guid: 03eb0a9706ce7cc48872007768a25ae3, type: 3}
 --- !u!224 &6821981468181182241 stripped
 RectTransform:

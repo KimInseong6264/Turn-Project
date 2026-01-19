@@ -132,7 +132,7 @@ public struct BattleInfo
 
     public void OnBattleExcute()
     {
-        Attacker.StartSkillExecute();
+        Attacker.StartSkillExecute(Target);
     }
 }
 

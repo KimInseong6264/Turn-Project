@@ -47,6 +47,7 @@ public class UnityObjectPull<T> where T : Component
     public T GetPull(Transform parent)
     {
         T obj = GetPull();
+        obj.transform.localPosition = Vector3.zero;
         obj.transform.SetParent(parent, false);
         return obj;
     }
@@ -57,6 +58,7 @@ public class UnityObjectPull<T> where T : Component
         if (obj == null)
             return;
         
+        obj.transform.localPosition = Vector3.zero;
         obj.gameObject.SetActive(false);
         _pull.Enqueue(obj);
     }

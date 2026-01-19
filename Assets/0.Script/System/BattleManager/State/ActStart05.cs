@@ -25,7 +25,12 @@ public class ActStart05 : IState
         foreach (var battleInfo in _battleManager.BattleSequence)
         {
             yield return CoroutineManager.GetWaitTime(1f);
-            battleInfo.Value.OnBattleExcute();
+            if(battleInfo.Value.Target != null)
+                battleInfo.Value.OnBattleExcute();
+            else
+            {
+                Debug.LogWarning(battleInfo.Key + "타겟 없음");
+            }
         }
         
         _battleManager.SetState(BattleState.TurnEnd06);

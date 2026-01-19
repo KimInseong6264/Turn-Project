@@ -21,8 +21,19 @@ public abstract class SkillBase
         _coinValue = skillData.CoinValue;
         _unit = unit;
     }
-    
-    public abstract IEnumerator Execute();
+
+    public virtual IEnumerator Execute(UnitPresenter target)
+    {
+        target.OnTakeDamage(_coinCount + _coinValue);
+        Debug.Log("================================");
+        Debug.Log("<color=red>스킬이름</color>" + _name);
+        Debug.Log("<color=red>스킬코인수</color>" + _coinCount);
+        Debug.Log("<color=red>스킬코인벨류</color>" + _coinValue);
+        Debug.Log("<color=red>스킬코인벨류</color>" + _coinValue);
+        Debug.LogWarning("<color=red>남은 체력</color>" + target.Hp);
+        Debug.Log("================================");
+        yield break;
+    }
 }
 
 /// <summary>

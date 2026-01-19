@@ -39,14 +39,14 @@ public class TurnStart02 : IState
         int count = 0;
         foreach (var player in _players)
         {
-            player.SetPosition(new Vector3(-2 - count, 0, 0));
+            player.SetPosition(new Vector3(-5 - count, 1, 3));
             count += 2;
         }
 
         count = 0;
         foreach (var enemy in _enemies)
         {
-            enemy.SetPosition(new Vector3(2 + count, 0, 0));
+            enemy.SetPosition(new Vector3(5 + count, 1, 3));
             count += 2;
         }
         

@@ -4,17 +4,20 @@ using UnityEngine;
 public class UnitPresenter : ISkillable
 {
     private UnitModel _model;
-
     private UnitView _view;
+    
     
     // Model의 정보 제공
     public string Name => _model.Name;
+    public int Hp => _model.Hp;
     public int Speed => _model.Speed;
     public UnitTeam Team => _model.Team;
     public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
     
+    
     // View의 정보 제공
     public Transform GetTransform => _view.transform;
+    
     
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
@@ -24,15 +27,25 @@ public class UnitPresenter : ISkillable
     
     public void Tick() {}
     
+    
+    // Model - View 연동 메서드
+    public void OnTakeDamage(int damage)
+    {
+        _model.TakeDamage(damage);
+        Debug.Log("체력" + _model.Hp +"/ 맥스" + _model.MaxHp);
+        _view.UpdateHpBar(_model.Hp, _model.MaxHp);
+    }
     public void OnAct() {}
     public void OnMove(Vector3 dir) => _view.transform.Translate(dir);
+    
     
     // View의 설정 변경
     public void SetPosition(Vector3 pos) => _view.transform.position = pos;
     public void SetObjectName(string name) => _view.gameObject.name = name;
 
+    
     // 스킬 관련 메서드
     public void SetSkill(SkillType skillType) => _model.SetSkillToUse(skillType);
-    public void StartSkillExecute() => _view.StartCoroutine(Skill.Execute());
+    public void StartSkillExecute(UnitPresenter target) => _view.StartCoroutine(Skill.Execute(target));
     public Dictionary<SkillType, SkillBase> GetSkills() => _model.Skills;
 }

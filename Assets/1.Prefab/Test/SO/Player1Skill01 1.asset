@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
   <OwnerName>k__BackingField: "\uD50C\uB808\uC774\uC5B41"
   <Name>k__BackingField: "\uD50C\uB808\uC774\uC5B41\uC2A4\uD0AC02"
-  <CoinCount>k__BackingField: 0
-  <CoinValue>k__BackingField: 0
+  <CoinCount>k__BackingField: 2
+  <CoinValue>k__BackingField: 10
   <Type>k__BackingField: 1

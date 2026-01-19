@@ -5,6 +5,7 @@ public class UnitModel
 {
     private int _hp;
     
+    public readonly int MaxHp;
     public int Hp => Mathf.Max(0, _hp);
     
     public string Name { get; private set; }
@@ -12,6 +13,7 @@ public class UnitModel
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
     public int Speed { get; private set; }
+    public bool IsDead => _hp <= 0;
     
     public Dictionary<SkillType, SkillBase> Skills { get; private set; }
     public SkillBase SkillToUse { get; private set; }
@@ -19,6 +21,7 @@ public class UnitModel
     
     public UnitModel(UnitDataSO unitData, ISkillable  unitPresenter)
     {
+        MaxHp = unitData.Hp;
         _hp = unitData.Hp;
         Name = unitData.Name;
         Team = unitData.Team;
@@ -29,6 +32,7 @@ public class UnitModel
         SetSkills(unitData, unitPresenter);
     }
 
+    // 생성시, 스킬을 세팅(들고있게 됨)
     private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
     {
         Skills = new Dictionary<SkillType, SkillBase>();
@@ -51,5 +55,8 @@ public class UnitModel
         if(Skills.TryGetValue(SkillType.Skill01, out var skill01))
            SkillToUse = skill01;
     }
+    
+    
+    public void TakeDamage(int damage) => _hp -= damage;
     public void SetSkillToUse(SkillType skillType) => SkillToUse = Skills[skillType];
 }
