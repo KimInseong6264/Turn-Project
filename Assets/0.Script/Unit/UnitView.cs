@@ -44,5 +44,5 @@ public class UnitView : MonoBehaviour, IClickable
     }
 
     public void UpdateHpBar(float hp, float maxHp) => _hpBar.value = hp / maxHp;
-    
+    public void SetActiveHpBar(bool active) => _hpBar.gameObject.SetActive(active);
 }

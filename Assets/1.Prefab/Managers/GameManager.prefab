@@ -57,7 +57,7 @@ MonoBehaviour:
   _uiGroupList:
   - {fileID: 7277178558455205643}
   - {fileID: 2331888948441276884}
-  - {fileID: 0}
+  - {fileID: 4607143786407995250}
 --- !u!223 &3520024224380738289
 Canvas:
   m_ObjectHideFlags: 0
@@ -121,6 +121,53 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1989575511720293198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4992059534958050387}
+  - component: {fileID: 6233371788126590464}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4992059534958050387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989575511720293198}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8944476539885274872}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6233371788126590464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989575511720293198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4125750027e54b579349f5e89232290c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  <EnemyDataList>k__BackingField:
+  - {fileID: 11400000, guid: 4ed7ec72827d83241aa5b0f6dfdfb977, type: 2}
+  - {fileID: 11400000, guid: a5feae2be22ad6d409e43816d6ab1904, type: 2}
 --- !u!1 &2402892621474006980
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +381,7 @@ GameObject:
   - component: {fileID: 1040959116592820066}
   m_Layer: 5
   m_Name: SelectList
-  m_TagString: Untagged
+  m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,6 +600,7 @@ Transform:
   - {fileID: 7475463603771031535}
   - {fileID: 8326007451273594151}
   - {fileID: 851891091561166938}
+  - {fileID: 4992059534958050387}
   - {fileID: 2381158479389577894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -573,6 +621,7 @@ MonoBehaviour:
   _inputMgr: {fileID: 2407386040541342041}
   _uiMgr: {fileID: 1044086990815227528}
   _unitSelector: {fileID: 7656759764039476013}
+  _waveMgr: {fileID: 6233371788126590464}
 --- !u!1 &6313182816012145733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3816828419289428469, guid: 23b1c6908a800a74cbcb94ffa41603cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929679997644529194, guid: 23b1c6908a800a74cbcb94ffa41603cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

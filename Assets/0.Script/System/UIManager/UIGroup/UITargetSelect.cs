@@ -37,8 +37,12 @@ public class UITargetSelect : UIGroup
     {
         foreach (var enemy in BattleManager.Instance.Enemies)
         {
+            if(enemy.IsDead)
+                continue;
+            
             var canvas = _canvasPull.GetPull(enemy.GetTransform);
             canvas.gameObject.name = enemy.Name;
+            
             foreach (Transform child in canvas.transform)
             {
                 if (child.TryGetComponent(out ClickObject button))
@@ -69,7 +73,7 @@ public class UITargetSelect : UIGroup
     {
         foreach (var button in _buttons)
         {
-            if(button == null)
+            if(!button)
                 continue;
             
             button.transform.SetParent(_objectPullTransform);

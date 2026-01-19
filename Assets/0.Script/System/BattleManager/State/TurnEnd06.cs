@@ -25,12 +25,35 @@ public class TurnEnd06 : IState
 
     public void Update() {}
 
-
+    // 어느 한 쪽이 모두 죽으면 BattleEnd로 상태 전환
     private void UpdateState()
     {
-        if (_players.Count == 0 || _enemies.Count == 0)
+        bool IsPlayerLife = IsUnitLife(_players);
+        bool IsEnemieLife = IsUnitLife(_enemies);
+
+        if (!IsPlayerLife || !IsEnemieLife)
+        {
+            if(IsEnemieLife)
+                _battleManager.SetWinners(UnitTeam.Enemy);
+        
+            if(IsPlayerLife)
+                _battleManager.SetWinners(UnitTeam.Player);
+            
             _battleManager.SetState(BattleState.BattleEnd07);
+            return;
+        }
         
         _battleManager.SetState(BattleState.TurnStart02);
+    }
+
+    private bool IsUnitLife(List<UnitPresenter> units)
+    {
+        foreach (var unit in units)
+        {
+            if(!unit.IsDead)
+                return true;
+        }
+        
+        return false;
     }
 }

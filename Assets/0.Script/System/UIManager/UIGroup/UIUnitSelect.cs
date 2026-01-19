@@ -30,6 +30,9 @@ public class UIUnitSelect : UIGroup
         Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
         foreach (var unitData in unitDict)
         {
+            if(unitData.Value.Team == UnitTeam.Enemy)
+                continue;
+            
             var obj = _unitSelectPull.GetPull();
             SetButton(obj, unitData.Value);
             _buttons.Add(obj);

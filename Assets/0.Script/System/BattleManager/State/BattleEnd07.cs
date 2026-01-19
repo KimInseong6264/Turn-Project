@@ -1,4 +1,4 @@
-
+using UnityEngine;
 
 public class BattleEnd07 : IState
 {
@@ -9,7 +9,10 @@ public class BattleEnd07 : IState
         _battleManager = battleManager;
     }
     
-    public void Enter() {}
+    public void Enter()
+    {
+        Debug.Log(_battleManager.Winners + "<color=red>가 이겼습니다.</color>");
+    }
 
     public void Exit() {}
 

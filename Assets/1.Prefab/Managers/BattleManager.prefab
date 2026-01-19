@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115660264261889493}
   - component: {fileID: 6379947839213095843}
+  - component: {fileID: 1637236989222228050}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -157,3 +158,15 @@ MonoBehaviour:
   <SpawnPoints>k__BackingField:
   - {fileID: 8065580870718699197}
   - {fileID: 5938166130302329868}
+--- !u!114 &1637236989222228050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708146129557850865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1214aabba4470f9296427f701a54af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI

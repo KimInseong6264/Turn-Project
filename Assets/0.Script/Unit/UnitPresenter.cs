@@ -10,6 +10,7 @@ public class UnitPresenter : ISkillable
     // Model의 정보 제공
     public string Name => _model.Name;
     public int Hp => _model.Hp;
+    public bool IsDead => _model.IsDead;
     public int Speed => _model.Speed;
     public UnitTeam Team => _model.Team;
     public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
@@ -32,8 +33,9 @@ public class UnitPresenter : ISkillable
     public void OnTakeDamage(int damage)
     {
         _model.TakeDamage(damage);
-        Debug.Log("체력" + _model.Hp +"/ 맥스" + _model.MaxHp);
         _view.UpdateHpBar(_model.Hp, _model.MaxHp);
+        if(_model.IsDead)
+            _view.SetActiveHpBar(false);
     }
     public void OnAct() {}
     public void OnMove(Vector3 dir) => _view.transform.Translate(dir);

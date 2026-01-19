@@ -1,40 +1,40 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class BattleManager : SingletonBase<BattleManager>
+public class BattleManager : MonoBehaviour
 {
+    public static BattleManager Instance;
+
     private Dictionary<BattleState, IState> _states;
     private IState  _currentState;
     
     public List<UnitPresenter> Players { get; private set; }
     public List<UnitPresenter> Enemies { get; private set; }
     public Dictionary<string, BattleInfo> BattleSequence { get; private set; }
+    public UnitTeam Winners { get; private set; }
     public bool IsStartBattle { get; private set; }
+    public EnemyAI EnemyAISystema { get; private set; }
+    
     
     //
     private BattleInfo _currentBattleInfo;
     [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
     //
     
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        Instance = this;
         Players =  new List<UnitPresenter>();
         Enemies = new List<UnitPresenter>();
         BattleSequence = new Dictionary<string, BattleInfo>();
-        
-        
-        //==============================================
-        gameObject.SetActive(false);
-        //==============================================
-        
-        
+        EnemyAISystema = GetComponent<EnemyAI>();
     }
 
     private void Start()
     {
+        FindGameStart(GameManager.Instance.transform).onClick.AddListener(() => IsStartBattle = true);
         SetState();
     }
 
@@ -72,7 +72,7 @@ public class BattleManager : SingletonBase<BattleManager>
     #endregion
     
     
-    public void SetStartBattle(bool startBattle) => IsStartBattle = startBattle;
+    public void SetWinners(UnitTeam winners) => Winners = winners;
     public void AddPlayers(UnitPresenter presenter) => Players.Add(presenter);
     public void AddEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
@@ -95,11 +95,27 @@ public class BattleManager : SingletonBase<BattleManager>
             = new BattleInfo(_currentBattleInfo, _currentBattleInfo.SelectedSkill, target);
         Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Name].Target);
     }
+    public void SetSequence(string unitName, BattleInfo battleInfo) => BattleSequence[unitName] = battleInfo;
+    
+    // 배틀 스타트 버튼을 찾는 메서드
+    private Button FindGameStart(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.CompareTag("BattleStart"))
+                return child.GetComponent<Button>();
+
+            var found = FindGameStart(child);
+            if (found != null)
+                return found;
+        }
+        return null;
+    }
     
     public void Init()
     {
         BattleSequence.Clear();
-        SetStartBattle(false); 
+        IsStartBattle = false;
     }
 }
 
@@ -132,6 +148,7 @@ public struct BattleInfo
 
     public void OnBattleExcute()
     {
+        Attacker.SetSkill(SelectedSkill.Type);
         Attacker.StartSkillExecute(Target);
     }
 }

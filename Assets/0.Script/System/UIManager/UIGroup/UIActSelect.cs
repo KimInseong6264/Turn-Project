@@ -34,12 +34,12 @@ public class UIActSelect : UIGroup
     public void OnCreateButton()
     {
         var unitSequence = BattleManager.Instance.BattleSequence;
-        foreach (var battleInfo in unitSequence)
+        foreach (var battleInfo in unitSequence.Values)
         {
-            if(battleInfo.Value.Team == UnitTeam.Enemy)
+            if(battleInfo.Team == UnitTeam.Enemy || battleInfo.Attacker.IsDead)
                 continue;
 
-            CreateSkillButton(battleInfo.Value);
+            CreateSkillButton(battleInfo);
         }
     }
 

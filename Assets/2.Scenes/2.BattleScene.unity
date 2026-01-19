@@ -491,6 +491,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5938166130302329868, guid: f614275b8975ecb40b545f7cefed30ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6708146129557850865, guid: f614275b8975ecb40b545f7cefed30ce, type: 3}
       propertyPath: m_Name
       value: BattleManager
@@ -498,6 +502,10 @@ PrefabInstance:
     - target: {fileID: 6708146129557850865, guid: f614275b8975ecb40b545f7cefed30ce, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065580870718699197, guid: f614275b8975ecb40b545f7cefed30ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -520,6 +528,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6233371788126590464, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: <EnemyDataList>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233371788126590464, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: '<EnemyDataList>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ed7ec72827d83241aa5b0f6dfdfb977, type: 2}
+    - target: {fileID: 6233371788126590464, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: '<EnemyDataList>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a5feae2be22ad6d409e43816d6ab1904, type: 2}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

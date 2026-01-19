@@ -29,4 +29,12 @@ public partial class UIManager : MonoBehaviour
     }
 
     private void ResetPullParnets(UIGroupName uiGroupName) => _uiGroups[uiGroupName].ResetPullParnets();
+
+    public void Init()
+    {
+        foreach (var uiGroup in _uiGroupList)
+        {
+            uiGroup.gameObject.SetActive(false);
+        }
+    }
 }
