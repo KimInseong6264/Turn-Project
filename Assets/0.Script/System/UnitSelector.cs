@@ -6,33 +6,20 @@ public class UnitSelector : MonoBehaviour
     public static List<UnitDataSO> Players { get; private set; }
     public static List<UnitDataSO> Enemies { get; private set; }
 
+    
+    
     private void Awake()
     {
         Init();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        GameManager.Instance.UpdateUI(UIGroupName.UnitSelectUI, true);
-
         Enemies = GameManager.Instance.GetWaveEnemyList();
-        
-        //=================================
-        // foreach (var unitData in GameManager.Instance.GetUnitDataList())
-        // {
-        //     if(unitData.Value.Team == UnitTeam.Player)
-        //         SelectedUnit(unitData.Key);
-        // }
-        // BattleManager.Instance.gameObject.SetActive(true);
-        // gameObject.SetActive(false);
-        //=================================
-
-
-
-
-
     }
 
+    
+    
     // 유닛 선택
     public static void SelectedUnit(string unitName)
     {
@@ -58,7 +45,6 @@ public class UnitSelector : MonoBehaviour
     // 전투 씬으로 전환
     public void BattleLoadScene()
     {
-        // GameManager.Instance.InitButtons(false);
         GameManager.Instance.OnLoadScene(2);
         gameObject.SetActive(false);
     }

@@ -7,15 +7,18 @@ public class UIGroup : MonoBehaviour
     
     [SerializeField] protected Transform _objectPullTransform;
 
+    
     protected virtual void Awake()
     {
         gameObject.SetActive(false);
     }
 
+    
     public virtual void ResetPullParnets() {}
 }
 
+
 public enum UIGroupName
 {
-    UnitSelectUI, ActSelectUI, TargetSelectUI
+    GameStart, UnitSelectUI, ActSelectUI, TargetSelectUI, GameEnd
 }

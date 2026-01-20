@@ -15,7 +15,6 @@ public class UnitPresenter : ISkillable
     public UnitTeam Team => _model.Team;
     public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
     
-    
     // View의 정보 제공
     public Transform GetTransform => _view.transform;
     
@@ -25,6 +24,7 @@ public class UnitPresenter : ISkillable
         _view = view;
         _model = new UnitModel(unitData, this);
     }
+    
     
     public void Tick() {}
     

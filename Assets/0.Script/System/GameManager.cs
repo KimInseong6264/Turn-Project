@@ -10,17 +10,16 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private UnitSelector _unitSelector;
     [SerializeField] private WaveManager _waveMgr;
     
+    
+    
     protected override void Awake()
     {
         base.Awake();
     }
 
+    
+    
     // Scene 메서드
-    public void StartGame()
-    {
-        _sceneMgr.OnLoadScene(1);
-        _uiMgr.UpdateUI(UIGroupName.UnitSelectUI, true);
-    }
     public void OnLoadScene(int num) => _sceneMgr.OnLoadScene(num);
     
     // UnitData 메서드
@@ -33,10 +32,18 @@ public class GameManager : SingletonBase<GameManager>
     // Wave 메서드
     public List<UnitDataSO> GetWaveEnemyList() => _waveMgr.GetEnemyDataList();
 
+    // 전역참조 캡슐화 초기화
     public void GameInitialIze()
     {
         _uiMgr.Init();
         _unitSelector.Init();
+    }
+    
+    // 게임 종료 메서드
+    public void ExitGame()
+    {
+        Debug.Log("게임 종료");
+        Application.Quit();
     }
 }
 

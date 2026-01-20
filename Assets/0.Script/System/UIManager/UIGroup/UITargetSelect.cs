@@ -10,6 +10,8 @@ public class UITargetSelect : UIGroup
     
     [SerializeField] private Canvas _targetSelectPrefab;
 
+    
+    
     protected override void Awake()
     {
         _buttons = new List<Canvas>();
@@ -24,13 +26,13 @@ public class UITargetSelect : UIGroup
         
         OnCreateButton();
     }
-
     
     private void OnDisable()
     {
         ReleaseButons();
     }
 
+    
     
     // 캔버스에서 ClickObject 찾아서 버튼 생성
     private void OnCreateButton()

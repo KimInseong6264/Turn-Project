@@ -10,6 +10,7 @@ public class UIActSelect : UIGroup
     
     [SerializeField] private ClickObject _actSelectPrefab;
     
+    
     protected override void Awake()
     {
         _actSelectPull = new UnityObjectPull<ClickObject>(_actSelectPrefab, 5, _objectPullTransform);

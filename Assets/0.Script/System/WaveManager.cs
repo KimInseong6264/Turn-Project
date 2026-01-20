@@ -9,11 +9,16 @@ public class WaveManager : MonoBehaviour
         
     [field: SerializeField] public List<UnitDataSO> EnemyDataList { get; private set; }
 
+    
+    
     private void Awake()
     {
         _enemyDataList = new List<UnitDataSO>();
     }
 
+    
+    
+    // 웨이브별 에너미 데이터 가져오기
     public List<UnitDataSO> GetEnemyDataList()
     {
         _enemyDataList.Clear();

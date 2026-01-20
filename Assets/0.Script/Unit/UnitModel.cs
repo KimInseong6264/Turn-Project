@@ -36,7 +36,6 @@ public class UnitModel
     private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
     {
         Skills = new Dictionary<SkillType, SkillBase>();
-
         if (unitData.SkillList == null || unitData.SkillList.Count == 0)
         {
             Debug.LogError(unitData.Name + "은 스킬프리팹이 없습니다.");

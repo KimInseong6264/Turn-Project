@@ -10,6 +10,8 @@ public class UIUnitSelect : UIGroup
     
     [SerializeField] private ClickUnitSelect _unitSelectPrefab;
     
+    
+    
     protected override void Awake()
     {
         _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _objectPullTransform);
@@ -20,6 +22,7 @@ public class UIUnitSelect : UIGroup
     {
         OnCreateButton();
     }
+    
     
     
     // 게임 시작시, 버튼 생성 메서드

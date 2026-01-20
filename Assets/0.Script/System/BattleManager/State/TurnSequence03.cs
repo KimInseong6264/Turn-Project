@@ -35,10 +35,16 @@ public class TurnSequence03 : IState
     {
         foreach (var player in _battleManager.Players)
         {
+            if(player.IsDead)
+                continue;
+            
             _battleInfos.Add(new BattleInfo(player));
         }
         foreach (var enemy in _battleManager.Enemies)
         {
+            if(enemy.IsDead)
+                continue;
+                
             _battleInfos.Add(new BattleInfo(enemy));
         }
         

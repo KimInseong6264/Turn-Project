@@ -16,7 +16,7 @@ public class ActSelect04 : IState
         GameManager.Instance.UpdateUI(UIGroupName.ActSelectUI, true);
         GameManager.Instance.UpdateUI(UIGroupName.TargetSelectUI, true);
 
-        SetEnuemySequence();
+        SetEnemySequence();
         
         Debug.Log("플레이어 입력을 기다립니다.");
     }
@@ -33,12 +33,12 @@ public class ActSelect04 : IState
             _battleManager.SetState(BattleState.ActStart05);
     }
 
-    private void SetEnuemySequence()
+    private void SetEnemySequence()
     {
         var enemyAI = BattleManager.Instance.EnemyAISystema;
         foreach (var unit in _battleManager.BattleSequence.Values.ToList())
         {
-            if(unit.Team == UnitTeam.Player)
+            if(unit.Team == UnitTeam.Player || unit.Attacker.IsDead)
                 continue;
 
             _battleManager.SetSequence(unit.Attacker.Name, enemyAI.SetEnemyInfo(unit));

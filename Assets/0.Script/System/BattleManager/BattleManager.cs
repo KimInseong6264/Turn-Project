@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,8 +27,10 @@ public class BattleManager : MonoBehaviour
     public List<Text> skill;
     public List<Text> target;
 
-    public void OnUIInfo()
+    public void OnInfoStart() => StartCoroutine(OnUIInfo());
+    public IEnumerator OnUIInfo()
     {
+        yield return null;
         int count = 0;
         foreach (var battleInfo in BattleSequence.Values)
         {
@@ -152,7 +155,7 @@ public struct BattleInfo
         Attacker = attacker;
         SelectedSkill = null;
         Target = null;
-        BattleManager.Instance.OnUIInfo();
+        BattleManager.Instance.OnInfoStart();
     }
 
     // 스킬만 갱신하는 생성자
@@ -161,7 +164,7 @@ public struct BattleInfo
         this = new BattleInfo(mySelf.Attacker);
         this.SelectedSkill = skill;
         this.Target = target;
-        BattleManager.Instance.OnUIInfo();
+        BattleManager.Instance.OnInfoStart();
     }
 
     public void OnBattleExcute()

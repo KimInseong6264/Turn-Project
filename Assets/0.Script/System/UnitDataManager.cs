@@ -7,12 +7,16 @@ public class UnitDataManager : MonoBehaviour
 
     private Dictionary<string, UnitDataSO> _unitDataDict;
     
+    
+    
     protected void Awake()
     {
         _unitDataDict = new Dictionary<string, UnitDataSO>();
         SetUnitData();
     }
 
+    
+    
     // 유닛Dict에 데이터를 세이브
     private void SetUnitData()
     {

@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class UnitView : MonoBehaviour, IClickable
 {
-    public UnitDataSO UnitData;
-
     [SerializeField] private Slider _hpBar;
     
+    public UnitDataSO UnitData;
     public UnitPresenter Presenter { get; private set; }
-    
     public event Action OnClick;
+    
     
     
     private void Awake()
@@ -37,6 +36,7 @@ public class UnitView : MonoBehaviour, IClickable
         OnClick -= OnStartCklick;
     }
 
+    
 
     public void OnStartCklick()
     {

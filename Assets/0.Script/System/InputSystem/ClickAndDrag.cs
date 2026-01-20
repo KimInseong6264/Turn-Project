@@ -19,6 +19,7 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _raycastResults = new List<RaycastResult>();
     }
 
+    
     // 드래깅이 시작될 때
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -39,7 +40,8 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
         Destroy(_arrowRect.gameObject);
     }
-
+    
+    // 화살표 생성
     private void CreateArrow()
     {
         RectTransform myRect = transform as RectTransform;
@@ -50,6 +52,7 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _arrowRect.anchoredPosition = Vector2.zero;
     }
 
+    // 화살표의 끝이 마우스에 따라 길어짐
     private void UpdateArrow(PointerEventData eventData)
     {
         
@@ -68,6 +71,7 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _arrowRect.sizeDelta = new Vector2(_arrowRect.sizeDelta.x, dir.magnitude);
     }
 
+    // 타겟에게 드래그 시 공격할 타겟 정해짐
     private ClickObject FindedClickObject(PointerEventData eventData)
     {
         EventSystem.current.RaycastAll(eventData, _raycastResults);
