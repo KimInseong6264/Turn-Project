@@ -21,6 +21,22 @@ public class BattleManager : MonoBehaviour
     //
     private BattleInfo _currentBattleInfo;
     [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
+
+    public List<Text> attaker;
+    public List<Text> skill;
+    public List<Text> target;
+
+    public void OnUIInfo()
+    {
+        int count = 0;
+        foreach (var battleInfo in BattleSequence.Values)
+        {
+            attaker[count].text = battleInfo.Attacker?.Name;
+            skill[count].text = battleInfo.SelectedSkill?.Name;
+            target[count].text = battleInfo.Target?.Name;
+            count++;
+        }
+    }
     //
     
     private void Awake()
@@ -136,6 +152,7 @@ public struct BattleInfo
         Attacker = attacker;
         SelectedSkill = null;
         Target = null;
+        BattleManager.Instance.OnUIInfo();
     }
 
     // 스킬만 갱신하는 생성자
@@ -144,6 +161,7 @@ public struct BattleInfo
         this = new BattleInfo(mySelf.Attacker);
         this.SelectedSkill = skill;
         this.Target = target;
+        BattleManager.Instance.OnUIInfo();
     }
 
     public void OnBattleExcute()

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 리펙토링 반드시 진행해야 함
 /// </summary>
-public class ClickObject : MonoBehaviour ,IPointerClickHandler, IClickable
+public class ClickObject : MonoBehaviour, IPointerClickHandler, IClickable
 {
     public event Action OnClick;
 
@@ -18,10 +18,11 @@ public class ClickObject : MonoBehaviour ,IPointerClickHandler, IClickable
     }
 
 
-    public void OnPointerClick(PointerEventData eventData) => OnStartCklick();
+    public virtual void OnPointerClick(PointerEventData eventData) => OnStartCklick();
 
     public virtual void OnStartCklick()
     {
         OnClick?.Invoke();
     }
+
 }

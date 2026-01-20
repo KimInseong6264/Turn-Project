@@ -524,6 +524,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 701386006}
+    - target: {fileID: 2407386040541342041, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -540,6 +544,10 @@ PrefabInstance:
       propertyPath: '<EnemyDataList>k__BackingField.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: a5feae2be22ad6d409e43816d6ab1904, type: 2}
+    - target: {fileID: 7304255530530011197, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

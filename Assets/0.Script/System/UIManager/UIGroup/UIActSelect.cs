@@ -8,11 +8,11 @@ public class UIActSelect : UIGroup
     private List<ClickObject> _buttons;
     private UnityObjectPull<ClickObject> _actSelectPull;
     
-    [SerializeField] private ClickObject _skillSelectPrefab;
+    [SerializeField] private ClickObject _actSelectPrefab;
     
     protected override void Awake()
     {
-        _actSelectPull = new UnityObjectPull<ClickObject>(_skillSelectPrefab, 5, _objectPullTransform);
+        _actSelectPull = new UnityObjectPull<ClickObject>(_actSelectPrefab, 5, _objectPullTransform);
         _buttons = new List<ClickObject>();
         base.Awake();
     }

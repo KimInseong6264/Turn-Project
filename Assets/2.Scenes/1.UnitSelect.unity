@@ -472,12 +472,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 329903205621297741, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1044086990815227528, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: _buttonPrefab
       value: 
       objectReference: {fileID: -3437164212030576968, guid: 03eb0a9706ce7cc48872007768a25ae3, type: 3}
+    - target: {fileID: 2331888948441276884, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _actSelectPrefab
+      value: 
+      objectReference: {fileID: 6388958509811886185, guid: 03eb0a9706ce7cc48872007768a25ae3, type: 3}
     - target: {fileID: 3420497922294382692, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_TagString
       value: Panel
@@ -485,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821981468181182241, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x

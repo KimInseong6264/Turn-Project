@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2600465070801966511}
-  - component: {fileID: -3437164212030576968}
+  - component: {fileID: 6388958509811886185}
   - component: {fileID: 372056921626178340}
+  - component: {fileID: 8566669967876953997}
   - component: {fileID: 7914015552438970487}
   - component: {fileID: 5200599694823605845}
   m_Layer: 5
@@ -40,7 +41,7 @@ RectTransform:
   m_AnchoredPosition: {x: 80, y: 15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-3437164212030576968
+--- !u!114 &6388958509811886185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,9 +50,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3183183291583264667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31f4f7c6f83055d4ab4fb5034188db0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a50d21cd37245469af512c23cdae4b9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickObject
+  m_EditorClassIdentifier: Assembly-CSharp::ClickActSelect
 --- !u!222 &372056921626178340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60,6 +61,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3183183291583264667}
   m_CullTransparentMesh: 1
+--- !u!114 &8566669967876953997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183183291583264667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104c232525c2424dadbf99025a609371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickAndDrag
+  _arrowPrefab: {fileID: 6483458569670679913, guid: 6ec7c8c08cbe4f44eb10535d085f1e8c, type: 3}
 --- !u!114 &7914015552438970487
 MonoBehaviour:
   m_ObjectHideFlags: 0
