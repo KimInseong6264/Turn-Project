@@ -48,7 +48,7 @@ public static class SkillFactory
     {
         switch (skillDataSo.OwnerName)
         {
-            case "플레이어" or "플레이어1" or "플레이어2":
+            case "하얀노움" or "보라노움" :
                 switch (skillDataSo.Type)
                 {
                     case SkillType.Skill01:
@@ -56,8 +56,9 @@ public static class SkillFactory
                     case SkillType.Skill02:
                         return new Player.Skill02(skillDataSo, unit);
                 }
+
                 break;
-            case "에너미" or "에너미1" or "에너미2":
+            case "레드슬라임" or "블루슬라임" :
                 switch (skillDataSo.Type)
                 {
                     case SkillType.Skill01:
@@ -65,11 +66,13 @@ public static class SkillFactory
                     case SkillType.Skill02:
                         return new Enemy.Skill02(skillDataSo, unit);
                 }
+
                 break;
             default:
                 Debug.LogError(skillDataSo.OwnerName + "은 스킬을 끼울 수 없습니다.");
                 break;
         }
+
         return null;
     }
 }
