@@ -76,3 +76,9 @@ crashlytics-build.properties
 
 /[Aa]ssets/9.Gitignore/
 /[Aa]ssets/9.Gitignore.meta
+
+/[Aa]ssets/**/google-services.json
+/[Aa]ssets/**/google-services.json.meta
+
+/[Aa]ssets/**/google-services-desktop.json
+/[Aa]ssets/**/google-services-desktop.json.meta
