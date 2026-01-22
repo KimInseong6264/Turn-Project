@@ -27,14 +27,14 @@ public class UnitView : MonoBehaviour, IClickable
         Presenter.Tick();
     }
     
-    private void OnEnable()
-    {
-        OnClick += OnStartCklick;
-    }
-    private void OnDisable()
-    {
-        OnClick -= OnStartCklick;
-    }
+    // private void OnEnable()
+    // {
+    //     OnClick += OnStartCklick;
+    // }
+    // private void OnDisable()
+    // {
+    //     OnClick -= OnStartCklick;
+    // }
 
     
 

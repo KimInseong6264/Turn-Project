@@ -7,32 +7,41 @@ using UnityEngine.UI;
 
 public class LoginSystem : MonoBehaviour
 {
-    private FirebaseAuth _auth;   // 인증 진행을 위한 객체
-    
     [SerializeField] private InputField _emailInput;
     [SerializeField] private InputField _passwordInput;
     [SerializeField] private Text _message;
-    [SerializeField] private Button _startButton;
-    
-    
+    [SerializeField] private Button _loginButton;
+    [SerializeField] private Button _registerButton;
 
+    public GameObject LoginUI {get; private set;}
+
+    
+    
     private void Start()
     {
-        _auth = FirebaseDB.Instance.Auth;
+        LoginUI = _emailInput.transform.parent.gameObject;
         
-        _startButton.interactable = false;
+        _loginButton.onClick.AddListener(OnLogin);
+        _registerButton.onClick.AddListener(UpdateInToRegister);
         _message.color = Color.gray4;
         _message.text = "이메일과 패스워드를 입력해주세요.";
     }
     
     
     
+    public void UpdateLoginUI(bool active) => LoginUI.SetActive(active);
+    public void UpdateInToRegister()
+    {
+        UpdateLoginUI(false);
+        FirebaseDB.Instance.UpdateRegisterUI(true);
+    }
+    
     public void OnLogin() => StartCoroutine(LoginCor(_emailInput.text, _passwordInput.text));
     
     // 로그인 코루틴
     private IEnumerator LoginCor(string email, string password)
     {
-        Task<AuthResult> loginTask = _auth.SignInWithEmailAndPasswordAsync(email, password);    
+        Task<AuthResult> loginTask = FirebaseDB.Auth.SignInWithEmailAndPasswordAsync(email, password);    
     
         yield return new WaitUntil(predicate: () => loginTask.IsCompleted);
 
@@ -45,7 +54,7 @@ public class LoginSystem : MonoBehaviour
             _message.color = Color.blue;
             FirebaseDB.Instance.SetUser(loginTask.Result.User);
             _message.text = "로그인 완료, 반갑습니다" + FirebaseDB.User.DisplayName + "님";
-            _startButton.interactable = true;
+            _loginButton.interactable = true;
         }
     }
     

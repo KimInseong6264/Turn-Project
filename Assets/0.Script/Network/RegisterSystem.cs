@@ -7,29 +7,42 @@ using UnityEngine.UI;
 
 public class RegisterSystem : MonoBehaviour
 {
-    private FirebaseAuth _auth;   // 인증 진행을 위한 객체
     
     [SerializeField] private InputField _emailInput;
     [SerializeField] private InputField _passwordInput;
     [SerializeField] private InputField _userName;
     [SerializeField] private Text _message;
-    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _createButton;
+    [SerializeField] private Button _backButton;
     
+    public GameObject RegisterUI {get; private set;}
 
-
+    
+    
     private void Start()
     {
-        _auth = FirebaseDB.Instance.Auth;
+        RegisterUI = _emailInput.transform.parent.gameObject;
+        
+        _createButton.onClick.AddListener(OnRegister);
+        _backButton.onClick.AddListener(UpdateInToLogin);
+        UpdateRegisterUI(false);
     }
     
     
     
-    public void OnRegister() => StartCoroutine(_emailInput.text, _passwordInput.text);
+    public void UpdateRegisterUI(bool active) => RegisterUI.SetActive(active);
+    public void UpdateInToLogin()
+    {
+        UpdateRegisterUI(false);
+        FirebaseDB.Instance.UpdateLoginUI(true);
+    }
+    
+    public void OnRegister() => StartCoroutine(RegisterCor(_emailInput.text, _passwordInput.text));
 
     // 회원가입 코루틴
     private IEnumerator RegisterCor(string email, string password)
     {
-        Task<AuthResult> registerTask = _auth.SignInWithEmailAndPasswordAsync(email, password);
+        Task<AuthResult> registerTask = FirebaseDB.Auth.CreateUserWithEmailAndPasswordAsync(email, password);
 
         yield return new WaitUntil(predicate: () => registerTask.IsCompleted);
 
@@ -59,7 +72,7 @@ public class RegisterSystem : MonoBehaviour
                 else
                 {
                     _message.text = "생성 완료, 반값습니다" + user.DisplayName + "님";
-                    _startButton.interactable = true;
+                    _createButton.interactable = true;
                 }
             }
         }
