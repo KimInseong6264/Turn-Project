@@ -10,12 +10,16 @@ public class TurnStart02 : IState
     private BattleManager _battleManager;
     private List<UnitPresenter> _players;
     private List<UnitPresenter> _enemies;
+    private Vector3 _playerSpawnPos;
+    private Vector3 _enemySpawnPos;
     
     public TurnStart02(BattleManager battleManager)
     {
         _battleManager = battleManager;
         _players = battleManager.Players;
         _enemies = battleManager.Enemies;
+        _playerSpawnPos = battleManager.SpawnPoints[0].position;
+        _enemySpawnPos = battleManager.SpawnPoints[1].position;
     }
 
     public void Enter()
@@ -39,14 +43,16 @@ public class TurnStart02 : IState
         int count = 0;
         foreach (var player in _players)
         {
-            player.SetPosition(new Vector3(-5 - count, 1, 3));
+            _playerSpawnPos.x -= count;
+            player.SetPosition(_playerSpawnPos);
             count += 2;
         }
 
         count = 0;
         foreach (var enemy in _enemies)
         {
-            enemy.SetPosition(new Vector3(5 + count, 1, 3));
+            _enemySpawnPos.x += count;
+            enemy.SetPosition(_enemySpawnPos);
             count += 2;
         }
         
