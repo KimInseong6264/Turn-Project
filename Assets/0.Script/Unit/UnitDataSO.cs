@@ -12,7 +12,7 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public float DefLevel { get; private set; }
     [field: SerializeField] public int Speed { get; private set; }
     [field: SerializeField] public List<SkillDataSO> SkillList { get; private set; }
-    [field:SerializeField] public UnitView UnitPrefab { get; private set; }
+    [field: SerializeField] public UnitView UnitPrefab { get; private set; }
 
     
     private void OnValidate()

@@ -19,7 +19,7 @@ public class LoginSystem : MonoBehaviour
     
     private void Start()
     {
-        LoginUI = _emailInput.transform.parent.parent.gameObject;
+        LoginUI = _emailInput.transform.parent.gameObject;
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
@@ -34,7 +34,7 @@ public class LoginSystem : MonoBehaviour
     public void UpdateInToRegister()
     {
         UpdateLoginUI(false);
-        FirebaseDB.Instance.UpdateRegisterUI(true);
+        NetworkManager.Instance.UpdateRegisterUI(true);
     }
     
     public void OnLogin() => StartCoroutine(LoginCor(_emailInput.text, _passwordInput.text));
@@ -42,7 +42,7 @@ public class LoginSystem : MonoBehaviour
     // 로그인 코루틴
     private IEnumerator LoginCor(string email, string password)
     {
-        Task<AuthResult> loginTask = FirebaseDB.Auth.SignInWithEmailAndPasswordAsync(email, password);    
+        Task<AuthResult> loginTask = NetworkManager.Auth.SignInWithEmailAndPasswordAsync(email, password);    
     
         yield return new WaitUntil(predicate: () => loginTask.IsCompleted);
 
@@ -53,8 +53,8 @@ public class LoginSystem : MonoBehaviour
         else
         {
             _message.color = Color.blue;
-            FirebaseDB.Instance.SetUser(loginTask.Result.User);
-            _message.text = "로그인 완료, 반갑습니다" + FirebaseDB.User.DisplayName + "님";
+            NetworkManager.Instance.SetUser(loginTask.Result.User);
+            _message.text = "로그인 완료, 반갑습니다" + NetworkManager.User.DisplayName + "님";
             yield return CoroutineManager.GetWaitTime(3);
             
             UpdateLoginUI(false);

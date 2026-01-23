@@ -21,7 +21,7 @@ public class RegisterSystem : MonoBehaviour
     
     private void Start()
     {
-        RegisterUI = _emailInput.transform.parent.parent.gameObject;
+        RegisterUI = _emailInput.transform.parent.gameObject;
         
         _createButton.onClick.AddListener(OnRegister);
         _backButton.onClick.AddListener(UpdateInToLogin);
@@ -35,7 +35,7 @@ public class RegisterSystem : MonoBehaviour
     public void UpdateInToLogin()
     {
         UpdateRegisterUI(false);
-        FirebaseDB.Instance.UpdateLoginUI(true);
+        NetworkManager.Instance.UpdateLoginUI(true);
     }
     
     public void UpdateRegisterUI(bool active) => RegisterUI.SetActive(active);
@@ -43,7 +43,7 @@ public class RegisterSystem : MonoBehaviour
     // 회원가입 코루틴
     private IEnumerator RegisterCor(string email, string password)
     {
-        Task<AuthResult> registerTask = FirebaseDB.Auth.CreateUserWithEmailAndPasswordAsync(email, password);
+        Task<AuthResult> registerTask = NetworkManager.Auth.CreateUserWithEmailAndPasswordAsync(email, password);
 
         yield return new WaitUntil(predicate: () => registerTask.IsCompleted);
 
@@ -54,9 +54,9 @@ public class RegisterSystem : MonoBehaviour
         else // 생성 완료
         {
             var user = registerTask.Result.User;
-            FirebaseDB.Instance.SetUser(user);
+            NetworkManager.Instance.SetUser(user);
             
-            if (FirebaseDB.User != null)
+            if (NetworkManager.User != null)
             {
                 // 로컬에서 만든 것
                 UserProfile profile = new UserProfile { DisplayName = _userName.text };

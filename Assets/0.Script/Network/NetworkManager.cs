@@ -1,24 +1,23 @@
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
 
-public class FirebaseDB : SingletonBase<FirebaseDB>
+public class NetworkManager : SingletonBase<NetworkManager>
 {
     public static FirebaseUser User { get; private set; }   // 인증 된 유저의 정보 전역참조 가능
     public static FirebaseAuth Auth { get; private set; }   // 인증 진행을 위한 객체
+    public static DatabaseReference DB { get; private set; } // 데이터베이스 접근
 
-    private LoginSystem _loginSystem;
-    private RegisterSystem _registerSystem;
-    
+    [SerializeField] private LoginSystem _loginSystem;
+    [SerializeField] private RegisterSystem _registerSystem;
     
     
     
     protected override void Awake()
     {
         base.Awake();
-        _loginSystem = GetComponent<LoginSystem>();
-        _registerSystem = GetComponent<RegisterSystem>();
         
         // 비동기 작업은 중간 내역을 확인하기가 어렵다.
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -27,9 +26,7 @@ public class FirebaseDB : SingletonBase<FirebaseDB>
                 if (dependencyStatus == Firebase.DependencyStatus.Available)
                 {
                     Auth = FirebaseAuth.DefaultInstance;
-                    Debug.Log(Auth);
-                    Debug.Log(FirebaseAuth.DefaultInstance);
-                    // dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+                    DB = FirebaseDatabase.DefaultInstance.RootReference;
                 }
                 else
                 {
@@ -39,6 +36,8 @@ public class FirebaseDB : SingletonBase<FirebaseDB>
             }
         );
     }
+    
+    
     
     public void SetUser(FirebaseUser user) =>  User = user;
 
