@@ -19,7 +19,7 @@ public class LoginSystem : MonoBehaviour
     
     private void Start()
     {
-        LoginUI = _emailInput.transform.parent.gameObject;
+        LoginUI = _emailInput.transform.parent.parent.gameObject;
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
@@ -30,6 +30,7 @@ public class LoginSystem : MonoBehaviour
     
     
     public void UpdateLoginUI(bool active) => LoginUI.SetActive(active);
+    
     public void UpdateInToRegister()
     {
         UpdateLoginUI(false);
@@ -54,7 +55,10 @@ public class LoginSystem : MonoBehaviour
             _message.color = Color.blue;
             FirebaseDB.Instance.SetUser(loginTask.Result.User);
             _message.text = "로그인 완료, 반갑습니다" + FirebaseDB.User.DisplayName + "님";
-            _loginButton.interactable = true;
+            yield return CoroutineManager.GetWaitTime(3);
+            
+            UpdateLoginUI(false);
+            GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);
         }
     }
     

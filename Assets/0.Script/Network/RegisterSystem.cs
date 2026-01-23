@@ -21,7 +21,7 @@ public class RegisterSystem : MonoBehaviour
     
     private void Start()
     {
-        RegisterUI = _emailInput.transform.parent.gameObject;
+        RegisterUI = _emailInput.transform.parent.parent.gameObject;
         
         _createButton.onClick.AddListener(OnRegister);
         _backButton.onClick.AddListener(UpdateInToLogin);
@@ -30,14 +30,15 @@ public class RegisterSystem : MonoBehaviour
     
     
     
-    public void UpdateRegisterUI(bool active) => RegisterUI.SetActive(active);
+    public void OnRegister() => StartCoroutine(RegisterCor(_emailInput.text, _passwordInput.text));
+    
     public void UpdateInToLogin()
     {
         UpdateRegisterUI(false);
         FirebaseDB.Instance.UpdateLoginUI(true);
     }
     
-    public void OnRegister() => StartCoroutine(RegisterCor(_emailInput.text, _passwordInput.text));
+    public void UpdateRegisterUI(bool active) => RegisterUI.SetActive(active);
 
     // 회원가입 코루틴
     private IEnumerator RegisterCor(string email, string password)
@@ -73,6 +74,10 @@ public class RegisterSystem : MonoBehaviour
                 {
                     _message.text = "생성 완료, 반값습니다" + user.DisplayName + "님";
                     _createButton.interactable = true;
+                    yield return CoroutineManager.GetWaitTime(3);
+                    
+                    UpdateRegisterUI(false);
+                    GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);
                 }
             }
         }
