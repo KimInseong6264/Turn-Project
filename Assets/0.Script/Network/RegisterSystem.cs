@@ -74,7 +74,7 @@ public class RegisterSystem : MonoBehaviour
                 {
                     _message.text = "생성 완료, 반값습니다" + user.DisplayName + "님";
                     _createButton.interactable = true;
-                    yield return CoroutineManager.GetWaitTime(3);
+                    yield return CoroutineManager.GetWaitTime(2f);
                     
                     UpdateRegisterUI(false);
                     GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);

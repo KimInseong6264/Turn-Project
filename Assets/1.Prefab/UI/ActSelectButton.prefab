@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104c232525c2424dadbf99025a609371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickAndDrag
-  _arrowPrefab: {fileID: 6483458569670679913, guid: 6ec7c8c08cbe4f44eb10535d085f1e8c, type: 3}
+  _arrowPrefab: {fileID: 3449908638983656876, guid: f867f85c870dd754db2c3f359d129f9b, type: 3}
 --- !u!114 &7914015552438970487
 MonoBehaviour:
   m_ObjectHideFlags: 0

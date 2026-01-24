@@ -43,6 +43,7 @@ public class TurnStart02 : IState
         int count = 0;
         foreach (var player in _players)
         {
+            _playerSpawnPos = _battleManager.SpawnPoints[0].position;
             _playerSpawnPos.x -= count;
             player.SetPosition(_playerSpawnPos);
             count += 2;
@@ -51,6 +52,7 @@ public class TurnStart02 : IState
         count = 0;
         foreach (var enemy in _enemies)
         {
+            _enemySpawnPos = _battleManager.SpawnPoints[1].position;
             _enemySpawnPos.x += count;
             enemy.SetPosition(_enemySpawnPos);
             count += 2;

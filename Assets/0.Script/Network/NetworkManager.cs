@@ -38,8 +38,6 @@ public class NetworkManager : SingletonBase<NetworkManager>
         );
     }
     
-    
-    
     public void SetUser(FirebaseUser user) =>  User = user;
 
     public void UpdateLoginUI(bool active) => _loginSystem.UpdateLoginUI(active);

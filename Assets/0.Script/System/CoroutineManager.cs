@@ -12,6 +12,7 @@ public static class CoroutineManager
         if (!_waitTime.TryGetValue(time, out var value))
         {
             _waitTime.Add(time, new WaitForSeconds(time));
+            return _waitTime[time];
         }
         
         return value;

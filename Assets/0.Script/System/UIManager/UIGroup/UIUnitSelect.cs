@@ -20,6 +20,7 @@ public class UIUnitSelect : UIGroup
 
     private void Start()
     {
+        GameManager.Instance.UpdateUI(UIGroupName.GameStart, false);
         OnCreateButton();
     }
     

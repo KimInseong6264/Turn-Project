@@ -23,8 +23,7 @@ public class LoginSystem : MonoBehaviour
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
-        _message.color = Color.gray4;
-        _message.text = "이메일과 패스워드를 입력해주세요.";
+        StartCoroutine(AutoLoginCor());
     }
     
     
@@ -38,6 +37,27 @@ public class LoginSystem : MonoBehaviour
     }
     
     public void OnLogin() => StartCoroutine(LoginCor(_emailInput.text, _passwordInput.text));
+
+    // 자동 로그인
+    private IEnumerator AutoLoginCor()
+    {
+        yield return new WaitUntil(() => NetworkManager.Auth != null);
+        
+        var auth = NetworkManager.Auth;
+        if (auth.CurrentUser != null)
+        {
+            NetworkManager.Instance.SetUser(auth.CurrentUser);
+            _message.color = Color.blue;
+            _message.text = "자동 로그인 되었습니다.";
+            yield return CoroutineManager.GetWaitTime(2f);
+            
+            UpdateLoginUI(false);
+            GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);
+        }
+        
+        _message.color = Color.gray4;
+        _message.text = "이메일과 패스워드를 입력해주세요.";
+    }
     
     // 로그인 코루틴
     private IEnumerator LoginCor(string email, string password)
@@ -45,7 +65,7 @@ public class LoginSystem : MonoBehaviour
         Task<AuthResult> loginTask = NetworkManager.Auth.SignInWithEmailAndPasswordAsync(email, password);    
     
         yield return new WaitUntil(predicate: () => loginTask.IsCompleted);
-
+        
         if (loginTask.Exception != null) // Exception(문제) 가 있을 때
         {
             ErrorCheck(loginTask);
@@ -57,7 +77,7 @@ public class LoginSystem : MonoBehaviour
             _message.text = "로그인 완료, 반갑습니다" + NetworkManager.User.DisplayName + "님";
             
             
-            yield return CoroutineManager.GetWaitTime(3);
+            yield return CoroutineManager.GetWaitTime(2f);
             
             UpdateLoginUI(false);
             GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);

@@ -24,6 +24,7 @@ public class UnitDataManager : MonoBehaviour
     }
 
 
+    
     // 유닛Dict에 데이터를 세이브
     private void SetUnitData()
     {
@@ -50,7 +51,7 @@ public class UnitDataManager : MonoBehaviour
     // DB의 데이터로 데이터도감 갱신
     private IEnumerator SyncDataRoutine()
     {
-        yield return new WaitUntil(() => NetworkManager.DB != null);
+        yield return new WaitUntil(() => NetworkManager.User != null);
         Debug.Log("서버 데이터 동기화 시작...");
 
         // 1. Firebase에 데이터 요청 (Task 생성)
@@ -86,7 +87,6 @@ public class UnitDataManager : MonoBehaviour
                 }
             }
         }
-        
         Debug.Log("<color=green>모든 데이터 동기화 프로세스 종료.</color>");
     }
 
