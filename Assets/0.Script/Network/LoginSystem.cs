@@ -55,6 +55,8 @@ public class LoginSystem : MonoBehaviour
             _message.color = Color.blue;
             NetworkManager.Instance.SetUser(loginTask.Result.User);
             _message.text = "로그인 완료, 반갑습니다" + NetworkManager.User.DisplayName + "님";
+            
+            
             yield return CoroutineManager.GetWaitTime(3);
             
             UpdateLoginUI(false);

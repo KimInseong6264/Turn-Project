@@ -27,6 +27,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
                 {
                     Auth = FirebaseAuth.DefaultInstance;
                     DB = FirebaseDatabase.DefaultInstance.RootReference;
+                    Debug.Log("Firebase 동기화 완료");
                 }
                 else
                 {

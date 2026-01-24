@@ -6,7 +6,7 @@ using UnityEngine;
 public class DataUploader : MonoBehaviour
 {
     public UnitDataSO[] UnitDataSos;
-    
+
     private DatabaseReference _database;
 
     private void Start()
@@ -30,12 +30,12 @@ public class DataUploader : MonoBehaviour
         string json = JsonUtility.ToJson(unitDTO);
         var DBTask = _database.Child("metadata").Child("units").Child(unitData.name)
             .SetRawJsonValueAsync(json);
-        
+
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
         if (DBTask.Exception != null)
         {
-            Debug.LogWarning($"업로드 실패! \n사유 {DBTask.Exception}");
+            Debug.LogWarning($"업로드 실패! \n사유: {DBTask.Exception}");
         }
         else
         {

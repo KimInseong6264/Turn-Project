@@ -14,12 +14,12 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public List<SkillDataSO> SkillList { get; private set; }
     [field: SerializeField] public UnitView UnitPrefab { get; private set; }
 
-    
+    // 스킬SO를 끼워넣을 때, 스킬Owner와 맞지 않으면 스킬 매칭 불가
     private void OnValidate()
     {
         if (SkillList == null)
             return;
-
+    
         for(int i = 0; i < SkillList.Count; i++)
         {
             SkillDataSO skill =  SkillList[i];
@@ -32,6 +32,16 @@ public class UnitDataSO : ScriptableObject
                 SkillList[i] = null;
             }
         }
+    }
+
+    public void SetSOValue(UnitDataDTO dto)
+    {
+        Name = dto.Name;
+        Team = dto.Team;
+        Hp = dto.Hp;
+        AttLevel = dto.AttLevel;
+        DefLevel = dto.DefLevel;
+        Speed = dto.Speed;
     }
 }
 

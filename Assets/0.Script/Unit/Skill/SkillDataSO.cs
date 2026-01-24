@@ -10,6 +10,16 @@ public class SkillDataSO : ScriptableObject
     [field: SerializeField] public int CoinCount { get; private set; }
     [field: SerializeField] public int CoinValue { get; private set; }
     [field: SerializeField] public SkillType Type { get; private set; }
+
+    
+    public void SetSOValue(SkillDataDTO dto)
+    {
+        OwnerName = dto.OwnerName;
+        Name = dto.Name;
+        CoinCount = dto.CoinCount;
+        CoinValue = dto.CoinValue;
+        Type = dto.Type;
+    }
 }
 
 public enum SkillType
