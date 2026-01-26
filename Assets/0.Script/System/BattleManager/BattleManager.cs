@@ -97,7 +97,7 @@ public class BattleManager : MonoBehaviour
     
     // BattleSequence 관련
     public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Name ,battleInfo);
-    public void SetSequenceSkill(SkillBase skill)
+    public void SetSequenceSkill(UnitSkill skill)
     {
         var battleInfo = BattleSequence[skill.OwnerName];
         BattleSequence[skill.OwnerName] = new BattleInfo(battleInfo, skill);
@@ -144,7 +144,7 @@ public struct BattleInfo
 {
     public int Speed { get; }
     public UnitTeam Team { get; }
-    public SkillBase SelectedSkill { get; }
+    public UnitSkill SelectedSkill { get; }
     public UnitPresenter Attacker { get; }
     public UnitPresenter Target { get; }
 
@@ -159,7 +159,7 @@ public struct BattleInfo
     }
 
     // 스킬만 갱신하는 생성자
-    public BattleInfo(BattleInfo mySelf, SkillBase skill, UnitPresenter target = null)
+    public BattleInfo(BattleInfo mySelf, UnitSkill skill, UnitPresenter target = null)
     {
         this = new BattleInfo(mySelf.Attacker);
         this.SelectedSkill = skill;

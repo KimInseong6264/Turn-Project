@@ -56,7 +56,7 @@ public class UIActSelect : UIGroup
     }
 
     // 스킬버튼을 설정
-    private void SetSkillButton(ClickObject clickObject, SkillBase skill)
+    private void SetSkillButton(ClickObject clickObject, UnitSkill skill)
     {
         clickObject.gameObject.name = skill.Name + " Buton";
         clickObject.GetComponentInChildren<Text>().text = skill.Name;

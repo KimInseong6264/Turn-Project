@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitPresenter : ISkillable
+public class UnitPresenter : IHitable
 {
-    private UnitModel _model;
-    private UnitView _view;
+    private readonly UnitModel _model;
+    private readonly UnitView _view;
     
     
     // Model의 정보 제공
@@ -13,16 +13,15 @@ public class UnitPresenter : ISkillable
     public bool IsDead => _model.IsDead;
     public int Speed => _model.Speed;
     public UnitTeam Team => _model.Team;
-    public SkillBase Skill => _model.SkillToUse; // 선택된 스킬 확인
+    public UnitSkill Skill => _model.SkillToUse; // 선택된 스킬 확인
     
     // View의 정보 제공
     public Transform GetTransform => _view.transform;
     
-    
     public UnitPresenter(UnitDataSO unitData,  UnitView view)
     {
         _view = view;
-        _model = new UnitModel(unitData, this);
+        _model = new UnitModel(unitData, _view);
     }
     
     
@@ -48,6 +47,6 @@ public class UnitPresenter : ISkillable
     
     // 스킬 관련 메서드
     public void SetSkill(SkillType skillType) => _model.SetSkillToUse(skillType);
-    public void StartSkillExecute(UnitPresenter target) => _view.StartCoroutine(Skill.Execute(target));
-    public Dictionary<SkillType, SkillBase> GetSkills() => _model.Skills;
+    public void StartSkillExecute(UnitPresenter target) => _view.StartCoroutine(Skill.UseSkill(target));
+    public Dictionary<SkillType, UnitSkill> GetSkills() => _model.Skills;
 }

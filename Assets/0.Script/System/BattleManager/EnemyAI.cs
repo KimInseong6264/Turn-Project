@@ -16,9 +16,9 @@ public class EnemyAI : MonoBehaviour
     }
 
     // 에너미의 사용할 스킬을 랜덤 선택
-    private SkillBase SetEnemyInfoSkill(UnitPresenter enemy)
+    private UnitSkill SetEnemyInfoSkill(UnitPresenter enemy)
     {
-        Dictionary<SkillType, SkillBase> skills = enemy.GetSkills();
+        Dictionary<SkillType, UnitSkill> skills = enemy.GetSkills();
         int count = skills.Count;
         int random = Random.Range(0, count);
         

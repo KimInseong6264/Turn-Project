@@ -15,8 +15,8 @@ public class UnitModel
     public int Speed { get; private set; }
     public bool IsDead => _hp <= 0;
     
-    public Dictionary<SkillType, SkillBase> Skills { get; private set; }
-    public SkillBase SkillToUse { get; private set; }
+    public Dictionary<SkillType, UnitSkill> Skills { get; private set; }
+    public UnitSkill SkillToUse { get; private set; }
 
     
     public UnitModel(UnitDataSO unitData, ISkillable  unitPresenter)
@@ -35,7 +35,7 @@ public class UnitModel
     // 생성시, 스킬을 세팅(들고있게 됨)
     private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
     {
-        Skills = new Dictionary<SkillType, SkillBase>();
+        Skills = new Dictionary<SkillType, UnitSkill>();
         if (unitData.SkillList == null || unitData.SkillList.Count == 0)
         {
             Debug.LogError(unitData.Name + "은 스킬프리팹이 없습니다.");

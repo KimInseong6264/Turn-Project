@@ -1,4 +1,4 @@
-using System.ComponentModel;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,7 +10,9 @@ public class SkillDataSO : ScriptableObject
     [field: SerializeField] public int CoinCount { get; private set; }
     [field: SerializeField] public int CoinValue { get; private set; }
     [field: SerializeField] public SkillType Type { get; private set; }
+    [field: SerializeField] public List<SkillCommandSO> CommandList { get; private set; }
 
+    
     
     public void SetSOValue(SkillDataDTO dto)
     {

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6d77224c874431af3a8fd3696fa3ac, type: 3}
+  m_Name: SkillData
+  m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
+  <OwnerName>k__BackingField: 
+  <Name>k__BackingField: 
+  <CoinCount>k__BackingField: 0
+  <CoinValue>k__BackingField: 0
+  <Type>k__BackingField: 0
+  <CommandList>k__BackingField:
+  - {fileID: 11400000, guid: cb56c757a5b98014c9caf237bf4e3247, type: 2}
+  - {fileID: 11400000, guid: 02e29810b6c23974c8d4e80947498ab4, type: 2}
+  - {fileID: 11400000, guid: cbb4f44baadcb604ea164f6e09f00d91, type: 2}
