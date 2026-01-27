@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -7,27 +6,28 @@ public class MoveCommand : ICommand
     private IMovable _movable;
     private IAnimatable _animatable;
     private string _animationName;
-    private float _speed;
+    private float _moveSpeed;
     
     public float Duration { get; private set; }
     
-    public MoveCommand(ISkillable skillable, MoveCommandSO so)
+    public MoveCommand(IActable actable, MoveCommandSO so)
     {
-        _movable =  skillable;
-        _animatable = skillable;
+        _movable =  actable;
+        _animatable = actable;
         _animationName = so.AnimationName;
-        _speed = so.Speed;
+        _moveSpeed = so.MoveSpeed;
         Duration = so.AfterDelay;
     }
 
 
-    public IEnumerator Execute(IHitable target)
+    public IEnumerator Execute(BattleInfo battleInfo)
     {
+        float distance = float.MaxValue;
+        var target = battleInfo.Target.MyObject;
         _animatable?.PlayAni(_animationName);
-        Vector3 distance = Vector3.zero;
         
         // 타겟과의 거리 기준으로 움직임 제어
-        while (distance == Vector3.zero || distance.sqrMagnitude >= 1.5f)
+        while (distance >= 1.5f)
         {
             if (_movable == null)
             {
@@ -35,9 +35,10 @@ public class MoveCommand : ICommand
                 yield break;
             }
             
+            _movable.Move(target.transform.position, _moveSpeed);
             
-            Vector3 myPos = _movable.Move(target.GetTransform, _speed).position;
-            distance = target.GetTransform.position - myPos;
+            Vector3 myPos = battleInfo.Attacker.MyObject.transform.position;
+            distance = Vector3.SqrMagnitude(target.transform.position - myPos);
             yield return null;
         }
     }

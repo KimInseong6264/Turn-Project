@@ -34,9 +34,9 @@ public class BattleManager : MonoBehaviour
         int count = 0;
         foreach (var battleInfo in BattleSequence.Values)
         {
-            attaker[count].text = battleInfo.Attacker?.Name;
+            attaker[count].text = battleInfo.Attacker?.Data.Name;
             skill[count].text = battleInfo.SelectedSkill?.Name;
-            target[count].text = battleInfo.Target?.Name;
+            target[count].text = battleInfo.Target?.Data.Name;
             count++;
         }
     }
@@ -96,7 +96,7 @@ public class BattleManager : MonoBehaviour
     public void AddEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
     // BattleSequence 관련
-    public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Name ,battleInfo);
+    public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Data.Name ,battleInfo);
     public void SetSequenceSkill(UnitSkill skill)
     {
         var battleInfo = BattleSequence[skill.OwnerName];
@@ -110,9 +110,9 @@ public class BattleManager : MonoBehaviour
     }
     public void SetSequenceTarget(UnitPresenter target)
     {
-        BattleSequence[_currentBattleInfo.Attacker.Name]
+        BattleSequence[_currentBattleInfo.Attacker.Data.Name]
             = new BattleInfo(_currentBattleInfo, _currentBattleInfo.SelectedSkill, target);
-        Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Name].Target);
+        Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Data.Name].Target);
     }
     public void SetSequence(string unitName, BattleInfo battleInfo) => BattleSequence[unitName] = battleInfo;
     
@@ -135,42 +135,6 @@ public class BattleManager : MonoBehaviour
     {
         BattleSequence.Clear();
         IsStartBattle = false;
-    }
-}
-
-
-// 배틀정보 저장 구조체
-public struct BattleInfo
-{
-    public int Speed { get; }
-    public UnitTeam Team { get; }
-    public UnitSkill SelectedSkill { get; }
-    public UnitPresenter Attacker { get; }
-    public UnitPresenter Target { get; }
-
-    public BattleInfo(UnitPresenter attacker)
-    {
-        Speed = attacker.Speed;
-        Team =  attacker.Team;
-        Attacker = attacker;
-        SelectedSkill = null;
-        Target = null;
-        BattleManager.Instance.OnInfoStart();
-    }
-
-    // 스킬만 갱신하는 생성자
-    public BattleInfo(BattleInfo mySelf, UnitSkill skill, UnitPresenter target = null)
-    {
-        this = new BattleInfo(mySelf.Attacker);
-        this.SelectedSkill = skill;
-        this.Target = target;
-        BattleManager.Instance.OnInfoStart();
-    }
-
-    public void OnBattleExcute()
-    {
-        Attacker.SetSkill(SelectedSkill.Type);
-        Attacker.StartSkillExecute(Target);
     }
 }
 

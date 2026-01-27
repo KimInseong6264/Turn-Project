@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SkillCommandSO 2
   m_EditorClassIdentifier: Assembly-CSharp::AttackCommandSO
-  _duration: 2
-  <AnimationName>k__BackingField: "\uACF5\uACA9"
+  <AfterDelay>k__BackingField: 0
+  <AnimationName>k__BackingField: Attack1

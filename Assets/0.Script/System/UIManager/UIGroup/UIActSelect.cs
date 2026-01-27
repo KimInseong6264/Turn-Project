@@ -37,7 +37,7 @@ public class UIActSelect : UIGroup
         var unitSequence = BattleManager.Instance.BattleSequence;
         foreach (var battleInfo in unitSequence.Values)
         {
-            if(battleInfo.Team == UnitTeam.Enemy || battleInfo.Attacker.IsDead)
+            if(battleInfo.Team == UnitTeam.Enemy || battleInfo.Attacker.Data.IsDead)
                 continue;
 
             CreateSkillButton(battleInfo);
@@ -47,7 +47,7 @@ public class UIActSelect : UIGroup
     // 배틀 플레이어의 스킬버튼 생성
     private void CreateSkillButton(BattleInfo battleInfo)
     {
-        foreach (var skill in battleInfo.Attacker.GetSkills())
+        foreach (var skill in battleInfo.Attacker.Data.Skills)
         {
             var obj = _actSelectPull.GetPull();
             SetSkillButton(obj, skill.Value);

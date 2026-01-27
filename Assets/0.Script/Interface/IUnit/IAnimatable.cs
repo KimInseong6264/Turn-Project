@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IAnimatable
 {
-    Animator GetAnimator { get; }
+    Animator MyAnimator { get; }
     void PlayAni(string animationName);
 }

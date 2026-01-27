@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitView : MonoBehaviour, ISkillable, IClickable
+[RequireComponent(typeof(UnitAttackEvent))]
+public class UnitView : MonoBehaviour, IActable, IClickable
 {
     [SerializeField] private Slider _hpBar;
     private Animator _animator;
@@ -11,7 +12,8 @@ public class UnitView : MonoBehaviour, ISkillable, IClickable
     
     public UnitPresenter Presenter { get; private set; }
     
-    public Animator GetAnimator =>  _animator;
+    public GameObject MyObject =>  gameObject;
+    public Animator MyAnimator =>  _animator;
     
     public event Action OnClick;
     
@@ -55,25 +57,28 @@ public class UnitView : MonoBehaviour, ISkillable, IClickable
 
     public void PlayAni(string animationName)
     {
-        _animator.Play(animationName);
+        Debug.Log("플레이 애니: <color=green>" + animationName + "</color>");
+        MyAnimator.SetTrigger(animationName);
     }
 
-    public void Attack()
+    public void Attack(BattleInfo battleInfo)
     {
-        throw new NotImplementedException();
+        var target = battleInfo.Target;
+        int damage = 10;
+        target.Hitable.OnHit(battleInfo, damage);
     }
 
-    public void Knockback()
+    public void Knockback(BattleInfo battleInfo)
     {
-        throw new NotImplementedException();
+        
     }
 
 
-    public Transform Move(Transform target, float speed)
+    public Transform Move(Vector3 targetPos, float speed)
     {
         transform.position = Vector3.MoveTowards(
             transform.position, 
-            target.position, 
+            targetPos, 
             speed * Time.deltaTime
             );
         return transform;

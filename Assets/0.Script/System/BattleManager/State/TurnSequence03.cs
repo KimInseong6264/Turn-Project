@@ -57,7 +57,7 @@ public class TurnSequence03 : IState
         foreach (var battleInfo in _battleInfos)
         {
             _battleManager.AddSequence(battleInfo);
-            Debug.Log("시퀀스 세팅" + battleInfo.Attacker.Name + "/스피드" + battleInfo.Speed);
+            Debug.Log("시퀀스 세팅" + battleInfo.Attacker.Data.Name + "/스피드" + battleInfo.Speed);
         }
     }
 }

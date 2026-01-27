@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SkillCommandSO 3
   m_EditorClassIdentifier: Assembly-CSharp::MoveCommandSO
-  _duration: 6
-  <Dir>k__BackingField: {x: 3, y: 3, z: 3}
-  <AnimationName>k__BackingField: "\uC774\uB3D93"
+  <AfterDelay>k__BackingField: 0
+  <MoveSpeed>k__BackingField: 0
+  <AnimationName>k__BackingField: Move

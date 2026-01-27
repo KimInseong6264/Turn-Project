@@ -4,5 +4,5 @@ public interface ICommand
 {
     float Duration { get; }
     
-    IEnumerator Execute(IHitable target);
+    IEnumerator Execute(BattleInfo battleInfo);
 }

@@ -42,7 +42,7 @@ public class UITargetSelect : UIGroup
             if(enemy.IsDead)
                 continue;
             
-            var canvas = _canvasPull.GetPull(enemy.GetTransform);
+            var canvas = _canvasPull.GetPull(enemy.MyTransform);
             canvas.gameObject.name = enemy.Name;
             
             foreach (Transform child in canvas.transform)

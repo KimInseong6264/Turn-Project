@@ -1,5 +1,5 @@
 
 public interface IKnockbackable
 {
-    void Knockback();
+    void Knockback(BattleInfo battleInfo);
 }

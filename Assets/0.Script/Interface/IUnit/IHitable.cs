@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IHitable
 {
-    Transform GetTransform { get; }
+    void OnHit(BattleInfo battleInfo, int damage, KnockbackInfo? knockbackInfo = null);
 }

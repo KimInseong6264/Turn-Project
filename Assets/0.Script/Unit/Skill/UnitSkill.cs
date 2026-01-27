@@ -9,7 +9,7 @@ public class UnitSkill
     private SkillType _type;
     private int _coinCount;
     private int _coinValue;
-    private ISkillable _owner;
+    private IActable _owner;
 
     protected List<ICommand> _commands;
 
@@ -17,7 +17,7 @@ public class UnitSkill
     public string Name => _name;
     public SkillType Type => _type;
     
-    public UnitSkill(SkillDataSO skillData, ISkillable owner)
+    public UnitSkill(SkillDataSO skillData, IActable owner)
     {
         _ownerName = skillData.OwnerName;
         _name = skillData.Name;
@@ -29,11 +29,11 @@ public class UnitSkill
         SetCommands(skillData.CommandList, owner);
     }
 
-    public virtual IEnumerator UseSkill(IHitable target)
+    public virtual IEnumerator UseSkill(BattleInfo battleInfo)
     {
         foreach (var command in _commands)
         {
-            yield return command.Execute(target);
+            yield return command.Execute(battleInfo);
             
             _owner.PlayAni("Idle");
             yield return CoroutineManager.GetWaitTime(command.Duration);
@@ -41,11 +41,11 @@ public class UnitSkill
         _owner.PlayAni("Idle");
     }
 
-    private void SetCommands(List<SkillCommandSO> commands, ISkillable unit)
+    private void SetCommands(List<SkillCommandSO> commands, IActable owner)
     {
         foreach (var command in commands)
         {
-            _commands.Add(command.CreateCommand(unit));
+            _commands.Add(command.CreateCommand(owner));
         }
     }
 }
@@ -55,8 +55,8 @@ public class UnitSkill
 /// </summary>
 public static class SkillFactory
 {
-    public static UnitSkill CreateSkill(SkillDataSO skillDataSo, ISkillable unit)
+    public static UnitSkill CreateSkill(SkillDataSO skillDataSo, IActable owner)
     {
-        return new UnitSkill(skillDataSo, unit);
+        return new UnitSkill(skillDataSo, owner);
     }
 }

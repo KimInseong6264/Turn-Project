@@ -1,52 +1,90 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour, ISkillable
+public class Test : MonoBehaviour, IActable, IUnit, IUnitData, IHitable
 {
     public SkillDataSO skillData;
-    
+
     public UnitSkill UnitSkill;
-    
+
     public GameObject target;
 
+    
+    public IUnitData Data { get; private set; }
+    public IActable Actable { get; private set; }
+    public IHitable Hitable { get; private set; }
+    public GameObject MyObject { get; private set; }
+    
+    
     private void Awake()
     {
-        UnitSkill = new UnitSkill(skillData,  this);
-        GetAnimator = GetComponent<Animator>();
+        
+        MyAnimator = GetComponent<Animator>();
+
+        Data = this;
+        Actable = this;
+        Hitable = this;
+        MyObject = gameObject;
     }
 
     private void Start()
     {
+        UnitSkill = new UnitSkill(skillData, this);
         IHitable a = target.GetComponent<IHitable>();
-        StartCoroutine(UnitSkill.UseSkill(a));
+        StartCoroutine(UnitSkill.UseSkill(new BattleInfo(this, target.GetComponent<IUnit>(), 5, UnitTeam.Player)));
     }
 
 
-    public Animator GetAnimator { get; set; }
+    public Animator MyAnimator { get; set; }
 
 
-    public Transform Move(Transform target, float speed)
+    public Transform Move(Vector3 target, float speed)
     {
         transform.position = Vector3.MoveTowards(
-            transform.position, 
-            target.position, 
-            speed *  Time.deltaTime
-            );
+            transform.position,
+            target,
+            speed * Time.deltaTime
+        );
         return transform;
     }
 
-    public void Attack()
-    {
-        Debug.Log("어택");
-    }
+    public UnitAttackEvent AttackEvent { get; }
 
-    public void Knockback()
-    {
-        Debug.Log("넉백");
-    }
-    
-    
     public void PlayAni(string animationName)
     {
-        GetAnimator.SetTrigger(animationName);
+        Debug.Log("플레이 애니: <color=green>" + animationName + "</color>");
+        MyAnimator.SetTrigger(animationName);
+    }
+
+    public void SetSkill(SkillType skillType)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void StartSkillExecute(BattleInfo battleInfo)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Attack(BattleInfo battleInfo)
+    {
+        battleInfo.Target.Hitable.OnHit(battleInfo, 10);
+    }
+
+    public void Knockback(BattleInfo battleInfo)
+    {
+    }
+
+    
+    
+    
+    
+    public string Name { get; }
+    public bool IsDead { get; }
+    public Dictionary<SkillType, UnitSkill> Skills { get; }
+    
+    public void OnHit(BattleInfo battleInfo, int damage, KnockbackInfo? knockbackInfo = null)
+    {
+        throw new System.NotImplementedException();
     }
 }

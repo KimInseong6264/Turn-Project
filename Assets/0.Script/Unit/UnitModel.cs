@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitModel
+public class UnitModel : IUnitData
 {
     private int _hp;
     
@@ -19,7 +19,7 @@ public class UnitModel
     public UnitSkill SkillToUse { get; private set; }
 
     
-    public UnitModel(UnitDataSO unitData, ISkillable  unitPresenter)
+    public UnitModel(UnitDataSO unitData, IActable  unitPresenter)
     {
         MaxHp = unitData.Hp;
         _hp = unitData.Hp;
@@ -33,7 +33,7 @@ public class UnitModel
     }
 
     // 생성시, 스킬을 세팅(들고있게 됨)
-    private void SetSkills(UnitDataSO unitData, ISkillable unitPresenter)
+    private void SetSkills(UnitDataSO unitData, IActable unitPresenter)
     {
         Skills = new Dictionary<SkillType, UnitSkill>();
         if (unitData.SkillList == null || unitData.SkillList.Count == 0)
@@ -56,6 +56,6 @@ public class UnitModel
     }
     
     
-    public void TakeDamage(int damage) => _hp -= damage;
+    public void TakeDamage(float damage) => _hp -= (int)damage;
     public void SetSkillToUse(SkillType skillType) => SkillToUse = Skills[skillType];
 }
