@@ -53,7 +53,7 @@ public class UnitPresenter : IHitable, IUnit
     // 피격당할 시 발동
     public void OnHit(BattleInfo battleInfo, int damage, KnockbackInfo? knockbackInfo = null)
     {
-        
+        _view.PlayAni("Hurt");
         OnTakeDamage(damage);
         if (IsDead)
         {

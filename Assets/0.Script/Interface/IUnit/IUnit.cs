@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IUnit
@@ -55,9 +56,10 @@ public struct BattleInfo
         BattleManager.Instance.OnInfoStart();
     }
 
-    public void OnBattleExcute()
+    public IEnumerator OnBattleExcute()
     {
         Attacker.SetSkill(SelectedSkill.Type);
         Attacker.StartSkillExecute(this);
+        yield return CoroutineManager.GetWaitTime(1f);
     }
 }

@@ -26,7 +26,7 @@ public class ActStart05 : IState
         {
             yield return CoroutineManager.GetWaitTime(1f);
             if(battleInfo.Value.Target != null)
-                battleInfo.Value.OnBattleExcute();
+                yield return battleInfo.Value.OnBattleExcute();
             else
             {
                 Debug.LogWarning(battleInfo.Key + "타겟 없음");

@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 3950321058325504817}
   - component: {fileID: 7831553504702307259}
   - component: {fileID: 8105125118911938837}
+  - component: {fileID: 5740718151888139465}
   m_Layer: 0
   m_Name: RedSlime
   m_TagString: Untagged
@@ -442,7 +443,7 @@ Animator:
   m_GameObject: {fileID: 5476350134636830332}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e5db852b3b4a454b9c5fa52e2b9f7db, type: 2}
+  m_Controller: {fileID: 22100000, guid: f83884b1ff0e1b44fb4568c9fae6d0d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -475,6 +476,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5740718151888139465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476350134636830332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd26297dcf84009b6779b74ce3e8372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAttackEvent
 --- !u!1 &7391133514556216549
 GameObject:
   m_ObjectHideFlags: 0

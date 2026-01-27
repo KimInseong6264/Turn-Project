@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 8697041106132272227}
   - component: {fileID: 5998454980092126483}
   - component: {fileID: -5838575557192263741}
+  - component: {fileID: 8080891334843150435}
   m_Layer: 0
   m_Name: Noum1
   m_TagString: Untagged
@@ -607,7 +608,7 @@ Animator:
   m_GameObject: {fileID: 8569223991435043473}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba36e3bcdcbd331479836f8713ef692f, type: 2}
+  m_Controller: {fileID: 22100000, guid: 02f2a87abada44643871988ae4dd0181, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -640,3 +641,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8080891334843150435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8569223991435043473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd26297dcf84009b6779b74ce3e8372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAttackEvent
