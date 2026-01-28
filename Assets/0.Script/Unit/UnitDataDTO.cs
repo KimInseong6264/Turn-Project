@@ -38,6 +38,7 @@ public class SkillDataDTO
     public int CoinCount;
     public int CoinValue;
     public SkillType Type;
+    public List<CommandDTO> CommandList = new List<CommandDTO>();
 
     public SkillDataDTO(SkillDataSO skillData)
     {
@@ -46,5 +47,23 @@ public class SkillDataDTO
         CoinCount = skillData.CoinCount;
         CoinValue = skillData.CoinValue;
         Type = skillData.Type;
+        
+        foreach (var commandData in skillData.CommandList)
+        {
+            CommandList.Add(new CommandDTO(commandData));
+        }
+    }
+}
+
+[Serializable]
+public class CommandDTO
+{
+    public string CommandType;
+    public string Jason;
+
+    public CommandDTO(SkillCommandSO command)
+    {
+        CommandType = command.GetType().Name;
+        Jason = JsonUtility.ToJson(command);
     }
 }

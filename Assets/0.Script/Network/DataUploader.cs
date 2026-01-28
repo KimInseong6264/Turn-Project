@@ -24,13 +24,14 @@ public class DataUploader : MonoBehaviour
         }
     }
 
+    // 유닛SO 1개의 데이터 업로드 처리 방식
     private IEnumerator UploadData(UnitDataSO unitData)
     {
         UnitDataDTO unitDTO = new UnitDataDTO(unitData);
         string json = JsonUtility.ToJson(unitDTO);
+        
         var DBTask = _database.Child("metadata").Child("units").Child(unitData.name)
             .SetRawJsonValueAsync(json);
-
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
         if (DBTask.Exception != null)

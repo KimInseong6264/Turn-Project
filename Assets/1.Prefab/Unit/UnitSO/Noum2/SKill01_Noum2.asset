@@ -17,3 +17,6 @@ MonoBehaviour:
   <CoinCount>k__BackingField: 1
   <CoinValue>k__BackingField: 5
   <Type>k__BackingField: 0
+  <CommandList>k__BackingField:
+  - {fileID: 11400000, guid: 70c3891088f2d764d90b61dab99f4b71, type: 2}
+  - {fileID: 11400000, guid: c11649b2cfda4a742b138ac5cb83459b, type: 2}

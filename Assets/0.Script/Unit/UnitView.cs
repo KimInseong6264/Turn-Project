@@ -58,7 +58,8 @@ public class UnitView : MonoBehaviour, IActable, IClickable
     public void PlayAni(string animationName)
     {
         Debug.Log("플레이 애니: <color=green>" + animationName + "</color>");
-        MyAnimator.SetTrigger(animationName);
+        _animator.Play(animationName);
+        // MyAnimator.SetTrigger(animationName);
     }
 
     public void Attack(BattleInfo battleInfo)

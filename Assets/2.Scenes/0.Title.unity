@@ -490,6 +490,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1005003023}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7942382883564500126, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -547,6 +567,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+--- !u!114 &1005003023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6412033469017421578, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1005003022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c34e4b167b87bf4bb143a3fac6f6c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!1001 &1338220142770630037
 PrefabInstance:
   m_ObjectHideFlags: 0
