@@ -26,7 +26,10 @@ public class BattleStart01 : IState
         _battleManager.SetState(BattleState.TurnStart02);
     }
 
-    public void Exit() {}
+    public void Exit()
+    {
+        GameManager.Instance.UpdateUI(UIGroupName.UnitSelectUI, false);
+    }
 
     public void Update() {}
     

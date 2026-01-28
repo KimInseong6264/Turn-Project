@@ -42,13 +42,6 @@ public class UnitSelector : MonoBehaviour
         }
     }
     
-    // 전투 씬으로 전환
-    public void BattleLoadScene()
-    {
-        GameManager.Instance.OnLoadScene(2);
-        gameObject.SetActive(false);
-    }
-    
     public void Init()
     {
         if (Players != null && Enemies != null)
