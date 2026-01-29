@@ -41,6 +41,15 @@ public class UnityObjectPull<T> where T : Component
         return obj;
     }
 
+    public List<T> GetPull(List<T> list, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            list.Add(GetPull());
+        }
+        return list;
+    }
+
     // 오브젝트 parent 하위로 활성화
     public T GetPull(Transform parent)
     {

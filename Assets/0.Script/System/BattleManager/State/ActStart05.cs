@@ -22,15 +22,15 @@ public class ActStart05 : IState
 
     private IEnumerator OnBattleExcute()
     {
-        foreach (var battleInfo in _battleManager.BattleSequence)
+        foreach (var battleInfo in _battleManager.BattleSequence.Values)
         {
-            yield return CoroutineManager.GetWaitTime(1f);
-            if(battleInfo.Value.Target != null)
-                yield return battleInfo.Value.OnBattleExcute();
+            if(battleInfo.Target != null)
+                yield return battleInfo.OnBattleExcute();
             else
             {
-                Debug.LogWarning(battleInfo.Key + "타겟 없음");
+                Debug.LogWarning(battleInfo.Attacker + "의 타겟 없음");
             }
+            yield return CoroutineManager.GetWaitTime(2f);
         }
         
         _battleManager.SetState(BattleState.TurnEnd06);

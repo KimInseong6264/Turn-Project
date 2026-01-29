@@ -999,6 +999,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3950321058325504817, guid: 648973bbec31e0d4b8c557cc415f3a5d, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950321058325504817, guid: 648973bbec31e0d4b8c557cc415f3a5d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.609375
+      objectReference: {fileID: 0}
     - target: {fileID: 5476350134636830332, guid: 648973bbec31e0d4b8c557cc415f3a5d, type: 3}
       propertyPath: m_Name
       value: RedSlime
@@ -1563,6 +1571,14 @@ PrefabInstance:
     - target: {fileID: 1803217706350374879, guid: 2ad771dd72e0eb14d9a1025bc2f60ed0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5305254604453766129, guid: 2ad771dd72e0eb14d9a1025bc2f60ed0, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5305254604453766129, guid: 2ad771dd72e0eb14d9a1025bc2f60ed0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 5476350134636830332, guid: 2ad771dd72e0eb14d9a1025bc2f60ed0, type: 3}
       propertyPath: m_Name

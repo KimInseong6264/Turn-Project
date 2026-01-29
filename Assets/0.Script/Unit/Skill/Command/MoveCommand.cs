@@ -7,16 +7,18 @@ public class MoveCommand : ICommand
     private IAnimatable _animatable;
     private string _animationName;
     private float _moveSpeed;
+    private float _distance;
     
-    public float Duration { get; private set; }
+    public float AfterDelay { get; private set; }
     
-    public MoveCommand(IActable actable, MoveCommandSO so)
+    public MoveCommand(IActable actable, ISkill skill, MoveCommandSO so)
     {
         _movable =  actable;
         _animatable = actable;
         _animationName = so.AnimationName;
         _moveSpeed = so.MoveSpeed;
-        Duration = so.AfterDelay;
+        _distance = so.Distance;
+        AfterDelay = so.AfterDelay;
     }
 
 
@@ -27,7 +29,7 @@ public class MoveCommand : ICommand
         _animatable?.PlayAni(_animationName);
         
         // 타겟과의 거리 기준으로 움직임 제어
-        while (distance >= 1.5f)
+        while (distance >= _distance)
         {
             if (_movable == null)
             {

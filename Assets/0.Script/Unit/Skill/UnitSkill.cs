@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class UnitSkill
+public class UnitSkill : ISkill
 {
     private string _ownerName;
     private string _name;
     private SkillType _type;
     private int _coinCount;
     private int _coinValue;
+    private SkillUI _skillUI;
     private IActable _owner;
 
-    protected List<ICommand> _commands;
+    private List<ICommand> _commands;
 
     public string OwnerName => _ownerName;
     public string Name => _name;
     public SkillType Type => _type;
+    public int ConinCount => _coinCount;
+    public int CoinValue => _coinValue;
     
     public UnitSkill(SkillDataSO skillData, IActable owner)
     {
@@ -24,28 +26,32 @@ public class UnitSkill
         _type = skillData.Type;
         _coinCount = skillData.CoinCount;
         _coinValue = skillData.CoinValue;
+        _skillUI = owner.UnitSkillUI;
         _owner =  owner;
         _commands = new List<ICommand>();
         SetCommands(skillData.CommandList, owner);
     }
 
-    public virtual IEnumerator UseSkill(BattleInfo battleInfo)
+    public IEnumerator UseSkill(BattleInfo battleInfo)
     {
+        _skillUI.OnSkillUI(battleInfo.Attacker);
+        
         foreach (var command in _commands)
         {
             yield return command.Execute(battleInfo);
             
             _owner.PlayAni("Idle");
-            yield return CoroutineManager.GetWaitTime(command.Duration);
+            yield return CoroutineManager.GetWaitTime(command.AfterDelay);
         }
-        _owner.PlayAni("Idle");
+        
+        _skillUI.Init();
     }
 
     private void SetCommands(List<SkillCommandSO> commands, IActable owner)
     {
         foreach (var command in commands)
         {
-            _commands.Add(command.CreateCommand(owner));
+            _commands.Add(command.CreateCommand(owner, this));
         }
     }
 }

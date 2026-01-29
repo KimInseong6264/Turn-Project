@@ -16,7 +16,7 @@ public class UnitModel : IUnitData
     public bool IsDead => _hp <= 0;
     
     public Dictionary<SkillType, UnitSkill> Skills { get; private set; }
-    public UnitSkill SkillToUse { get; private set; }
+    public ISkill SkillToUse { get; private set; }
 
     
     public UnitModel(UnitDataSO unitData, IActable  unitPresenter)

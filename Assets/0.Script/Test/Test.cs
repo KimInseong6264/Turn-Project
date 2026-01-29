@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour, IActable, IUnit, IUnitData, IHitable
+public class Test : MonoBehaviour//, IActable, IUnit, IUnitData, IHitable
 {
     public SkillDataSO skillData;
 
@@ -9,30 +10,29 @@ public class Test : MonoBehaviour, IActable, IUnit, IUnitData, IHitable
 
     public GameObject target;
 
-    
+
     public IUnitData Data { get; private set; }
     public IActable Actable { get; private set; }
     public IHitable Hitable { get; private set; }
     public GameObject MyObject { get; private set; }
-    
-    
-    private void Awake()
-    {
-        
-        MyAnimator = GetComponent<Animator>();
 
-        Data = this;
-        Actable = this;
-        Hitable = this;
-        MyObject = gameObject;
-    }
 
-    private void Start()
-    {
-        UnitSkill = new UnitSkill(skillData, this);
-        IHitable a = target.GetComponent<IHitable>();
-        StartCoroutine(UnitSkill.UseSkill(new BattleInfo(this, target.GetComponent<IUnit>(), 5, UnitTeam.Player)));
-    }
+    // private void Awake()
+    // {
+    //     MyAnimator = GetComponent<Animator>();
+    //
+    //     Data = this;
+    //     Actable = this;
+    //     Hitable = this;
+    //     MyObject = gameObject;
+    // }
+    //
+    // private void Start()
+    // {
+    //     UnitSkill = new UnitSkill(skillData, this);
+    //     IHitable a = target.GetComponent<IHitable>();
+    //     StartCoroutine(UnitSkill.UseSkill(new BattleInfo(this, target.GetComponent<IUnit>(), 5, UnitTeam.Player)));
+    // }
 
 
     public Animator MyAnimator { get; set; }
@@ -75,16 +75,16 @@ public class Test : MonoBehaviour, IActable, IUnit, IUnitData, IHitable
     {
     }
 
-    
-    
-    
-    
+
     public string Name { get; }
     public bool IsDead { get; }
+    public UnitTeam Team { get; }
     public Dictionary<SkillType, UnitSkill> Skills { get; }
-    
+
     public void OnHit(BattleInfo battleInfo, int damage, KnockbackInfo? knockbackInfo = null)
     {
         throw new System.NotImplementedException();
     }
+
+    public event Func<float> OnRequestWaitTime;
 }

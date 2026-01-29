@@ -18,10 +18,10 @@ public class BattleManager : MonoBehaviour
     public bool IsStartBattle { get; private set; }
     public EnemyAI EnemyAISystema { get; private set; }
     
+    [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
     
     //
     private BattleInfo _currentBattleInfo;
-    [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
 
     public List<Text> attaker;
     public List<Text> skill;

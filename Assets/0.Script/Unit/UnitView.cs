@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class UnitView : MonoBehaviour, IActable, IClickable
 {
     [SerializeField] private Slider _hpBar;
+    [SerializeField] private SkillUI _unitSkillUI;
+    
     private Animator _animator;
     
     public UnitDataSO UnitData;
     
+    public GameObject MyObject => gameObject;
+    public Animator MyAnimator => _animator;
+    public SkillUI UnitSkillUI => _unitSkillUI;
+    
     public UnitPresenter Presenter { get; private set; }
     
-    public GameObject MyObject =>  gameObject;
-    public Animator MyAnimator =>  _animator;
     
     public event Action OnClick;
     
@@ -28,7 +32,7 @@ public class UnitView : MonoBehaviour, IActable, IClickable
             Debug.LogWarning(UnitData.Name + "HpBar 세팅해!");
         else
             _hpBar.value = 1;
-    }   
+    }
 
     private void Update()
     {
@@ -39,10 +43,10 @@ public class UnitView : MonoBehaviour, IActable, IClickable
     // {
     //     OnClick += OnStartCklick;
     // }
-    // private void OnDisable()
-    // {
-    //     OnClick -= OnStartCklick;
-    // }
+    private void OnDisable()
+    {
+        // OnClick -= OnStartCklick;
+    }
 
     
 
@@ -59,14 +63,12 @@ public class UnitView : MonoBehaviour, IActable, IClickable
     {
         Debug.Log("플레이 애니: <color=green>" + animationName + "</color>");
         _animator.Play(animationName);
-        // MyAnimator.SetTrigger(animationName);
     }
 
-    public void Attack(BattleInfo battleInfo)
+    public void Attack(BattleInfo battleInfo, int finalCoinValue)
     {
         var target = battleInfo.Target;
-        int damage = 10;
-        target.Hitable.OnHit(battleInfo, damage);
+        target.Hitable.OnHit(battleInfo, finalCoinValue);
     }
 
     public void Knockback(BattleInfo battleInfo)

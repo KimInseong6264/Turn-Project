@@ -9,7 +9,7 @@ public interface IUnit
     GameObject MyObject { get; }
 
     void SetSkill(SkillType skillType);
-    void StartSkillExecute(BattleInfo battleInfo);
+    IEnumerator StartSkillExecute(BattleInfo battleInfo);
 }
 
 
@@ -18,7 +18,7 @@ public struct BattleInfo
 {
     public int Speed { get; }
     public UnitTeam Team { get; }
-    public UnitSkill SelectedSkill { get; }
+    public ISkill SelectedSkill { get; }
     public IUnit Attacker { get; }
     public IUnit Target { get; }
 
@@ -46,7 +46,7 @@ public struct BattleInfo
     }
 
     // 스킬만 갱신하는 생성자
-    public BattleInfo(BattleInfo mySelf, UnitSkill skill, UnitPresenter target = null)
+    public BattleInfo(BattleInfo mySelf, ISkill skill, UnitPresenter target = null)
     {
         this.Speed = mySelf.Speed;
         this.Team =  mySelf.Team;
@@ -59,7 +59,7 @@ public struct BattleInfo
     public IEnumerator OnBattleExcute()
     {
         Attacker.SetSkill(SelectedSkill.Type);
-        Attacker.StartSkillExecute(this);
-        yield return CoroutineManager.GetWaitTime(1f);
+        
+        yield return Attacker.StartSkillExecute(this);
     }
 }

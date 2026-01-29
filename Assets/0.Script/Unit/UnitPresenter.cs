@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitPresenter : IHitable, IUnit
@@ -19,7 +18,7 @@ public class UnitPresenter : IHitable, IUnit
     public bool IsDead => _model.IsDead;
     public int Speed => _model.Speed;
     public UnitTeam Team => _model.Team;
-    public UnitSkill Skill => _model.SkillToUse; // 선택된 스킬 확인
+    public ISkill Skill => _model.SkillToUse; // 선택된 스킬 확인
     
     // View의 정보 제공
     public UnitView View => _view;
@@ -51,10 +50,11 @@ public class UnitPresenter : IHitable, IUnit
     }
     
     // 피격당할 시 발동
-    public void OnHit(BattleInfo battleInfo, int damage, KnockbackInfo? knockbackInfo = null)
+    public void OnHit(BattleInfo battleInfo, int finalCoinValue, KnockbackInfo? knockbackInfo = null)
     {
-        _view.PlayAni("Hurt");
+        int damage = DamageCalculator.CalculateDamage(battleInfo, finalCoinValue);
         OnTakeDamage(damage);
+        _view.StartCoroutine(OnHurt());
         if (IsDead)
         {
             Debug.Log($"{battleInfo.Target.Data.Name}가 죽었습니다.");
@@ -64,6 +64,16 @@ public class UnitPresenter : IHitable, IUnit
 
         if (knockbackInfo != null)
             _view.StartCoroutine(Knockback(knockbackInfo));
+    }
+
+    private IEnumerator OnHurt()
+    {
+        _view.PlayAni("Hurt");
+        yield return null;
+
+        var aniInfo = _view.MyAnimator.GetCurrentAnimatorStateInfo(0);
+        yield return CoroutineManager.GetWaitTime(aniInfo.length);
+        _view.PlayAni("Idle");
     }
 
     // 넉백 관련 메서드
@@ -88,5 +98,5 @@ public class UnitPresenter : IHitable, IUnit
     
     // 스킬 관련 메서드
     public void SetSkill(SkillType skillType) => _model.SetSkillToUse(skillType);
-    public void StartSkillExecute(BattleInfo battleInfo) => _view.StartCoroutine(Skill.UseSkill(battleInfo));
+    public IEnumerator StartSkillExecute(BattleInfo battleInfo) => Skill.UseSkill(battleInfo);
 }

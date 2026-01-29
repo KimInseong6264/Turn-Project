@@ -4,10 +4,11 @@ using UnityEngine;
 public class MoveCommandSO : SkillCommandSO
 {
     [field: SerializeField] public float MoveSpeed { get; private set; } = 4;
-    [field: SerializeField] public string AnimationName { get; private set; }
+    [field: SerializeField] public float Distance { get; private set; } = 1.5f;
+    [field: SerializeField] public string AnimationName { get; private set; } = "Move";
     
-    public override ICommand CreateCommand(IActable actable)
+    public override ICommand CreateCommand(IActable actable, ISkill skill)
     {
-        return new MoveCommand(actable, this);
+        return new MoveCommand(actable, skill, this);
     }
 }

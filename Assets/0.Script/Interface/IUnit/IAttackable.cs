@@ -5,6 +5,6 @@ public interface IAttackable
 {
     GameObject MyObject { get; }
     
-    void Attack(BattleInfo battleInfo);
+    void Attack(BattleInfo battleInfo, int finalCoinValue);
     
 }

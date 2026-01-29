@@ -12,7 +12,8 @@ public class KnockbackAttackCommand : ICommand
     private string _animationName;
     private Vector3 _dir;
     
-    public float Duration { get; private set; }
+    public float AfterDelay { get; private set; }
+    
     public IEnumerator Execute(BattleInfo battleInfo)
     {
         // _animatable?.PlayAni(_animationName);
@@ -26,7 +27,7 @@ public class KnockbackAttackCommand : ICommand
         _animatable = actable;
         _animationName = animationName;
         _dir = KnockbackDir;
-        Duration = duration;
+        AfterDelay = duration;
     }
 }
 

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestTarget : MonoBehaviour, IUnit, IUnitData, IHitable, IAnimatable
+public class TestTarget : MonoBehaviour//, IUnit, IUnitData, IHitable, IAnimatable
 {
     public Transform MyTransform =>  transform;
 
     private void Awake()
     {
-        Data = this;
-        Hitable = this;
+        // Data = this;
+        // Hitable = this;
         MyObject = gameObject;
     }
 
@@ -36,6 +36,7 @@ public class TestTarget : MonoBehaviour, IUnit, IUnitData, IHitable, IAnimatable
 
     public string Name { get; }
     public bool IsDead { get; }
+    public UnitTeam Team { get; }
     public Dictionary<SkillType, UnitSkill> Skills { get; }
     public Animator MyAnimator { get; }
     

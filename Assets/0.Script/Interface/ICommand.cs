@@ -2,7 +2,7 @@ using System.Collections;
 
 public interface ICommand
 {
-    float Duration { get; }
+    float AfterDelay { get; }
     
     IEnumerator Execute(BattleInfo battleInfo);
 }

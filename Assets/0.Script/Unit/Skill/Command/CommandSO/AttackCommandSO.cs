@@ -5,8 +5,8 @@ public class AttackCommandSO : SkillCommandSO
 {
     [field: SerializeField] public string AnimationName { get; private set; }
     
-    public override ICommand CreateCommand(IActable actable)
+    public override ICommand CreateCommand(IActable actable, ISkill skill)
     {
-        return new AttackCommand(actable, this);
+        return new AttackCommand(actable, skill, this);
     }
 }
