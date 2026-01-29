@@ -17,17 +17,17 @@ public interface IUnit
 public struct BattleInfo
 {
     public int Speed { get; }
-    public UnitTeam Team { get; }
+    public UnitTeam AttackerTeam { get; }
     public ISkill SelectedSkill { get; }
     public IUnit Attacker { get; }
     public IUnit Target { get; }
 
     
     //
-    public BattleInfo(IUnit attacker, IUnit target, int speed, UnitTeam team)
+    public BattleInfo(IUnit attacker, IUnit target, int speed, UnitTeam attackerTeam)
     {
         Speed = speed;
-        Team =  team;
+        AttackerTeam =  attackerTeam;
         Attacker = attacker;
         SelectedSkill = null;
         Target = target;
@@ -38,7 +38,7 @@ public struct BattleInfo
     public BattleInfo(UnitPresenter attacker)
     {
         Speed = attacker.Speed;
-        Team =  attacker.Team;
+        AttackerTeam =  attacker.Team;
         Attacker = attacker;
         SelectedSkill = null;
         Target = null;
@@ -49,7 +49,7 @@ public struct BattleInfo
     public BattleInfo(BattleInfo mySelf, ISkill skill, UnitPresenter target = null)
     {
         this.Speed = mySelf.Speed;
-        this.Team =  mySelf.Team;
+        this.AttackerTeam =  mySelf.AttackerTeam;
         this.Attacker = mySelf.Attacker;
         this.SelectedSkill = skill;
         this.Target = target;

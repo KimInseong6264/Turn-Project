@@ -29,7 +29,6 @@ public class UnityObjectPull<T> where T : Component
         
         var obj = GameObject.Instantiate(_prefab, _parent);
         obj.gameObject.SetActive(false);
-        _pull.Enqueue(obj);
         return obj;
     }
 
