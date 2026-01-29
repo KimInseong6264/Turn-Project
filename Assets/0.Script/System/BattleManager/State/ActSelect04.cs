@@ -38,7 +38,7 @@ public class ActSelect04 : IState
         var enemyAI = BattleManager.Instance.EnemyAISystema;
         foreach (var unit in _battleManager.BattleSequence.Values.ToList())
         {
-            if(unit.Team == UnitTeam.Player || unit.Attacker.Data.IsDead)
+            if(unit.AttackerTeam == UnitTeam.Player || unit.Attacker.Data.IsDead)
                 continue;
 
             _battleManager.SetSequence(unit.Attacker.Data.Name, enemyAI.SetEnemyInfo(unit));
