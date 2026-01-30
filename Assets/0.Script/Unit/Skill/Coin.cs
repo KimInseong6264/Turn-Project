@@ -44,6 +44,7 @@ public class Coin : MonoBehaviour
     
     private void Init()
     {
+        GetComponent<Image>().color = Color.white;
         // _animator?.Play("Tossing");
     }
 }

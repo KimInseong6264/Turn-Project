@@ -30,7 +30,6 @@ public class ActStart05 : IState
             {
                 Debug.LogWarning(battleInfo.Attacker + "의 타겟 없음");
             }
-            yield return CoroutineManager.GetWaitTime(2f);
         }
         
         _battleManager.SetState(BattleState.TurnEnd06);

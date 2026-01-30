@@ -4,21 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class BattleManager : MonoBehaviour
+public partial class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
-
-    private Dictionary<BattleState, IState> _states;
-    private IState  _currentState;
     
-    public List<UnitPresenter> Players { get; private set; }
-    public List<UnitPresenter> Enemies { get; private set; }
+    public List<UnitPresenter> Players => SpawnMgr.Players;
+    public List<UnitPresenter> Enemies => SpawnMgr.Enemies;
     public Dictionary<string, BattleInfo> BattleSequence { get; private set; }
+    
     public UnitTeam Winners { get; private set; }
     public bool IsStartBattle { get; private set; }
-    public EnemyAI EnemyAISystema { get; private set; }
     
-    [field: SerializeField] public Transform[] SpawnPoints { get; private set; }
+    public EnemyAI EnemyAISystema { get; private set; }
+    [field: SerializeField]public SpawnManager SpawnMgr { get; private set; }
+    
     
     //
     private BattleInfo _currentBattleInfo;
@@ -42,11 +41,10 @@ public class BattleManager : MonoBehaviour
     }
     //
     
+    
     private void Awake()
     {
         Instance = this;
-        Players =  new List<UnitPresenter>();
-        Enemies = new List<UnitPresenter>();
         BattleSequence = new Dictionary<string, BattleInfo>();
         EnemyAISystema = GetComponent<EnemyAI>();
     }
@@ -56,47 +54,13 @@ public class BattleManager : MonoBehaviour
         FindGameStart(GameManager.Instance.transform).onClick.AddListener(() => IsStartBattle = true);
         SetState();
     }
-
-    private void Update()
-    {
-        _currentState?.Update();
-    }
-
-    # region 상태 패턴
-    // 상태 피턴 세팅
-    private void SetState()
-    {
-        _states = new Dictionary<BattleState, IState>();
-        _states.Add(BattleState.BattleStart01, new BattleStart01(this));
-        _states.Add(BattleState.TurnStart02 , new TurnStart02(this));
-        _states.Add(BattleState.TurnSequence03, new TurnSequence03(this));
-        _states.Add(BattleState.ActSelect04 , new ActSelect04(this));
-        _states.Add(BattleState.ActStart05 , new ActStart05(this));
-        _states.Add(BattleState.TurnEnd06 , new TurnEnd06(this));
-        _states.Add(BattleState.BattleEnd07 , new BattleEnd07(this));
-        SetState(BattleState.BattleStart01);
-    }
-    // 현재 상태 갱신
-    public void SetState(BattleState state)
-    {
-        _currentState?.Exit();
-        _currentState = _states[state];
-        
-        //=============================================================
-        Debug.Log("<color=green>현재상태" + _currentState + "</color>");
-        //=============================================================
-        
-        _currentState.Enter();
-    }
-    #endregion
     
     
     public void SetWinners(UnitTeam winners) => Winners = winners;
-    public void AddPlayers(UnitPresenter presenter) => Players.Add(presenter);
-    public void AddEnemies(UnitPresenter presenter) => Enemies.Add(presenter);
     
     // BattleSequence 관련
     public void AddSequence(BattleInfo battleInfo) => BattleSequence.Add(battleInfo.Attacker.Data.Name ,battleInfo);
+    
     public void SetSequenceSkill(UnitSkill skill)
     {
         var battleInfo = BattleSequence[skill.OwnerName];
@@ -108,6 +72,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("현재 BattleInfo스킬 <color=red>" + _currentBattleInfo.SelectedSkill + "</color>");
         //
     }
+    
     public void SetSequenceTarget(UnitPresenter target)
     {
         BattleSequence[_currentBattleInfo.Attacker.Data.Name]

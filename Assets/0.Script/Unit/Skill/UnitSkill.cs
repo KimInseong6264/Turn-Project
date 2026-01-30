@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UnitSkill : ISkill
 {
@@ -42,8 +43,10 @@ public class UnitSkill : ISkill
             
             _owner.PlayAni("Idle");
             yield return CoroutineManager.GetWaitTime(command.AfterDelay);
+            
         }
         
+        InitDirection(battleInfo);
         _skillUI.Init();
     }
 
@@ -53,6 +56,15 @@ public class UnitSkill : ISkill
         {
             _commands.Add(command.CreateCommand(owner, this));
         }
+    }
+
+    private void InitDirection(BattleInfo battleInfo)
+    {
+        Transform attacker = battleInfo.Attacker.MyObject.transform;
+        Transform target = battleInfo.Target.MyObject.transform;
+        
+        attacker.localScale = new Vector3(1, 1, 1);
+        target.localScale = new Vector3(1, 1, 1);
     }
 }
 

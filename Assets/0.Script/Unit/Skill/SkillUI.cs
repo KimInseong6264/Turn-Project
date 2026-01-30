@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillUI : MonoBehaviour
 {
+    private Vector3 _intialPos;
     [SerializeField] private CoinSystem _coinSystem;
     [SerializeField] private Text _coinValueText;
 
@@ -11,6 +11,7 @@ public class SkillUI : MonoBehaviour
 
     private void Start()
     {
+        _intialPos = transform.GetComponent<RectTransform>().localPosition;
         _coinSystem.OnNotifyCoinToss += UpdateCoinValueUI;
         gameObject.SetActive(false);
     }
@@ -34,7 +35,7 @@ public class SkillUI : MonoBehaviour
             case UnitTeam.Player:
                 break;
             case UnitTeam.Enemy:
-                rect.localPosition = new Vector3(-rect.position.x, rect.position.y + rect.sizeDelta.y, rect.position.z);
+                rect.localPosition = new Vector3(-rect.localPosition.x, rect.localPosition.y, rect.localPosition.z);
                 rect.localScale = new Vector3(-1, 1, 1);
                 break;
         }
@@ -44,6 +45,15 @@ public class SkillUI : MonoBehaviour
     {
         _coinValueText.text = _coinSystem.CoinValueSum.ToString();
     }
+
+    public void Init()
+    {
+        RectTransform rect =  transform.GetComponent<RectTransform>();
+        rect.localPosition = _intialPos;
+        rect.localScale = new Vector3(1, 1, 1);
+        
+        _coinValueText.text = "0";
+        gameObject.SetActive(false);
+    }
     
-    public void Init() => gameObject.SetActive(false);
 }
