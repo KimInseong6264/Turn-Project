@@ -53,8 +53,8 @@ public class UnitSpawner : MonoBehaviour, ISpawn, IUnitSetPos
                 break;
             
             case 2:
-                unitList[0].MyTransform.position = new Vector3(x - _distance, y, z);
-                unitList[1].MyTransform.position =  new Vector3(x + _distance, y, z);
+                unitList[0].MyTransform.position = new Vector3(x + _distance, y, z);
+                unitList[1].MyTransform.position =  new Vector3(x + _distance / 2 , y + _distance / 2, z);
                 break;
             
             case 3:

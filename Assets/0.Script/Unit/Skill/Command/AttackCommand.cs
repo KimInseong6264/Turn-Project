@@ -25,8 +25,7 @@ public class AttackCommand : ICommand
 
     public IEnumerator Execute(BattleInfo battleInfo)
     {
-        yield return _coinSystem.OnCoinToss(_skill.ConinCount, _skill.CoinValue, 2, 0.5f);
-        Debug.Log("이제 공격 시작하는 거야! 코인토스만 끝남");
+        yield return _coinSystem.OnCoinToss(_skill.ConinCount, _skill.CoinValue, 0.75f, 0.4f);
         
         int finalCoinValue = _coinSystem.CoinValueSum;
         // 타격이 되는 애니메이션에서 타격 메서드 등록

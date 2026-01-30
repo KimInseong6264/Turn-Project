@@ -52,12 +52,21 @@ public class MoveCommand : ICommand
         Transform attacker = battleInfo.Attacker.MyObject.transform;
         Transform target = battleInfo.Target.MyObject.transform;
         
-        float dir = target.position.x - attacker.position.x;
+        float dirX = target.position.x - attacker.position.x;
+        int nomalizedX = (int)( dirX / Mathf.Abs(dirX) );
 
-        if (dir < 0)
+        switch (battleInfo.AttackerTeam)
         {
-            attacker.localScale = new Vector3(-1, 1, 1);
-            target.localScale = new Vector3(-1, 1, 1);
+            case UnitTeam.Player:
+                attacker.localScale = new Vector3(nomalizedX, 1, 1);
+                target.localScale = new Vector3(nomalizedX, 1, 1);
+                break;
+            case UnitTeam.Enemy:
+                attacker.localScale = new Vector3(-nomalizedX, 1, 1);
+                target.localScale = new Vector3(-nomalizedX, 1, 1);
+                break;
         }
+        
+            
     }
 }

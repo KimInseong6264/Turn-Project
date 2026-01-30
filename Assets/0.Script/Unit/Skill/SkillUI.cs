@@ -27,16 +27,22 @@ public class SkillUI : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    // 유닛의 시선에 따라 UI출력 위치 수정
     private void SetSkillUI(IUnit unit)
     {
         RectTransform rect =  transform.GetComponent<RectTransform>();
+        float dirX = unit.MyObject.transform.localScale.x;
+        
         switch (unit.Data.Team)
         {
             case UnitTeam.Player:
+                rect.localPosition =
+                    new Vector3(rect.localPosition.x * dirX, rect.localPosition.y, rect.localPosition.z);
+                rect.localScale = unit.MyObject.transform.localScale;
                 break;
             case UnitTeam.Enemy:
-                rect.localPosition = new Vector3(-rect.localPosition.x, rect.localPosition.y, rect.localPosition.z);
-                rect.localScale = new Vector3(-1, 1, 1);
+                rect.localPosition = new Vector3(-rect.localPosition.x * dirX, rect.localPosition.y, rect.localPosition.z);
+                rect.localScale = new Vector3(-dirX, 1, 1);
                 break;
         }
     }

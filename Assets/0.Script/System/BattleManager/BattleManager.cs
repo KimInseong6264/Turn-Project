@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 public partial class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
+    public static Action<BattleInfo> OnTargetSelected;
     
     public List<UnitPresenter> Players => SpawnMgr.Players;
     public List<UnitPresenter> Enemies => SpawnMgr.Enemies;
