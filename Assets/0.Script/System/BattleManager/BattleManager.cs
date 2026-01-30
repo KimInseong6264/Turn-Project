@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public partial class BattleManager : MonoBehaviour
+public partial class BattleManager : MonoBehaviour, ITargetSelect
 {
     public static BattleManager Instance;
-    public static Action<BattleInfo> OnTargetSelected;
+    public event Action<BattleInfo> OnTargetSelected;
     
     public List<UnitPresenter> Players => SpawnMgr.Players;
     public List<UnitPresenter> Enemies => SpawnMgr.Enemies;
@@ -77,8 +77,9 @@ public partial class BattleManager : MonoBehaviour
     
     public void SetSequenceTarget(UnitPresenter target)
     {
-        BattleSequence[_currentBattleInfo.Attacker.Data.Name]
-            = new BattleInfo(_currentBattleInfo, _currentBattleInfo.SelectedSkill, target);
+        var newBattleInfo = new BattleInfo(_currentBattleInfo, _currentBattleInfo.SelectedSkill, target);
+        BattleSequence[_currentBattleInfo.Attacker.Data.Name] = newBattleInfo;
+        OnTargetSelected?.Invoke(newBattleInfo);
         Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Data.Name].Target);
     }
     public void SetSequence(string unitName, BattleInfo battleInfo) => BattleSequence[unitName] = battleInfo;

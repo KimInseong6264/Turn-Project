@@ -11,7 +11,6 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject _arrowPrefab;
 
     private RectTransform _arrowRect;
-    private RectTransform _spawnTransform;
     private List<RaycastResult> _raycastResults;
 
     private void Awake()
@@ -40,6 +39,7 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
         Destroy(_arrowRect.gameObject);
     }
+    
     
     // 화살표 생성
     private void CreateArrow()
