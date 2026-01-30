@@ -8,6 +8,8 @@ public class UITargetSelect : UIGroup
     private List<Canvas> _buttons;
     private UnityObjectPull<Canvas> _canvasPull;
     
+    public event Action<UnitPresenter, ClickObject> OnCreatedTargetButton;
+    
     [SerializeField] private Canvas _targetSelectPrefab;
 
     
@@ -60,6 +62,7 @@ public class UITargetSelect : UIGroup
         clickObject.name = enemy.Name + " 선택버튼";
         clickObject.GetComponentInChildren<Text>().text = enemy.Name;
         clickObject.OnClick += () => BattleManager.Instance.SetSequenceTarget(enemy);
+        OnCreatedTargetButton?.Invoke(enemy, clickObject);
     }
     
     private void ReleaseButons()
