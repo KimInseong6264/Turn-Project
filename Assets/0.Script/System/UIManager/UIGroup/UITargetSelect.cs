@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class UITargetSelect : UIGroup
     {
         _buttons.Clear();
         
-        OnCreateButton();
+        StartCoroutine(OnCreateButton());
     }
     
     private void OnDisable()
@@ -37,8 +38,9 @@ public class UITargetSelect : UIGroup
     
     
     // 캔버스에서 ClickObject 찾아서 버튼 생성
-    private void OnCreateButton()
+    private IEnumerator OnCreateButton()
     {
+        yield return null;
         foreach (var enemy in BattleManager.Instance.Enemies)
         {
             if(enemy.IsDead)
