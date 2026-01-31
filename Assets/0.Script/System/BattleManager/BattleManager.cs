@@ -9,6 +9,7 @@ public partial class BattleManager : MonoBehaviour, ITargetSelect
 {
     public static BattleManager Instance;
     public event Action<BattleInfo> OnTargetSelected;
+    public event Action<BattleInfo> OnResetTargetSelected;
     
     public List<UnitPresenter> Players => SpawnMgr.Players;
     public List<UnitPresenter> Enemies => SpawnMgr.Enemies;
@@ -68,6 +69,7 @@ public partial class BattleManager : MonoBehaviour, ITargetSelect
         var battleInfo = BattleSequence[skill.OwnerName];
         BattleSequence[skill.OwnerName] = new BattleInfo(battleInfo, skill);
         Debug.Log("스킬 세팅" + BattleSequence[skill.OwnerName].SelectedSkill);
+        OnResetTargetSelected?.Invoke(battleInfo);
         
         //
         _currentBattleInfo = BattleSequence[skill.OwnerName];

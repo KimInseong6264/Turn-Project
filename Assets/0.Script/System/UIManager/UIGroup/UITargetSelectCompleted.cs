@@ -1,8 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(UITargetSelect))]
 public class UITargetSelectCompleted : MonoBehaviour
 {
     private Dictionary<IUnit, ClickObject> _createdButons;    // 키: 타겟, 벨류: 타겟의 선택 버튼
@@ -24,16 +25,24 @@ public class UITargetSelectCompleted : MonoBehaviour
 
     private void OnEnable()
     {
+        if(!BattleManager.Instance)
+            return;
+        
         if(_targetSelector == null)
             _targetSelector = BattleManager.Instance;
-        _targetSelector.OnTargetSelected += OnCreateArrow;
         _targetSelectUI.OnCreatedTargetButton += AddCreateButon;
+        _targetSelector.OnTargetSelected += OnCreateArrow;
+        _targetSelector.OnResetTargetSelected += DestroyArrow;
     }
 
     private void OnDisable()
     {
-        _targetSelector.OnTargetSelected -= OnCreateArrow;
+        if(!BattleManager.Instance)
+            return;
+        
         _targetSelectUI.OnCreatedTargetButton -= AddCreateButon;
+        _targetSelector.OnTargetSelected -= OnCreateArrow;
+        _targetSelector.OnResetTargetSelected -= DestroyArrow;
         Init();
     }
 
@@ -48,29 +57,41 @@ public class UITargetSelectCompleted : MonoBehaviour
     
     private void SetArrow(IUnit target, RectTransform arrowRect)
     {
-        Transform targetTr = target.MyObject.transform;
+        var targetButton = _createdButons[target];
+        Transform targetTr = targetButton.transform;
     
-        Vector2 dir = targetTr.position;
+        Vector2 dir = targetTr.position - arrowRect.position;
+        
         arrowRect.up = dir;
-        dir /= arrowRect.localScale.x;
-        arrowRect.sizeDelta = new Vector2(arrowRect.sizeDelta.x, dir.magnitude);
+        
+        float distance = dir.magnitude /  arrowRect.lossyScale.y;
+        arrowRect.sizeDelta = new Vector2(arrowRect.sizeDelta.x, distance);
     }
 
     // 화살표 생성
     private RectTransform CreateArrow(IUnit attacker, Transform buttonTransform)
     {
-        RectTransform myRect = buttonTransform as RectTransform;
-        if(!myRect)
-            return null;
-
-        var arrowRect = Instantiate(_arrowPrefab, buttonTransform).GetComponent<RectTransform>();
+        var arrowRect = Instantiate(_arrowPrefab, buttonTransform.Find("UnitCanvas")).GetComponent<RectTransform>();
         arrowRect.anchoredPosition = Vector2.zero;
         
         return arrowRect;
     }
 
+    private void DestroyArrow(BattleInfo battleInfo)
+    {
+        if(!_arrowRects.TryGetValue(battleInfo.Attacker, out var arrowRect))
+            return;
+        
+        _arrowRects.Remove(battleInfo.Attacker);
+        Destroy(arrowRect.gameObject);
+    }
+
     private void Init()
     {
+        foreach (var arrowRect in _arrowRects.Values)
+        {
+            Destroy(arrowRect.gameObject);
+        }
         _arrowRects.Clear();
         _createdButons.Clear();
     }
