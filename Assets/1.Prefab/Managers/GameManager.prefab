@@ -1396,7 +1396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5666933979687404803}
   - component: {fileID: 4607143786407995250}
-  - component: {fileID: 3791943823867473796}
+  - component: {fileID: 3926580749001199229}
   m_Layer: 0
   m_Name: TargetSelectUI
   m_TagString: Untagged
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   <UIGroupName>k__BackingField: 3
   _objectPullTransform: {fileID: 5666933979687404803}
   _targetSelectPrefab: {fileID: 8461543941773396487, guid: 762d3aa2ac2193040842854a16d65f68, type: 3}
---- !u!114 &3791943823867473796
+--- !u!114 &3926580749001199229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
