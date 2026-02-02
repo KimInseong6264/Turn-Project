@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +19,20 @@ public class UnitSelector : MonoBehaviour
         Enemies = GameManager.Instance.GetWaveEnemyList();
     }
 
-    
-    
+
     // 유닛 선택
-    public static void SelectedUnit(string unitName)
+    public static void SelectedUnit(UnitDataSO unit, bool isSelectedUnit)
     {
-        Players.Add(GameManager.Instance.GetUnitData(unitName));
-        Debug.Log(unitName + "선택되었습니다.");
+        switch (isSelectedUnit)
+        {
+            case true:
+                Players.Add(unit);
+                Debug.Log(unit.Name + "선택되었습니다.");
+                break;
+            case false:
+                Players.Remove(unit);
+                break;
+        }
     }
 
     // 유닛 선택 취소

@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3d22579e765e4747b49fec246c67616, type: 2}
   - {fileID: 11400000, guid: fb74b68e5bbac8f42adcadd63ddfa8f1, type: 2}
   <UnitPrefab>k__BackingField: {fileID: -5990431591413208567, guid: 999c48e985e284049a279431694e60b6, type: 3}
+  <UnitSelectButton>k__BackingField: {fileID: 21300000, guid: ec018e93c5e070a4cb9c19c3834f1b6e, type: 3}

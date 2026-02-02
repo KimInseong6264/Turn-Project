@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class UIUnitSelect : UIGroup
@@ -15,6 +15,7 @@ public class UIUnitSelect : UIGroup
     
     protected override void Awake()
     {
+        _buttons = new List<ClickUnitSelect>();
         _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _objectPullTransform);
         base.Awake();
     }
@@ -22,15 +23,27 @@ public class UIUnitSelect : UIGroup
     private void Start()
     {
         GameManager.Instance.UpdateUI(UIGroupName.GameStart, false);
+    }
+
+    private void OnEnable()
+    {
         OnCreateButton();
     }
-    
-    
-    
+
+    private void OnDisable()
+    {
+        foreach (var button in _buttons)
+        {
+            _unitSelectPull.Release(button);
+        }
+        _buttons.Clear();
+    }
+
+
     // 게임 시작시, 버튼 생성 메서드
     public void OnCreateButton()
     {
-        _buttons = new List<ClickUnitSelect>();
+        _buttons.Clear();
         
         Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
         foreach (var unitData in unitDict.Values)
@@ -44,16 +57,10 @@ public class UIUnitSelect : UIGroup
         }
     }
 
-    // private ClickUnitSelect CreateButton(UnitDataSO unitData) => Instantiate(
-    //         unitData.UnitSelectButton, 
-    //         _unitSelectionWindow
-    //         ).GetComponent<ClickUnitSelect>();
-
     // 버튼의 기능들을 설정
     private void SetButton(ClickUnitSelect unitSelect, UnitDataSO unitData)
     {
-        unitSelect.OnClick += () => UnitSelector.SelectedUnit(unitData.Name);
-        unitSelect.gameObject.name = unitData.name;
-        unitSelect.GetComponentInChildren<Text>().text = unitData.name + "Button";
+        unitSelect.SetButton(unitData);
+        unitSelect.OnClick += () => UnitSelector.SelectedUnit(unitData, unitSelect.IsSelectedUnit);
     }
 }
