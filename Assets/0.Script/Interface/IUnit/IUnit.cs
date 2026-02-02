@@ -21,19 +21,6 @@ public struct BattleInfo
     public ISkill SelectedSkill { get; }
     public IUnit Attacker { get; }
     public IUnit Target { get; }
-
-    
-    //
-    public BattleInfo(IUnit attacker, IUnit target, int speed, UnitTeam attackerTeam)
-    {
-        Speed = speed;
-        AttackerTeam =  attackerTeam;
-        Attacker = attacker;
-        SelectedSkill = null;
-        Target = target;
-    }
-    //
-    
     
     public BattleInfo(UnitPresenter attacker)
     {
@@ -42,7 +29,6 @@ public struct BattleInfo
         Attacker = attacker;
         SelectedSkill = null;
         Target = null;
-        BattleManager.Instance.OnInfoStart();
     }
 
     // 스킬만 갱신하는 생성자
@@ -53,7 +39,6 @@ public struct BattleInfo
         this.Attacker = mySelf.Attacker;
         this.SelectedSkill = skill;
         this.Target = target;
-        BattleManager.Instance.OnInfoStart();
     }
 
     public IEnumerator OnBattleExcute()

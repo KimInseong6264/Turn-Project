@@ -32,12 +32,10 @@ public class Coin : MonoBehaviour
         switch (coinType)
         {
             case CoinType.Back:
-                mine.color = Color.red;
-                // _animator?.Play("Back");
+                _animator?.Play("Back");
                 break;
             case CoinType.Front:
-                mine.color = Color.yellow;
-                // _animator?.Play("Front");
+                _animator?.Play("Front");
                 break;
         }
     }
@@ -45,7 +43,7 @@ public class Coin : MonoBehaviour
     private void Init()
     {
         GetComponent<Image>().color = Color.white;
-        // _animator?.Play("Tossing");
+        _animator?.Play("Tossing");
     }
 }
 

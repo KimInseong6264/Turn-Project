@@ -8,6 +8,7 @@ public class UIUnitSelect : UIGroup
     private List<ClickUnitSelect> _buttons;
     private UnityObjectPull<ClickUnitSelect> _unitSelectPull;
     
+    [SerializeField] private Transform _unitSelectionWindow;
     [SerializeField] private ClickUnitSelect _unitSelectPrefab;
     
     
@@ -32,22 +33,27 @@ public class UIUnitSelect : UIGroup
         _buttons = new List<ClickUnitSelect>();
         
         Dictionary<string, UnitDataSO> unitDict = GameManager.Instance.GetUnitDataList();
-        foreach (var unitData in unitDict)
+        foreach (var unitData in unitDict.Values)
         {
-            if(unitData.Value.Team == UnitTeam.Enemy)
+            if(unitData.Team == UnitTeam.Enemy)
                 continue;
-            
+
             var obj = _unitSelectPull.GetPull();
-            SetButton(obj, unitData.Value);
+            SetButton(obj, unitData);
             _buttons.Add(obj);
         }
     }
+
+    // private ClickUnitSelect CreateButton(UnitDataSO unitData) => Instantiate(
+    //         unitData.UnitSelectButton, 
+    //         _unitSelectionWindow
+    //         ).GetComponent<ClickUnitSelect>();
 
     // 버튼의 기능들을 설정
     private void SetButton(ClickUnitSelect unitSelect, UnitDataSO unitData)
     {
         unitSelect.OnClick += () => UnitSelector.SelectedUnit(unitData.Name);
         unitSelect.gameObject.name = unitData.name;
-        unitSelect.GetComponentInChildren<Text>().text = unitData.name;
+        unitSelect.GetComponentInChildren<Text>().text = unitData.name + "Button";
     }
 }

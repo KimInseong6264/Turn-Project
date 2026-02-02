@@ -21,7 +21,7 @@ public class RegisterSystem : MonoBehaviour
     
     private void Start()
     {
-        RegisterUI = _emailInput.transform.parent.gameObject;
+        RegisterUI = transform.Find("RegisterUI").gameObject;
         
         _createButton.onClick.AddListener(OnRegister);
         _backButton.onClick.AddListener(UpdateInToLogin);

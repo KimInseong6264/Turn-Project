@@ -13,9 +13,18 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public int Speed { get; private set; }
     [field: SerializeField] public List<SkillDataSO> SkillList { get; private set; }
     [field: SerializeField] public UnitView UnitPrefab { get; private set; }
+    [field: SerializeField] public Sprite UnitSelectButton { get; private set; }
 
-    // 스킬SO를 끼워넣을 때, 스킬Owner와 맞지 않으면 스킬 매칭 불가
+    
     private void OnValidate()
+    {
+        SkillSettingCondition();
+        UnitSelectButtonComdition();
+    }
+
+    
+    // 스킬SO를 끼워넣을 때, 스킬Owner와 맞지 않으면 스킬 매칭 불가
+    private void SkillSettingCondition()
     {
         if (SkillList == null)
             return;
@@ -31,6 +40,16 @@ public class UnitDataSO : ScriptableObject
                 Debug.LogWarning(skill.Name + "의 소유자가 다릅니다.");
                 SkillList[i] = null;
             }
+        }
+    }
+
+    // 에너미는 유닛선택버튼 설정불가
+    private void UnitSelectButtonComdition()
+    {
+        if (UnitSelectButton != null && Team == UnitTeam.Enemy)
+        {
+            Debug.LogWarning("Enemy는 UnitSelectButton이 필요하지 않습니다.");
+            UnitSelectButton = null;
         }
     }
 

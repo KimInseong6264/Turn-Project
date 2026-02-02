@@ -43,6 +43,8 @@ public class SkillUI : MonoBehaviour
             case UnitTeam.Enemy:
                 rect.localPosition = new Vector3(-rect.localPosition.x * dirX, rect.localPosition.y, rect.localPosition.z);
                 rect.localScale = new Vector3(-dirX, 1, 1);
+                var textScale = _coinValueText.rectTransform.localScale.x;
+                _coinValueText.rectTransform.localScale = new Vector3(textScale * -dirX, textScale, textScale);
                 break;
         }
     }

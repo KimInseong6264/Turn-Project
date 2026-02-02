@@ -19,7 +19,7 @@ public class LoginSystem : MonoBehaviour
     
     private void Start()
     {
-        LoginUI = _emailInput.transform.parent.gameObject;
+        LoginUI = transform.Find("LoginUI").gameObject;
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
@@ -49,7 +49,7 @@ public class LoginSystem : MonoBehaviour
             NetworkManager.Instance.SetUser(auth.CurrentUser);
             _message.color = Color.blue;
             _message.text = "자동 로그인 되었습니다.";
-            yield return CoroutineManager.GetWaitTime(2f);
+            yield return CoroutineManager.GetWaitTime(0.5f);
             
             UpdateLoginUI(false);
             GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);

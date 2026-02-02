@@ -18,12 +18,6 @@ public partial class UIManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        UpdateUI(UIGroupName.GameStart, true);
-    }
-
-
     // UI그룹을 출력 or 해제 메서드
     public void UpdateUI(UIGroupName uiGroupName, bool active)
     {

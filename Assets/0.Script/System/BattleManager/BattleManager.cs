@@ -25,24 +25,6 @@ public partial class BattleManager : MonoBehaviour, ITargetSelect
     
     //
     private BattleInfo _currentBattleInfo;
-
-    public List<Text> attaker;
-    public List<Text> skill;
-    public List<Text> target;
-
-    public void OnInfoStart() => StartCoroutine(OnUIInfo());
-    public IEnumerator OnUIInfo()
-    {
-        yield return null;
-        int count = 0;
-        foreach (var battleInfo in BattleSequence.Values)
-        {
-            attaker[count].text = battleInfo.Attacker?.Data.Name;
-            skill[count].text = battleInfo.SelectedSkill?.Name;
-            target[count].text = battleInfo.Target?.Data.Name;
-            count++;
-        }
-    }
     //
     
     
