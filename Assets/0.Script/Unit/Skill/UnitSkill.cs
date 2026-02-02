@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,9 @@ public class UnitSkill : ISkill
     public SkillType Type => _type;
     public int ConinCount => _coinCount;
     public int CoinValue => _coinValue;
+
+    public static event Action<BattleInfo> OnSkillStart;
+    public static event Action OnSkillEnd;
     
     public UnitSkill(SkillDataSO skillData, IActable owner)
     {
@@ -28,13 +32,14 @@ public class UnitSkill : ISkill
         _coinCount = skillData.CoinCount;
         _coinValue = skillData.CoinValue;
         _skillUI = owner.UnitSkillUI;
-        _owner =  owner;
+        _owner = owner;
         _commands = new List<ICommand>();
         SetCommands(skillData.CommandList, owner);
     }
 
     public IEnumerator UseSkill(BattleInfo battleInfo)
     {
+        OnSkillStart?.Invoke(battleInfo);
         _skillUI.OnSkillUI(battleInfo.Attacker);
         
         foreach (var command in _commands)
@@ -45,9 +50,9 @@ public class UnitSkill : ISkill
             yield return CoroutineManager.GetWaitTime(command.AfterDelay);
             
         }
-        
         InitDirection(battleInfo);
         _skillUI.Init();
+        OnSkillEnd?.Invoke();
     }
 
     private void SetCommands(List<SkillCommandSO> commands, IActable owner)

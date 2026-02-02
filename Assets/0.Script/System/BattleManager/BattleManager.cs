@@ -20,6 +20,7 @@ public partial class BattleManager : MonoBehaviour, ITargetSelect
     
     public EnemyAI EnemyAISystema { get; private set; }
     [field: SerializeField]public SpawnManager SpawnMgr { get; private set; }
+    [field: SerializeField]public SkillActManager SkillActMgr { get; private set; }
     
     
     //

@@ -32,6 +32,9 @@ public class SpawnManager : MonoBehaviour
     // 참조용 플레이어, 에너미 리스트에 담는다.
     private void SetUnits(List<UnitPresenter> units)
     {
+        if(units == null || units.Count == 0)
+            return;
+        
         switch (units[0].Data.Team)
         {
             case UnitTeam.Player:
