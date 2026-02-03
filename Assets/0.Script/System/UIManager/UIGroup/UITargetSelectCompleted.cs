@@ -72,9 +72,6 @@ public class UITargetSelectCompleted : MonoBehaviour
     private RectTransform CreateArrow(IUnit attacker, Transform buttonTransform)
     {
         var canvasTr = attacker.MyObject.GetComponentInChildren<Canvas>().transform;
-        Debug.LogWarning(attacker.MyObject.name);
-        Debug.LogWarning(canvasTr.name);
-        Debug.LogWarning(canvasTr.Find("TargetSelectButton"));
         var button = canvasTr.Find("TargetSelectButton").GetComponentInChildren<Button>();
 
         RectTransform arrowRect = null;

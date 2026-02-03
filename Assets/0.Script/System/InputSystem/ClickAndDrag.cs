@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -13,23 +14,18 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private RectTransform _arrowRect;
     private List<RaycastResult> _raycastResults;
 
+    
     private void Awake()
     {
         _raycastResults = new List<RaycastResult>();
     }
-
+    
     
     // 드래깅이 시작될 때
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        CreateArrow();
-    }
+    public void OnBeginDrag(PointerEventData eventData) => CreateArrow();
 
     //드래그 중일 땐, 위치 정보 등 드래깅에 필요한 모든 정보가 eventData에 들어있음
-    public void OnDrag(PointerEventData eventData)
-    {
-        UpdateArrow(eventData);
-    }
+    public void OnDrag(PointerEventData eventData) => UpdateArrow(eventData);
 
     // 드래그 끝날 때(마우스를 뗄 때
     public void OnEndDrag(PointerEventData eventData)
@@ -55,7 +51,6 @@ public class ClickAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     // 화살표의 끝이 마우스에 따라 길어짐
     private void UpdateArrow(PointerEventData eventData)
     {
-        
         RectTransform parentRect = _arrowRect.parent as RectTransform;
         // 마우스 좌표를 UI 기준으으로 변경
         RectTransformUtility.ScreenPointToLocalPointInRectangle(

@@ -17,7 +17,8 @@ MonoBehaviour:
   <Hp>k__BackingField: 20
   <AttLevel>k__BackingField: 0
   <DefLevel>k__BackingField: 0
-  <Speed>k__BackingField: 5
+  <MaxSpeed>k__BackingField: 5
+  <MinSpeed>k__BackingField: 3
   <SkillList>k__BackingField:
   - {fileID: 11400000, guid: 76ffae91c17172546a74f54e53014647, type: 2}
   - {fileID: 11400000, guid: 6d696cc4e46fb68478cd3ee8d99932c8, type: 2}

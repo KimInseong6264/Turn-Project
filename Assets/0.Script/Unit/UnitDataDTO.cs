@@ -9,7 +9,8 @@ public class UnitDataDTO
     public int Hp;
     public float AttLevel;
     public float DefLevel;
-    public int Speed;
+    public int MaxSpeed;
+    public int MinSpeed;
     public List<SkillDataDTO> SkillList = new List<SkillDataDTO>();
     public UnitView UnitPrefab;
 
@@ -20,7 +21,8 @@ public class UnitDataDTO
         Hp = unitData.Hp;
         AttLevel = unitData.AttLevel;
         DefLevel = unitData.DefLevel;
-        Speed = unitData.Speed;
+        MaxSpeed = unitData.MaxSpeed;
+        MinSpeed = unitData.MinSpeed;
         UnitPrefab = unitData.UnitPrefab;
 
         foreach (var skillData in unitData.SkillList)

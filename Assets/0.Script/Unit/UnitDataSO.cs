@@ -10,7 +10,8 @@ public class UnitDataSO : ScriptableObject
     [field: SerializeField] public int Hp { get; private set; }
     [field: SerializeField] public float AttLevel { get; private set; }
     [field: SerializeField] public float DefLevel { get; private set; }
-    [field: SerializeField] public int Speed { get; private set; }
+    [field: SerializeField] public int MaxSpeed { get; private set; }
+    [field: SerializeField] public int MinSpeed { get; private set; }
     [field: SerializeField] public List<SkillDataSO> SkillList { get; private set; }
     [field: SerializeField] public UnitView UnitPrefab { get; private set; }
     [field: SerializeField] public Sprite UnitSelectButton { get; private set; }
@@ -19,9 +20,7 @@ public class UnitDataSO : ScriptableObject
     private void OnValidate()
     {
         SkillSettingCondition();
-        UnitSelectButtonComdition();
     }
-
     
     // 스킬SO를 끼워넣을 때, 스킬Owner와 맞지 않으면 스킬 매칭 불가
     private void SkillSettingCondition()
@@ -43,16 +42,6 @@ public class UnitDataSO : ScriptableObject
         }
     }
 
-    // 에너미는 유닛선택버튼 설정불가
-    private void UnitSelectButtonComdition()
-    {
-        if (UnitSelectButton != null && Team == UnitTeam.Enemy)
-        {
-            Debug.LogWarning("Enemy는 UnitSelectButton이 필요하지 않습니다.");
-            UnitSelectButton = null;
-        }
-    }
-
     public void SetSOValue(UnitDataDTO dto)
     {
         Name = dto.Name;
@@ -60,7 +49,8 @@ public class UnitDataSO : ScriptableObject
         Hp = dto.Hp;
         AttLevel = dto.AttLevel;
         DefLevel = dto.DefLevel;
-        Speed = dto.Speed;
+        MaxSpeed = dto.MaxSpeed;
+        MinSpeed = dto.MinSpeed;
     }
 }
 

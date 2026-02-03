@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,6 @@ public class TurnSequence03 : IState
         
         SetSpeedSort();
         SetSequence();
-        
         _battleManager.SetState(BattleState.ActSelect04);
     }
 

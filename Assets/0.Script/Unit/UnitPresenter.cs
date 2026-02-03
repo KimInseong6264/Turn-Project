@@ -16,7 +16,7 @@ public class UnitPresenter : IHitable, IUnit
     public string Name => _model.Name;
     public int Hp => _model.Hp;
     public bool IsDead => _model.IsDead;
-    public int Speed => _model.Speed;
+    public int Speed => Random.Range(_model.MinSpeed, _model.MaxSpeed + 1);
     public UnitTeam Team => _model.Team;
     public ISkill Skill => _model.SkillToUse; // 선택된 스킬 확인
     

@@ -12,9 +12,11 @@ public class UnitModel : IUnitData
     public UnitTeam Team { get; private set; }
     public float AttLevel { get; private set; }
     public float DefLevel { get; private set; }
-    public int Speed { get; private set; }
+    public int MaxSpeed { get; private set; }
+    public int MinSpeed { get; private set; }
+    public Sprite UnitIcon { get; private set; }
     public bool IsDead => _hp <= 0;
-    
+
     public Dictionary<SkillType, UnitSkill> Skills { get; private set; }
     public ISkill SkillToUse { get; private set; }
 
@@ -27,7 +29,9 @@ public class UnitModel : IUnitData
         Team = unitData.Team;
         AttLevel = unitData.AttLevel;
         DefLevel = unitData.DefLevel;
-        Speed = unitData.Speed;
+        MaxSpeed = unitData.MaxSpeed;
+        MinSpeed = unitData.MinSpeed;
+        UnitIcon = unitData.UnitSelectButton;
         
         SetSkills(unitData, unitPresenter);
     }
