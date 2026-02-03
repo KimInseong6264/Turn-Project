@@ -5,13 +5,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(UnitAttackEvent))]
 public class UnitView : MonoBehaviour, IActable, IClickable
 {
+    private UnitDataSO _unitData;
+    private Animator _animator;
+    private Text _hpText;
     [SerializeField] private Slider _hpBar;
     [SerializeField] private SkillUI _unitSkillUI;
     
-    private Animator _animator;
     
-    public UnitDataSO UnitData;
-    
+    public UnitDataSO UnitData => _unitData;
     public GameObject MyObject => gameObject;
     public Animator MyAnimator => _animator;
     public SkillUI UnitSkillUI => _unitSkillUI;
@@ -26,18 +27,27 @@ public class UnitView : MonoBehaviour, IActable, IClickable
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        Presenter = new UnitPresenter(UnitData, this);
 
         if (_hpBar == null)
-            Debug.LogWarning(UnitData.Name + "HpBar 세팅해!");
+            Debug.LogWarning(_unitData.Name + "HpBar 세팅해!");
         else
-            _hpBar.value = 1;
+        {
+            Transform hpCount = _hpBar.transform.Find("HpCount");
+            Debug.LogWarning(hpCount);
+            _hpText = hpCount.GetComponentInChildren<Text>();
+            Debug.LogWarning(_hpText);
+        }
     }
 
-    private void Update()
+    private void Start()
     {
-        Presenter.Tick();
+        Presenter.Initailize();
     }
+
+    // private void Update()
+    // {
+    //     Presenter.Tick();
+    // }
     
     // private void OnEnable()
     // {
@@ -52,10 +62,17 @@ public class UnitView : MonoBehaviour, IActable, IClickable
 
     public void OnStartCklick()
     {
-        Debug.Log("클릭대상" + UnitData.Name);
+        Debug.Log("클릭대상" + _unitData.Name);
+    }
+
+    public void OnCreatePresenter(UnitDataSO unitData)
+    {
+        _unitData = unitData;
+        Presenter = new UnitPresenter(_unitData, this);
     }
 
     public void UpdateHpBar(float hp, float maxHp) => _hpBar.value = hp / maxHp;
+    public void UpdateHpText(int hp) => _hpText.text = hp.ToString();
     public void SetActiveHpBar(bool active) => _hpBar.gameObject.SetActive(active);
 
 

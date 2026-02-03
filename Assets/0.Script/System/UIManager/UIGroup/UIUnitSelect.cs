@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class UIUnitSelect : UIGroup
@@ -10,19 +11,30 @@ public class UIUnitSelect : UIGroup
     
     [SerializeField] private Transform _unitSelectionWindow;
     [SerializeField] private ClickUnitSelect _unitSelectPrefab;
+    [SerializeField] private Button _battleStartButton; 
     
     
     
     protected override void Awake()
     {
         _buttons = new List<ClickUnitSelect>();
-        _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _objectPullTransform);
+        _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _unitSelectionWindow);
         base.Awake();
     }
 
     private void Start()
     {
         GameManager.Instance.UpdateUI(UIGroupName.GameStart, false);
+    }
+
+    private void Update()
+    {
+        if (UnitSelector.Players.Count == 0)
+        {
+            _battleStartButton.interactable = false;
+            return;
+        }
+        _battleStartButton.interactable = true;
     }
 
     private void OnEnable()

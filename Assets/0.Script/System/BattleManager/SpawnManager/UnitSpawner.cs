@@ -34,9 +34,9 @@ public class UnitSpawner : MonoBehaviour, ISpawn, IUnitSetPos
     // 유닛 생성
     private UnitPresenter CreateUnit(UnitDataSO unitData)
     {
-        UnitPresenter presenter = Instantiate(unitData.UnitPrefab).Presenter;
-        presenter.SetObjectName(unitData.Name);
-        return presenter;
+        UnitView unit = Instantiate(unitData.UnitPrefab);
+        unit.OnCreatePresenter(unitData);
+        return unit.Presenter;
     }
     
     // 유닛 리스트를 받으면 위치를 수정해주는 메서드

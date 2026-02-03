@@ -30,19 +30,8 @@ public class UnitDataManager : MonoBehaviour
     {
         foreach (var unitData in _unitDataList)
         {
-            SetPrefabUnitData(unitData);
-            
             _unitDataDict.TryAdd(unitData.Name, unitData);
         }
-    }
-
-    // SO의 프리펩UnitView에 SO데이터를 끼워넣음
-    private void SetPrefabUnitData(UnitDataSO unitData)
-    {
-        if (unitData.UnitPrefab == null)
-            Debug.LogWarning($"{unitData.name}의 SO에 프리팹 없음");
-        else
-            unitData.UnitPrefab.GetComponent<UnitView>().UnitData =  unitData;
     }
     
     public Dictionary<string, UnitDataSO> GetUnitDataList() => _unitDataDict;

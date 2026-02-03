@@ -34,6 +34,14 @@ public class UnitPresenter : IHitable, IUnit
         Actable = view;
         Hitable = this;
         MyObject = view.gameObject;
+        
+        _view.gameObject.name = unitData.Name;
+    }
+
+    public void Initailize()
+    {
+        _view.UpdateHpText(_model.Hp);
+        _view.UpdateHpBar(_model.Hp, _model.MaxHp);
     }
     
     
@@ -45,6 +53,7 @@ public class UnitPresenter : IHitable, IUnit
     {
         _model.TakeDamage(damage);
         _view.UpdateHpBar(_model.Hp, _model.MaxHp);
+        _view.UpdateHpText(_model.Hp);
         if(_model.IsDead)
             _view.SetActiveHpBar(false);
     }
@@ -93,7 +102,6 @@ public class UnitPresenter : IHitable, IUnit
     
     // View의 설정 변경
     public void SetPosition(Vector3 pos) => _view.transform.position = pos;
-    public void SetObjectName(string name) => _view.gameObject.name = name;
 
     
     // 스킬 관련 메서드
