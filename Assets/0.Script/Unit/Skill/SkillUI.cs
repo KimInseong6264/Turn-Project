@@ -59,6 +59,8 @@ public class SkillUI : MonoBehaviour
         RectTransform rect =  transform.GetComponent<RectTransform>();
         rect.localPosition = _intialPos;
         rect.localScale = new Vector3(1, 1, 1);
+        var textScale = _coinValueText.rectTransform.localScale.y;
+        _coinValueText.rectTransform.localScale = new Vector3(textScale, textScale, textScale);
         
         _coinValueText.text = "0";
         gameObject.SetActive(false);

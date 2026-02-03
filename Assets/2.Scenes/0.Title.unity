@@ -571,18 +571,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040959116592820066, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
-      propertyPath: m_CellSize.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1040959116592820066, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
-      propertyPath: m_CellSize.y
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.06087574
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.54272217
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.6792453
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.36966002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.60538435
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778101690636522179, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802195325830253137, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _enemyArrowPrefab
+      value: 
+      objectReference: {fileID: 7489151273400546982, guid: c13802a4b5b432646b8276c8a007e04e, type: 3}
+    - target: {fileID: 6802195325830253137, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _playerArrowPrefab
+      value: 
+      objectReference: {fileID: 6483458569670679913, guid: 6ec7c8c08cbe4f44eb10535d085f1e8c, type: 3}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -622,10 +646,6 @@ PrefabInstance:
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9098137727352453756, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

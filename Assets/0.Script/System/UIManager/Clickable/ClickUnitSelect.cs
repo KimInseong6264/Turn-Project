@@ -42,15 +42,13 @@ public class ClickUnitSelect : ClickObject
     {
         if (_isSelectedUnit)
         {
-            Color32 newAlpha = _image.color;
-            newAlpha.a = 255;
+            Color32 newAlpha = Color.white;
             _image.color = newAlpha;
             _isSelectedUnit = false;
         }
         else
         {
-            Color32 newAlpha = _image.color;
-            newAlpha.a = 190;
+            Color32 newAlpha = new Color32(150, 150, 150, 255);
             _image.color = newAlpha;
             _isSelectedUnit = true;
         }

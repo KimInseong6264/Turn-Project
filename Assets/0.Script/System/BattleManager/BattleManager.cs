@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,8 +66,13 @@ public partial class BattleManager : MonoBehaviour, ITargetSelect
         OnTargetSelected?.Invoke(newBattleInfo);
         Debug.Log("타겟 세팅" + BattleSequence[_currentBattleInfo.Attacker.Data.Name].Target);
     }
-    public void SetSequence(string unitName, BattleInfo battleInfo) => BattleSequence[unitName] = battleInfo;
-    
+
+    public void SetSequence(string unitName, BattleInfo battleInfo)
+    {
+        BattleSequence[unitName] = battleInfo;
+        OnTargetSelected?.Invoke(battleInfo);
+    }
+
     // 배틀 스타트 버튼을 찾는 메서드
     private Button FindGameStart(Transform parent)
     {

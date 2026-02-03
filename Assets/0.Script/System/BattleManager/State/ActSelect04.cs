@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class ActSelect04 : IState
         GameManager.Instance.UpdateUI(UIGroupName.ActSelectUI, true);
         GameManager.Instance.UpdateUI(UIGroupName.TargetSelectUI, true);
 
-        SetEnemySequence();
+        _battleManager.StartCoroutine(SetEnemySequence());
         
         Debug.Log("플레이어 입력을 기다립니다.");
     }
@@ -33,8 +33,10 @@ public class ActSelect04 : IState
             _battleManager.SetState(BattleState.ActStart05);
     }
 
-    private void SetEnemySequence()
+    private IEnumerator SetEnemySequence()
     {
+        yield return null;
+        
         var enemyAI = BattleManager.Instance.EnemyAISystema;
         foreach (var unit in _battleManager.BattleSequence.Values.ToList())
         {

@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class UITargetSelect : UIGroup
 {
-    private List<Canvas> _buttons;
-    private UnityObjectPull<Canvas> _canvasPull;
+    private List<Transform> _buttons;
+    private UnityObjectPull<Transform> _buttonPull;
     
     public event Action<UnitPresenter, ClickObject> OnCreatedTargetButton;
     
-    [SerializeField] private Canvas _targetSelectPrefab;
+    [SerializeField] private RectTransform _targetSelectPrefab;
 
     
     
     protected override void Awake()
     {
-        _buttons = new List<Canvas>();
-        _canvasPull = new UnityObjectPull<Canvas>(_targetSelectPrefab, 5, _objectPullTransform);
+        _buttons = new List<Transform>();
+        _buttonPull = new UnityObjectPull<Transform>(_targetSelectPrefab, 5, _objectPullTransform);
         base.Awake();
     }
 
@@ -41,38 +41,55 @@ public class UITargetSelect : UIGroup
     private IEnumerator OnCreateButton()
     {
         yield return null;
-        foreach (var enemy in BattleManager.Instance.Enemies)
+        CreateButton(BattleManager.Instance.Players);
+        CreateButton(BattleManager.Instance.Enemies);
+    }
+
+    private void CreateButton(List<UnitPresenter> units)
+    {
+        foreach (var unit in units)
         {
-            if(enemy.IsDead)
+            if(unit.IsDead)
                 continue;
             
-            var canvas = _canvasPull.GetPull(enemy.MyTransform);
-            canvas.gameObject.name = enemy.Name;
+            Transform unitCanvas = unit.MyTransform.GetComponentInChildren<Canvas>().transform;
+            var targetSelector = _buttonPull.GetPull(unitCanvas);
+            targetSelector.gameObject.name = "TargetSelectButton";
             
-            foreach (Transform child in canvas.transform)
+            foreach (Transform child in targetSelector.transform)
             {
                 if (child.TryGetComponent(out ClickObject button))
-                    SetButton(button, enemy);
+                    SetButton(button, unit);
             }
-            _buttons.Add(canvas);
+            _buttons.Add(targetSelector);
         }
     }
     
     // 버튼의 기능 설정
-    private void SetButton(ClickObject clickObject, UnitPresenter enemy)
+    private void SetButton(ClickObject clickObject, UnitPresenter unit)
     {
-        clickObject.name = enemy.Name + " 선택버튼";
-        clickObject.GetComponentInChildren<Text>().text = enemy.Name;
-        clickObject.OnClick += () => BattleManager.Instance.SetSequenceTarget(enemy);
-        OnCreatedTargetButton?.Invoke(enemy, clickObject);
+        if (unit.Team == UnitTeam.Player)
+        {
+            clickObject.GetComponent<Button>().interactable = false;
+        }
+        else if(unit.Team == UnitTeam.Enemy)
+        {
+            clickObject.GetComponent<Button>().interactable = true;
+            clickObject.OnClick += () => BattleManager.Instance.SetSequenceTarget(unit);
+        }
+        clickObject.name = unit.Name + " 선택버튼";
+        OnCreatedTargetButton?.Invoke(unit, clickObject);
     }
     
     private void ReleaseButons()
     {
-        foreach (var button in _buttons)
+        foreach (RectTransform button in _buttons)
         {
             button.gameObject.name = "TargetSelectButton";
-            _canvasPull.Release(button);
+            
+            button.localScale = _targetSelectPrefab.localScale;
+            
+            _buttonPull.Release(button);
         }
     }
     
