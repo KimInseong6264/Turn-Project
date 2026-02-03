@@ -48,7 +48,7 @@ public class UnitModel : IUnitData
             bool isSkill = Skills.TryAdd(skill.Type, SkillFactory.CreateSkill(skill, unitPresenter));
             
             if(!isSkill)
-                Debug.LogError(skill.OwnerName + "중복된 스킬이 들어있습니다.");
+                Debug.LogError(skill.OwnerName + "중복된 타입의 스킬이 들어있습니다.");
         }
 
         if(Skills.TryGetValue(SkillType.Skill01, out var skill01))

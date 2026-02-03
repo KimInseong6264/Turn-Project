@@ -58,6 +58,10 @@ public class UIActSelect : UIGroup
     // 스킬버튼을 설정
     private void SetSkillButton(ClickObject clickObject, UnitSkill skill)
     {
+        if (skill.SkillIcon == null)
+            Debug.Log("스킬 아이콘 없음");
+
+        clickObject.GetComponent<Image>().sprite = skill.SkillIcon;
         clickObject.gameObject.name = skill.Name + " Buton";
         clickObject.GetComponentInChildren<Text>().text = skill.Name;
         clickObject.OnClick += () => BattleManager.Instance.SetSequenceSkill(skill);

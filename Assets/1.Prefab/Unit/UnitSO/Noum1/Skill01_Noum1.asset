@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Skill01_Noum1
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
   <OwnerName>k__BackingField: "\uBCF4\uB77C\uB178\uC6C0"
-  <Name>k__BackingField: "\uB0B4\uB824\uCC0D\uAE30"
+  <Name>k__BackingField: "\uCC0C\uB974\uAE30"
   <CoinCount>k__BackingField: 3
   <CoinValue>k__BackingField: 10
   <Type>k__BackingField: 0
+  <SkillIcon>k__BackingField: {fileID: 21300000, guid: bac839a16efe8364db1769cb1e6a4512, type: 3}
   <CommandList>k__BackingField:
   - {fileID: 11400000, guid: cc71366e39b57824baf418ee7008c486, type: 2}
   - {fileID: 11400000, guid: 8c15a11c3078e22448bd148218dabd8c, type: 2}

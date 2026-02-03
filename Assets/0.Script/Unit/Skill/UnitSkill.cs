@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class UnitSkill : ISkill
+public class UnitSkill : ISkill, ISkillData
 {
     private string _ownerName;
     private string _name;
     private SkillType _type;
     private int _coinCount;
     private int _coinValue;
+    private Sprite _skillIcon;
     private SkillUI _skillUI;
     private IActable _owner;
 
@@ -20,6 +22,7 @@ public class UnitSkill : ISkill
     public SkillType Type => _type;
     public int ConinCount => _coinCount;
     public int CoinValue => _coinValue;
+    public Sprite SkillIcon => _skillIcon;
 
     public static event Action<BattleInfo> OnSkillStart;
     public static event Action OnSkillEnd;
@@ -31,6 +34,8 @@ public class UnitSkill : ISkill
         _type = skillData.Type;
         _coinCount = skillData.CoinCount;
         _coinValue = skillData.CoinValue;
+        _skillIcon = skillData.SkillIcon;
+        
         _skillUI = owner.UnitSkillUI;
         _owner = owner;
         _commands = new List<ICommand>();

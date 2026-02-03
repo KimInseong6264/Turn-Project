@@ -33,9 +33,7 @@ public class UnitView : MonoBehaviour, IActable, IClickable
         else
         {
             Transform hpCount = _hpBar.transform.Find("HpCount");
-            Debug.LogWarning(hpCount);
             _hpText = hpCount.GetComponentInChildren<Text>();
-            Debug.LogWarning(_hpText);
         }
     }
 
