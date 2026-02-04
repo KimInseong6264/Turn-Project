@@ -40,7 +40,6 @@ public class SkillDataDTO
     public int CoinCount;
     public int CoinValue;
     public SkillType Type;
-    public Sprite SkillIcon;
     public List<CommandDTO> CommandList = new List<CommandDTO>();
 
     public SkillDataDTO(SkillDataSO skillData)
@@ -50,7 +49,6 @@ public class SkillDataDTO
         CoinCount = skillData.CoinCount;
         CoinValue = skillData.CoinValue;
         Type = skillData.Type;
-        SkillIcon = skillData.SkillIcon;
         
         foreach (var commandData in skillData.CommandList)
         {

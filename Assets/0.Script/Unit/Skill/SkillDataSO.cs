@@ -22,7 +22,6 @@ public class SkillDataSO : ScriptableObject
         CoinCount = dto.CoinCount;
         CoinValue = dto.CoinValue;
         Type = dto.Type;
-        SkillIcon = dto.SkillIcon;
     }
 }
 

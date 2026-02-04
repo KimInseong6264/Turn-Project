@@ -23,7 +23,7 @@ public class LoginSystem : MonoBehaviour
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
-        StartCoroutine(AutoLoginCor());
+        // StartCoroutine(AutoLoginCor());
     }
     
     
@@ -49,7 +49,7 @@ public class LoginSystem : MonoBehaviour
             NetworkManager.Instance.SetUser(auth.CurrentUser);
             _message.color = Color.blue;
             _message.text = "자동 로그인 되었습니다.";
-            yield return CoroutineManager.GetWaitTime(0.5f);
+            yield return CoroutineManager.GetWaitTime(3f);
             
             UpdateLoginUI(false);
             GameManager.Instance.UpdateUI(UIGroupName.GameStart, true);
