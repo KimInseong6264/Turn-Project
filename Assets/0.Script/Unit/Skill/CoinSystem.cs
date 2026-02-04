@@ -20,12 +20,17 @@ public class CoinSystem : MonoBehaviour
         _ativeCoins = new List<Coin>();
         _coinPull = new UnityObjectPull<Coin>(_coinPrefab, 5, transform);
     }
-    
+
+    private void OnDisable()
+    {
+        Init();
+    }
+
     // 코인토스 실행
     public IEnumerator OnCoinToss(int coinCount, int coinValue, float startDelay, float tossFrequency)
     {
-        Debug.Log("이제 코인토스 시작이야");
         Init();
+        
         _coinPull.GetPull(_ativeCoins, coinCount);
         yield return CoroutineManager.GetWaitTime(startDelay);
 

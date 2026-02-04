@@ -51,7 +51,8 @@ public class UnitSkill : ISkill, ISkillData
         {
             yield return command.Execute(battleInfo);
             
-            _owner.PlayAni("Idle");
+            if(command.AfterDelay != 0)
+                _owner.PlayAni("Idle");
             yield return CoroutineManager.GetWaitTime(command.AfterDelay);
             
         }

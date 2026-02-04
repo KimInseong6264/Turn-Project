@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ed9e7d2e2a4ece86f39e5ae9b92328, type: 3}
   m_Name: Skill02_Move
   m_EditorClassIdentifier: Assembly-CSharp::MoveCommandSO
-  <AfterDelay>k__BackingField: 0
+  <AfterDelay>k__BackingField: 0.5
   <MoveSpeed>k__BackingField: 4
+  <TargetDistance>k__BackingField: 2
   <AnimationName>k__BackingField: Move

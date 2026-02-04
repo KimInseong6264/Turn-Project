@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3587dff440f42c1ac8ecc2c104ee6f2, type: 3}
-  m_Name: Skill02_Attack
-  m_EditorClassIdentifier: Assembly-CSharp::AttackCommandSO
+  m_Script: {fileID: 11500000, guid: d28fdb25577f4ed9b968ccb8b3a462f5, type: 3}
+  m_Name: Skill02_Stop
+  m_EditorClassIdentifier: Assembly-CSharp::StopCommandSO
   <AfterDelay>k__BackingField: 0
-  <AnimationName>k__BackingField: Attack2
+  <Duration>k__BackingField: 0.4
+  <AnimationName>k__BackingField: Stop

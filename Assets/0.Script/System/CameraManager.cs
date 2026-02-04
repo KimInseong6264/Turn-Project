@@ -55,18 +55,12 @@ public class CameraManager : MonoBehaviour
     // TargetGroup에 타겟 세팅
     private void SetTarget(BattleInfo battleInfo)
     {
-        Debug.Log("설마 널이니?" + _targetGroup);
-        if (_targetGroup == null) 
+        if (!_targetGroup) 
             return;
-     
+        
         _targetGroup.Targets.Clear();
         AddTargetToGroup(battleInfo.Attacker);
         AddTargetToGroup(battleInfo.Target);
-
-        foreach (var a in _targetGroup.Targets)
-        {
-            Debug.Log(a.Object.name);
-        }
         
         OnSetTargetEnd?.Invoke();
     }

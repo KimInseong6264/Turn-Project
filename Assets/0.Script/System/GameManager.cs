@@ -40,10 +40,6 @@ public class GameManager : SingletonBase<GameManager>
     }
     
     // 게임 종료 메서드
-    public void ExitGame()
-    {
-        Debug.Log("게임 종료");
-        Application.Quit();
-    }
+    public void ExitGame() => Application.Quit();
 }
 

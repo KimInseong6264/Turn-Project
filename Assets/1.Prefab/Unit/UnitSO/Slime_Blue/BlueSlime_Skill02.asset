@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6d77224c874431af3a8fd3696fa3ac, type: 3}
-  m_Name: SKill02_Noum2
+  m_Name: BlueSlime_Skill02
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
-  <OwnerName>k__BackingField: "\uD558\uC580\uB178\uC6C0"
-  <Name>k__BackingField: "\uC219\uC5EC\uCC0C\uB974\uAE30"
-  <CoinCount>k__BackingField: 1
-  <CoinValue>k__BackingField: 5
+  <OwnerName>k__BackingField: "\uBE14\uB8E8\uC2AC\uB77C\uC784"
+  <Name>k__BackingField: "\uC5D0\uB108\uBBF81\uC758 2\uBC88 \uC2A4\uD0AC"
+  <CoinCount>k__BackingField: 3
+  <CoinValue>k__BackingField: 3
   <Type>k__BackingField: 1
-  <SkillIcon>k__BackingField: {fileID: 21300000, guid: ff454972ef0454d468bc936ed28ce8c8, type: 3}
+  <SkillIcon>k__BackingField: {fileID: 0}
   <CommandList>k__BackingField:
-  - {fileID: 11400000, guid: 7defd1f5602d7d840b7473c2a807ad84, type: 2}
-  - {fileID: 11400000, guid: bf11187310ec7bf40a7fd7d61fb85b93, type: 2}
+  - {fileID: 11400000, guid: 0953adedde8247a4eb5100ff9fcb3301, type: 2}
+  - {fileID: 11400000, guid: 072b9b16ab695d443b4f61396487ef33, type: 2}

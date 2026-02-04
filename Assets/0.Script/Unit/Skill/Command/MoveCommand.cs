@@ -17,7 +17,7 @@ public class MoveCommand : ICommand
         _animatable = actable;
         _animationName = so.AnimationName;
         _moveSpeed = so.MoveSpeed;
-        _distance = so.Distance;
+        _distance = so.TargetDistance;
         AfterDelay = so.AfterDelay;
     }
 

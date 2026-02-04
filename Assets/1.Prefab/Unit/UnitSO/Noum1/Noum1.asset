@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitDataSO
   <Name>k__BackingField: "\uBCF4\uB77C\uB178\uC6C0"
   <Team>k__BackingField: 0
-  <Hp>k__BackingField: 20
+  <Hp>k__BackingField: 25
   <AttLevel>k__BackingField: 0
   <DefLevel>k__BackingField: 0
   <MaxSpeed>k__BackingField: 6

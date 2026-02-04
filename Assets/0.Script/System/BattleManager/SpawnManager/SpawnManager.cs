@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour, IBattlePosition
 {
     private List<ISpawn> _spawners;
     private List<IUnitSetPos> _unitSetPosList;
@@ -12,6 +12,8 @@ public class SpawnManager : MonoBehaviour
 
     public List<UnitPresenter> Players => _players;
     public List<UnitPresenter> Enemies => _enemies;
+    public Vector3 PlayerPos => GetRandomVector(_spawnPoints[0]);
+    public Vector3 EnemyPos =>  GetRandomVector(_spawnPoints[1]);
     
     private void Awake()
     {
@@ -65,5 +67,12 @@ public class SpawnManager : MonoBehaviour
                 _unitSetPosList[1].SetUnitsPosition(units);
                 break;
         }
+    }
+
+    private Vector3 GetRandomVector(Transform myTransform)
+    {
+        float x = myTransform.position.x + Random.Range(-2f, 2f);
+        float y = myTransform.position.y + Random.Range(-1f, 1f);
+        return new Vector3(x, y, myTransform.position.z);
     }
 }

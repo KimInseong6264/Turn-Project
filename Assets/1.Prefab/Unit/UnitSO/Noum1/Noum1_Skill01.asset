@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6d77224c874431af3a8fd3696fa3ac, type: 3}
-  m_Name: Skill02_Noum1
+  m_Name: Noum1_Skill01
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataSO
   <OwnerName>k__BackingField: "\uBCF4\uB77C\uB178\uC6C0"
-  <Name>k__BackingField: "\uBCA0\uC5B4\uB0B4\uAE30"
-  <CoinCount>k__BackingField: 6
-  <CoinValue>k__BackingField: 3
-  <Type>k__BackingField: 1
-  <SkillIcon>k__BackingField: {fileID: 21300000, guid: 703086224fb55f247889789efcdd5910, type: 3}
+  <Name>k__BackingField: "\uCC0C\uB974\uAE30"
+  <CoinCount>k__BackingField: 1
+  <CoinValue>k__BackingField: 8
+  <Type>k__BackingField: 0
+  <SkillIcon>k__BackingField: {fileID: 21300000, guid: bac839a16efe8364db1769cb1e6a4512, type: 3}
   <CommandList>k__BackingField:
-  - {fileID: 11400000, guid: b41a74c9f07c6a34fb454967e3af5c7e, type: 2}
-  - {fileID: 11400000, guid: f290979fc31f1bd41bc6d7877d250d77, type: 2}
+  - {fileID: 11400000, guid: cc71366e39b57824baf418ee7008c486, type: 2}
+  - {fileID: 11400000, guid: 8c15a11c3078e22448bd148218dabd8c, type: 2}

@@ -64,15 +64,6 @@ public class UnitPresenter : IHitable, IUnit
         int damage = DamageCalculator.CalculateDamage(battleInfo, finalCoinValue);
         OnTakeDamage(damage);
         _view.StartCoroutine(OnHurt());
-        if (IsDead)
-        {
-            Debug.Log($"{battleInfo.Target.Data.Name}가 죽었습니다.");
-            _view.PlayAni("Death");
-            return;
-        }
-
-        if (knockbackInfo != null)
-            _view.StartCoroutine(Knockback(knockbackInfo));
     }
 
     private IEnumerator OnHurt()
@@ -80,23 +71,15 @@ public class UnitPresenter : IHitable, IUnit
         _view.PlayAni("Hurt");
         yield return null;
 
+        if (IsDead)
+        {
+            _view.PlayAni("Death");
+            yield break;
+        }
+        
         var aniInfo = _view.MyAnimator.GetCurrentAnimatorStateInfo(0);
         yield return CoroutineManager.GetWaitTime(aniInfo.length);
-        _view.PlayAni("Idle");
-    }
-
-    // 넉백 관련 메서드
-    private IEnumerator Knockback(KnockbackInfo? knockbackInfo)
-    {
-        var dir =  (knockbackInfo!.Value.Direction + MyTransform.position).normalized;
-        Vector3 startPos = MyTransform.position;
-        float distance = float.MaxValue;
-        while (distance <= knockbackInfo!.Value.Distance)
-        {
-            _view.Move(dir, knockbackInfo!.Value.Speed);
-            distance = Vector3.SqrMagnitude(startPos - MyTransform.position);
-            yield return null;
-        }
+        // _view.PlayAni("Idle");
     }
     
     
