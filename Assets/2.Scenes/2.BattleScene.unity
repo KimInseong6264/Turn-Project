@@ -187,6 +187,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGround
       objectReference: {fileID: 0}
+    - target: {fileID: 5225522643286968692, guid: b0a6e205f5be7de4895cc513a1611dc1, type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225522643286968692, guid: b0a6e205f5be7de4895cc513a1611dc1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2010755029
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

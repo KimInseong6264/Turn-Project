@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BattleStart
   - UiManager
+  - Panel
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2284212267
+    locked: 0
+  - name: WorldUI
+    uniqueID: 1796641077
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

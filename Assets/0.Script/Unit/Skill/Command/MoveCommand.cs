@@ -24,11 +24,11 @@ public class MoveCommand : ICommand
 
     public IEnumerator Execute(BattleInfo battleInfo)
     {
+        _animatable?.PlayAni(_animationName);
         float distance = float.MaxValue;
         var target = battleInfo.Target.MyObject;
         
         SetDirection(battleInfo);
-        _animatable?.PlayAni(_animationName);
         
         // 타겟과의 거리 기준으로 움직임 제어
         while (distance >= _distance)
@@ -66,7 +66,5 @@ public class MoveCommand : ICommand
                 target.localScale = new Vector3(-nomalizedX, 1, 1);
                 break;
         }
-        
-            
     }
 }

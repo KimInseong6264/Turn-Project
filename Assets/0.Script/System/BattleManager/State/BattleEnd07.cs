@@ -23,9 +23,12 @@ public class BattleEnd07 : IState
 
     private IEnumerator GameEnd()
     {
-        yield return CoroutineManager.GetWaitTime(3f);
+        yield return CoroutineManager.GetWaitTime(1.5f);
         
         GameManager.Instance.UpdateUI(UIGroupName.GameEnd, true);
+        _battleManager.OnGameEnded(_battleManager.Winners);
+        yield return CoroutineManager.GetWaitTime(1f);
+        
         GameManager.Instance.OnLoadScene(3);
     }
 }

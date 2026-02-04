@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(UnitAttackEvent))]
-public class UnitView : MonoBehaviour, IActable, IClickable
+public class UnitView : MonoBehaviour, IActable
 {
     private UnitDataSO _unitData;
     private Animator _animator;
     private Text _hpText;
+    private SpriteRenderer _sprite;
+    private float _timer;
     [SerializeField] private Slider _hpBar;
     [SerializeField] private SkillUI _unitSkillUI;
     
@@ -27,6 +30,7 @@ public class UnitView : MonoBehaviour, IActable, IClickable
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
 
         if (_hpBar == null)
             Debug.LogWarning(_unitData.Name + "HpBar 세팅해!");
@@ -42,31 +46,29 @@ public class UnitView : MonoBehaviour, IActable, IClickable
         Presenter.Initailize();
     }
 
-    // private void Update()
-    // {
-    //     Presenter.Tick();
-    // }
-    
-    // private void OnEnable()
-    // {
-    //     OnClick += OnStartCklick;
-    // }
-    private void OnDisable()
+    private void Update()
     {
-        // OnClick -= OnStartCklick;
+        _timer += Time.deltaTime;
+        if (_timer > 0.1f)
+        {
+            SetLayer();
+            _timer = 0;
+        }
     }
-
     
-
-    public void OnStartCklick()
-    {
-        Debug.Log("클릭대상" + _unitData.Name);
-    }
 
     public void OnCreatePresenter(UnitDataSO unitData)
     {
         _unitData = unitData;
         Presenter = new UnitPresenter(_unitData, this);
+    }
+
+    
+    private void SetLayer()
+    {
+        int y = (int)(-100 * transform.position.y);
+        if(_sprite.sortingOrder != y)
+            _sprite.sortingOrder = y;
     }
 
     public void UpdateHpBar(float hp, float maxHp) => _hpBar.value = hp / maxHp;

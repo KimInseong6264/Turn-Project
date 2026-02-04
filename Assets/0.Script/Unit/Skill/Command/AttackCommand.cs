@@ -25,11 +25,11 @@ public class AttackCommand : ICommand
 
     public IEnumerator Execute(BattleInfo battleInfo)
     {
-        yield return _coinSystem.OnCoinToss(_skill.ConinCount, _skill.CoinValue, 0.75f, 0.4f);
+        yield return _coinSystem.OnCoinToss(_skill.ConinCount, _skill.CoinValue, 0.75f, 0.3f);
         
         int finalCoinValue = _coinSystem.CoinValueSum;
         // 타격이 되는 애니메이션에서 타격 메서드 등록
-        _attackEvent.ClearOnAttackHiStarted();
+        _attackEvent.ClearOnAttackHitStarted();
         _attackEvent.OnAttackHitStarted += () => _attackable.Attack(battleInfo, finalCoinValue);
         
         _animatable.PlayAni(_animationName);

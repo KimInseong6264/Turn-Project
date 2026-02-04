@@ -21,8 +21,6 @@ public class InputManager : MonoBehaviour
             return;
         
         Debug.Log("<color=yellow>오브젝트 클릭감지</color>");
-        IClickable target = hit.transform.GetComponent<IClickable>();
-        target?.OnStartCklick();
     }
 
     private void Update()

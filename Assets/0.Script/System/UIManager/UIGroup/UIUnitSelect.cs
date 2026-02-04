@@ -21,11 +21,6 @@ public class UIUnitSelect : UIGroup
         base.Awake();
     }
 
-    private void Start()
-    {
-        GameManager.Instance.UpdateUI(UIGroupName.GameStart, false);
-    }
-
     private void Update()
     {
         if (UnitSelector.Players.Count == 0)
@@ -39,6 +34,7 @@ public class UIUnitSelect : UIGroup
     private void OnEnable()
     {
         OnCreateButton();
+        GameManager.Instance.UpdateUI(UIGroupName.GameStart, false);
     }
 
     private void OnDisable()

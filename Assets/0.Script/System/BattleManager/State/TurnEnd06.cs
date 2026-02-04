@@ -42,6 +42,7 @@ public class TurnEnd06 : IState
         _battleManager.SetState(BattleState.TurnStart02);
     }
 
+    // 유닛 중 살아있는 유닛이 있으면 true
     private bool IsUnitLife(List<UnitPresenter> units)
     {
         foreach (var unit in units)

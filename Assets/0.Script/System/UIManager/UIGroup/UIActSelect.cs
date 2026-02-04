@@ -7,7 +7,9 @@ public class UIActSelect : UIGroup
 {
     private List<ClickObject> _buttons;
     private UnityObjectPull<ClickObject> _actSelectPull;
+    private float _timer;
     
+    [SerializeField] private Button _battleStartButton;
     [SerializeField] private ClickObject _actSelectPrefab;
     
     
@@ -18,18 +20,43 @@ public class UIActSelect : UIGroup
         base.Awake();
     }
 
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        if (_timer > 0.1f)
+        {
+            UpdateBattleStart();
+            _timer = 0;
+        }
+    }
+
     private void OnEnable()
     {
         _buttons.Clear();
-        
+        _battleStartButton.interactable = false;   
         OnCreateButton();
     }
 
     private void OnDisable()
     {
         ReleaseButons();
+        _timer = 0;
     }
-    
+
+    private void UpdateBattleStart()
+    {
+        var battleInfo = BattleManager.Instance.BattleSequence;
+        foreach (var battleInfoValue in battleInfo.Values)
+        {
+            if (battleInfoValue.Target == null)
+            {
+                _battleStartButton.interactable = false;
+                return;
+            }
+        }
+        
+        _battleStartButton.interactable = true;
+    }
     
     // 플레이어에 해당하는 스킬버튼 묶음 생성
     public void OnCreateButton()

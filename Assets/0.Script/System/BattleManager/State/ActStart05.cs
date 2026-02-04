@@ -24,12 +24,10 @@ public class ActStart05 : IState
     {
         foreach (var battleInfo in _battleManager.BattleSequence.Values)
         {
-            if(battleInfo.Target != null)
-                yield return battleInfo.OnBattleExcute();
-            else
-            {
-                Debug.LogWarning(battleInfo.Attacker + "의 타겟 없음");
-            }
+            if(battleInfo.Attacker.Data.IsDead || battleInfo.Target.Data.IsDead)
+                continue;
+                
+            yield return battleInfo.OnBattleExcute();
         }
         yield return CoroutineManager.GetWaitTime(1.5f);
 
