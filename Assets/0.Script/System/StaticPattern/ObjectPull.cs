@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 유니티 오브젝트를 위한 오브젝트풀
-public class UnityObjectPull<T> where T : Component
+public class ObjectPull<T> where T : Component
 {
     private readonly Queue<T> _pull;
     private readonly T _prefab;
     private readonly Transform _parent;
 
-    public UnityObjectPull(T prefab, int count,  Transform parent)
+    public ObjectPull(T prefab, int count,  Transform parent)
     {
         _pull = new Queue<T>();
         _prefab = prefab;

@@ -4,8 +4,6 @@ public class UIGroup : MonoBehaviour
 {
     [field: SerializeField] public UIGroupName UIGroupName { get; private set; }
     
-    [SerializeField] protected Transform _objectPullTransform;
-
     
     protected virtual void Awake()
     {

@@ -23,7 +23,7 @@ public class LoginSystem : MonoBehaviour
         
         _loginButton.onClick.AddListener(OnLogin);
         _registerButton.onClick.AddListener(UpdateInToRegister);
-        // StartCoroutine(AutoLoginCor());
+        StartCoroutine(AutoLoginCor());
     }
     
     

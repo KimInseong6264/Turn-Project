@@ -6,18 +6,18 @@ using UnityEngine.UI;
 public class UIUnitSelect : UIGroup
 {
     private List<ClickUnitSelect> _buttons;
-    private UnityObjectPull<ClickUnitSelect> _unitSelectPull;
+    private ObjectPull<ClickUnitSelect> _unitSelectPull;
     
-    [SerializeField] private Transform _unitSelectionWindow;
     [SerializeField] private ClickUnitSelect _unitSelectPrefab;
     [SerializeField] private Button _battleStartButton; 
+    [SerializeField] private Transform _buttonParent;
     
     
     
     protected override void Awake()
     {
         _buttons = new List<ClickUnitSelect>();
-        _unitSelectPull = new UnityObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _unitSelectionWindow);
+        _unitSelectPull = new ObjectPull<ClickUnitSelect>(_unitSelectPrefab, 5, _buttonParent);
         base.Awake();
     }
 

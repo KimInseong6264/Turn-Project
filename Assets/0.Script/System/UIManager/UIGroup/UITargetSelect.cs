@@ -7,22 +7,29 @@ using UnityEngine.UI;
 public class UITargetSelect : UIGroup
 {
     private List<Transform> _buttons;
-    private UnityObjectPull<Transform> _buttonPull;
+    private ObjectPull<Transform> _buttonPull;
+    private ISequenceSystem _sequenceSystem;
     
     public event Action<UnitPresenter, ClickObject> OnCreatedTargetButton;
     
     [SerializeField] private RectTransform _targetSelectPrefab;
+    [SerializeField] private Transform _buttonParent;
 
     
     
     protected override void Awake()
     {
         _buttons = new List<Transform>();
-        _buttonPull = new UnityObjectPull<Transform>(_targetSelectPrefab, 5, _objectPullTransform);
+        _buttonPull = new ObjectPull<Transform>(_targetSelectPrefab, 5, _buttonParent);
         base.Awake();
     }
 
-    
+    private void Start()
+    {
+        _sequenceSystem = BattleManager.Instance;
+    }
+
+
     private void OnEnable()
     {
         _buttons.Clear();
@@ -75,7 +82,7 @@ public class UITargetSelect : UIGroup
         else if(unit.Team == UnitTeam.Enemy)
         {
             clickObject.GetComponent<Button>().interactable = true;
-            clickObject.OnClick += () => BattleManager.Instance.SetSequenceTarget(unit);
+            clickObject.OnClick += () => _sequenceSystem.SetSequenceTarget(unit);
         }
         clickObject.name = unit.Name + " 선택버튼";
         OnCreatedTargetButton?.Invoke(unit, clickObject);
@@ -83,8 +90,9 @@ public class UITargetSelect : UIGroup
     
     private void ReleaseButons()
     {
-        foreach (RectTransform button in _buttons)
+        foreach (var transform1 in _buttons)
         {
+            var button = (RectTransform)transform1;
             button.gameObject.name = "TargetSelectButton";
             
             button.localScale = _targetSelectPrefab.localScale;
@@ -100,7 +108,7 @@ public class UITargetSelect : UIGroup
             if(!button)
                 continue;
             
-            button.transform.SetParent(_objectPullTransform);
+            button.transform.SetParent(_buttonParent);
         }
     }
 }

@@ -446,6 +446,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c81e52071dea87943a066f8dbc96484a, type: 3}
+--- !u!224 &754178020 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5139444485399559800, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1005003022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &807972501
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,10 +596,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2331888948441276884, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _buttonParent
+      value: 
+      objectReference: {fileID: 754178020}
+    - target: {fileID: 4607143786407995250, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _buttonParent
+      value: 
+      objectReference: {fileID: 1874929027}
     - target: {fileID: 5957410302424984766, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7277178558455205643, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+      propertyPath: _buttonParent
+      value: 
+      objectReference: {fileID: 2034920433}
     - target: {fileID: 8944476539885274872, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -640,6 +657,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+--- !u!4 &1874929027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5666933979687404803, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1005003022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2034920433 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5904272516084532569, guid: 79b75d5c3c4afdc41836baeb8306375b, type: 3}
+  m_PrefabInstance: {fileID: 1005003022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

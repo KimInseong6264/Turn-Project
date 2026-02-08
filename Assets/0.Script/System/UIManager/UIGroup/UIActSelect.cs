@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,18 +7,25 @@ using UnityEngine.UI;
 public class UIActSelect : UIGroup
 {
     private List<ClickObject> _buttons;
-    private UnityObjectPull<ClickObject> _actSelectPull;
+    private ObjectPull<ClickObject> _actSelectPull;
     private float _timer;
+    private ISequenceSystem _sequenceSystem;
     
     [SerializeField] private Button _battleStartButton;
     [SerializeField] private ClickObject _actSelectPrefab;
+    [SerializeField] private Transform _buttonParent;
     
     
     protected override void Awake()
     {
-        _actSelectPull = new UnityObjectPull<ClickObject>(_actSelectPrefab, 5, _objectPullTransform);
+        _actSelectPull = new ObjectPull<ClickObject>(_actSelectPrefab, 5, _buttonParent);
         _buttons = new List<ClickObject>();
         base.Awake();
+    }
+
+    private void Start()
+    {
+        _sequenceSystem = BattleManager.Instance;
     }
 
     private void Update()
@@ -45,7 +53,7 @@ public class UIActSelect : UIGroup
 
     private void UpdateBattleStart()
     {
-        var battleInfo = BattleManager.Instance.BattleSequence;
+        var battleInfo = _sequenceSystem.BattleSequence;
         foreach (var battleInfoValue in battleInfo.Values)
         {
             if (battleInfoValue.Target == null)
@@ -61,7 +69,7 @@ public class UIActSelect : UIGroup
     // 플레이어에 해당하는 스킬버튼 묶음 생성
     public void OnCreateButton()
     {
-        var unitSequence = BattleManager.Instance.BattleSequence;
+        var unitSequence = _sequenceSystem.BattleSequence;
         foreach (var battleInfo in unitSequence.Values)
         {
             if(battleInfo.AttackerTeam == UnitTeam.Enemy || battleInfo.Attacker.Data.IsDead)
@@ -91,7 +99,7 @@ public class UIActSelect : UIGroup
         clickObject.GetComponent<Image>().sprite = skill.SkillIcon;
         clickObject.gameObject.name = skill.Name + " Buton";
         clickObject.GetComponentInChildren<Text>().text = skill.Name;
-        clickObject.OnClick += () => BattleManager.Instance.SetSequenceSkill(skill);
+        clickObject.OnClick += () => _sequenceSystem.SetSequenceSkill(skill);
     }
 
     private void ReleaseButons()

@@ -5,12 +5,18 @@ using UnityEngine.UI;
 public class UIUnitSequence : MonoBehaviour
 {
     private List<Image> _images;
+    private ISequenceSystem _sequenceSystem;
     [SerializeField] private Image _sequencePrefab;
 
 
     private void Awake()
     {
         _images = new List<Image>();
+    }
+
+    private void Start()
+    {
+        _sequenceSystem = BattleManager.Instance;
     }
 
     private void OnEnable()
@@ -28,7 +34,7 @@ public class UIUnitSequence : MonoBehaviour
 
     private void OnCreateUI()
     {
-        foreach (var battleSequence in BattleManager.Instance.BattleSequence.Values)
+        foreach (var battleSequence in _sequenceSystem.BattleSequence.Values)
         {
             Image imageObj = Instantiate(_sequencePrefab, transform);
             imageObj.sprite = battleSequence.Attacker.Data.UnitIcon;

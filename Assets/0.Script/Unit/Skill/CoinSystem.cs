@@ -7,7 +7,7 @@ using UnityEngine;
 public class CoinSystem : MonoBehaviour
 {
     private List<Coin> _ativeCoins;
-    private UnityObjectPull<Coin> _coinPull;
+    private ObjectPull<Coin> _coinPull;
     private int _coinValueSum;
     
     [SerializeField] private Coin _coinPrefab;
@@ -18,7 +18,7 @@ public class CoinSystem : MonoBehaviour
     private void Awake()
     {
         _ativeCoins = new List<Coin>();
-        _coinPull = new UnityObjectPull<Coin>(_coinPrefab, 5, transform);
+        _coinPull = new ObjectPull<Coin>(_coinPrefab, 15, transform);
     }
 
     private void OnDisable()
